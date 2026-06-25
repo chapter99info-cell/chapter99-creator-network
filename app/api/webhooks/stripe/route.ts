@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { createServiceClient } from '@/lib/supabase/server'
-import { supabaseUnavailableResponse, serviceUnavailableResponse } from '@/lib/supabase/guards'
+import { serviceUnavailableResponse } from '@/lib/supabase/guards'
 import Stripe from 'stripe'
 
 function getBookingIdFromMetadata(metadata: Stripe.Metadata | null): string | undefined {

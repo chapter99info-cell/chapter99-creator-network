@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
-import { supabaseUnavailableResponse, serviceUnavailableResponse } from '@/lib/supabase/guards'
+import { serviceUnavailableResponse } from '@/lib/supabase/guards'
 
 const MAX_AVATAR_BYTES = 5 * 1024 * 1024
 const MAX_INSURANCE_BYTES = 10 * 1024 * 1024

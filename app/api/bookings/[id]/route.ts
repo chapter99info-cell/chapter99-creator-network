@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { supabaseUnavailableResponse, serviceUnavailableResponse } from '@/lib/supabase/guards'
+import { supabaseUnavailableResponse } from '@/lib/supabase/guards'
 import { stripe } from '@/lib/stripe'
 import { createReviewSchema } from '@/lib/validations'
 import type { Database } from '@/types/supabase'

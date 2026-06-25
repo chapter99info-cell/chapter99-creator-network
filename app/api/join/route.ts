@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
-import { supabaseUnavailableResponse, serviceUnavailableResponse } from '@/lib/supabase/guards'
+import { serviceUnavailableResponse } from '@/lib/supabase/guards'
 import { joinRegistrationSchema } from '@/lib/validations'
 import { sendJoinConfirmationEmail, sendNewPhotographerAdminEmail } from '@/lib/resend'
 import { formatAbn } from '@/lib/abn'

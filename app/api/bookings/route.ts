@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { supabaseUnavailableResponse, serviceUnavailableResponse } from '@/lib/supabase/guards'
+import { supabaseUnavailableResponse } from '@/lib/supabase/guards'
 import { createPaymentIntent } from '@/lib/stripe'
 import { createBookingSchema } from '@/lib/validations'
 import { calculatePricing, METRO_TRAVEL_FEE } from '@/lib/calculations'
