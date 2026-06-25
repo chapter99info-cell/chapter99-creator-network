@@ -141,8 +141,22 @@ export default function HomePage() {
       </header>
 
       {/* Section 3 — Hero */}
-      <section className="bg-[#111111] px-6 pb-24 pt-32 text-center">
-        <div className="mx-auto max-w-[520px]">
+      <section className="relative overflow-hidden px-6 pb-24 pt-32 text-center">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden
+        >
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260506_031045_0e1165dd-ab48-46e3-ad3d-5fe77f217647.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div className="absolute inset-0 bg-[#111111]/75" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-[520px]">
           <p className="animate-fade-in-up-hero animation-delay-100 mb-8 inline-flex rounded-full border border-[#E8A838]/40 px-4 py-1.5 font-mono text-xs text-[#E8A838]">
             ABN Verified · Insurance $5M+ · Escrow Protected
           </p>
