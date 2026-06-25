@@ -10,7 +10,7 @@ export type SessionUpdateResult = {
   supabaseResponse: NextResponse
 }
 
-/** รีเฟรช session ใน middleware */
+/** รีเฟรช session ใน middleware — ไม่ throw เมื่อ env ไม่ครบหรือ Supabase ล้มเหลว */
 export async function updateSession(request: NextRequest): Promise<SessionUpdateResult> {
   const supabaseResponse = NextResponse.next({ request })
 
@@ -18,30 +18,34 @@ export async function updateSession(request: NextRequest): Promise<SessionUpdate
     return { supabase: null, user: null, supabaseResponse }
   }
 
-  let response = supabaseResponse
+  try {
+    let response = supabaseResponse
 
-  const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
+    const supabase = createServerClient<Database>(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!.trim(),
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!.trim(),
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+            response = NextResponse.next({ request })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options)
+            )
+          },
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-          response = NextResponse.next({ request })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
+      }
+    )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  return { supabase, user, supabaseResponse: response }
+    return { supabase, user, supabaseResponse: response }
+  } catch {
+    return { supabase: null, user: null, supabaseResponse }
+  }
 }

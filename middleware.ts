@@ -24,17 +24,27 @@ async function getPhotographerAccess(
   supabase: NonNullable<Awaited<ReturnType<typeof updateSession>>['supabase']>,
   userId: string
 ): Promise<PhotographerAccess | null> {
-  const { data } = await supabase
-    .from('photographers')
-    .select('id, is_verified, is_blacklisted, is_active')
-    .eq('id', userId)
-    .single()
+  try {
+    const { data } = await supabase
+      .from('photographers')
+      .select('id, is_verified, is_blacklisted, is_active')
+      .eq('id', userId)
+      .single()
 
-  return data as PhotographerAccess | null
+    return data as PhotographerAccess | null
+  } catch {
+    return null
+  }
 }
 
 function authErrorRedirect(request: NextRequest, error: string) {
   return NextResponse.redirect(new URL(`/auth/login?error=${error}`, request.url))
+}
+
+function loginRedirect(request: NextRequest, pathname: string) {
+  const loginUrl = new URL('/auth/login', request.url)
+  loginUrl.searchParams.set('redirect', pathname)
+  return NextResponse.redirect(loginUrl)
 }
 
 /** /photographer/* และ /sop — ช่างภาพที่ admin verify แล้วเท่านั้น */
@@ -51,63 +61,73 @@ function requireVerifiedPhotographer(
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const { supabase, user, supabaseResponse } = await updateSession(request)
 
-  if (isPublicRoute(pathname)) {
-    return supabaseResponse
+  // API routes handle their own auth and Supabase guards
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next({ request })
   }
 
-  const loginUrl = new URL('/auth/login', request.url)
-  loginUrl.searchParams.set('redirect', pathname)
+  try {
+    const { supabase, user, supabaseResponse } = await updateSession(request)
 
-  // Supabase ไม่ได้ตั้งค่า — ปล่อย public routes, protected → login
-  if (!supabase) {
-    return NextResponse.redirect(loginUrl)
-  }
-
-  // /admin/* — พี่แสนคนเดียว (ADMIN_USER_ID)
-  if (pathname.startsWith('/admin')) {
-    if (!user || user.id !== process.env.ADMIN_USER_ID) {
-      return NextResponse.redirect(loginUrl)
+    if (isPublicRoute(pathname)) {
+      return supabaseResponse
     }
+
+    // Supabase ไม่ได้ตั้งค่า — protected routes → login (ไม่ throw)
+    if (!supabase) {
+      return loginRedirect(request, pathname)
+    }
+
+    // /admin/* — พี่แสนคนเดียว (ADMIN_USER_ID)
+    if (pathname.startsWith('/admin')) {
+      if (!user || user.id !== process.env.ADMIN_USER_ID) {
+        return loginRedirect(request, pathname)
+      }
+      return supabaseResponse
+    }
+
+    // /sop — ช่างภาพ verified
+    if (pathname.startsWith('/sop')) {
+      if (!user) return loginRedirect(request, pathname)
+
+      const photographer = await getPhotographerAccess(supabase, user.id)
+      const denied = requireVerifiedPhotographer(request, photographer)
+      if (denied) return denied
+
+      return supabaseResponse
+    }
+
+    // /photographer/* — ช่างภาพ verified
+    if (pathname.startsWith('/photographer')) {
+      if (!user) return loginRedirect(request, pathname)
+
+      const photographer = await getPhotographerAccess(supabase, user.id)
+      const denied = requireVerifiedPhotographer(request, photographer)
+      if (denied) return denied
+
+      return supabaseResponse
+    }
+
+    // /client/* — ลูกค้าที่ login
+    if (pathname.startsWith('/client')) {
+      if (!user) return loginRedirect(request, pathname)
+      return supabaseResponse
+    }
+
+    // /book/* — ลูกค้าที่ login
+    if (pathname.startsWith('/book')) {
+      if (!user) return loginRedirect(request, pathname)
+      return supabaseResponse
+    }
+
     return supabaseResponse
+  } catch {
+    if (isPublicRoute(pathname)) {
+      return NextResponse.next({ request })
+    }
+    return loginRedirect(request, pathname)
   }
-
-  // /sop — ช่างภาพ verified
-  if (pathname.startsWith('/sop')) {
-    if (!user) return NextResponse.redirect(loginUrl)
-
-    const photographer = await getPhotographerAccess(supabase, user.id)
-    const denied = requireVerifiedPhotographer(request, photographer)
-    if (denied) return denied
-
-    return supabaseResponse
-  }
-
-  // /photographer/* — ช่างภาพ verified
-  if (pathname.startsWith('/photographer')) {
-    if (!user) return NextResponse.redirect(loginUrl)
-
-    const photographer = await getPhotographerAccess(supabase, user.id)
-    const denied = requireVerifiedPhotographer(request, photographer)
-    if (denied) return denied
-
-    return supabaseResponse
-  }
-
-  // /client/* — ลูกค้าที่ login
-  if (pathname.startsWith('/client')) {
-    if (!user) return NextResponse.redirect(loginUrl)
-    return supabaseResponse
-  }
-
-  // /book/* — ลูกค้าที่ login
-  if (pathname.startsWith('/book')) {
-    if (!user) return NextResponse.redirect(loginUrl)
-    return supabaseResponse
-  }
-
-  return supabaseResponse
 }
 
 export const config = {
