@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
   const path = `${folder}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`
 
   const serviceClient = createServiceClient()
+  console.log('SERVICE_KEY_EXISTS:', !!process.env.SUPABASE_SERVICE_ROLE_KEY, 'LENGTH:', process.env.SUPABASE_SERVICE_ROLE_KEY?.length)
   if (!serviceClient) return serviceUnavailableResponse()
   const buffer = Buffer.from(await file.arrayBuffer())
 
