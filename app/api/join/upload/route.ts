@@ -39,9 +39,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: uploadError.message }, { status: 500 })
   }
 
-  const {
-    data: { publicUrl },
-  } = serviceClient.storage.from('documents').getPublicUrl(path)
-
-  return NextResponse.json({ url: publicUrl })
+  return NextResponse.json({ url: path })
 }
