@@ -11,5 +11,7 @@ export function isSupabaseConfigured(): boolean {
 }
 
 export function isSupabaseServiceConfigured(): boolean {
-  return Boolean(isSupabaseConfigured() && readEnv('SUPABASE_SERVICE_ROLE_KEY'))
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  console.log('SERVICE_ROLE_KEY length:', key?.length ?? 0, 'first10:', key?.slice(0, 10))
+  return Boolean(isSupabaseConfigured() && key)
 }
