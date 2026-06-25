@@ -173,3 +173,22 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER after_review_insert
   AFTER INSERT ON reviews
   FOR EACH ROW EXECUTE FUNCTION refresh_photographer_rating();
+
+-- ─── Property subscriptions (Real estate posting rights $50/month) ─────────
+
+CREATE TABLE property_subscriptions (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  facebook_name text NOT NULL,
+  agency_name text,
+  email text NOT NULL,
+  stripe_customer_id text,
+  stripe_subscription_id text,
+  status text DEFAULT 'pending' CHECK (status IN ('active', 'expired', 'pending')),
+  expires_at timestamptz,
+  created_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE property_subscriptions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Service role only" ON property_subscriptions
+  USING (auth.role() = 'service_role');

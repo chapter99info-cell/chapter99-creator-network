@@ -198,6 +198,32 @@ export interface Database {
         Update: Partial<Database['public']['Tables']['payout_ledger']['Insert']>
         Relationships: []
       }
+      property_subscriptions: {
+        Row: {
+          id: string
+          facebook_name: string
+          agency_name: string | null
+          email: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          status: string
+          expires_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          facebook_name: string
+          agency_name?: string | null
+          email: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          status?: string
+          expires_at?: string | null
+          created_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['property_subscriptions']['Insert']>
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>

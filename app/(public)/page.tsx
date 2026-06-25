@@ -183,7 +183,7 @@ export default function HomePage() {
             <p>งาน F&B เริ่มต้น $300 Wedding เริ่มต้น $440</p>
           </div>
 
-          <div className="animate-fade-in-up-hero animation-delay-400 mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="animate-fade-in-up-hero animation-delay-400 mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/photographers"
               className="saffron-shadow-primary rounded-full bg-[#E8A838] px-7 py-3 text-sm font-medium text-[#111111] transition-colors hover:bg-[#E8A838]/90"
@@ -192,9 +192,15 @@ export default function HomePage() {
             </Link>
             <Link
               href="/join"
-              className="rounded-full border border-[#333333] bg-transparent px-7 py-3 text-sm text-[#555555] transition-colors hover:border-[#555555] hover:text-white"
+              className="rounded-full border border-[#3B82F6] bg-[#3B82F6]/10 px-7 py-3 text-sm font-medium text-[#3B82F6] transition-colors hover:bg-[#3B82F6]/20"
             >
-              สมัครเป็นช่างภาพ
+              ลงทะเบียนช่าง (Verified ABN)
+            </Link>
+            <Link
+              href="/subscribe/realestate"
+              className="rounded-full border border-[#E87838] bg-[#E87838]/10 px-7 py-3 text-sm font-medium text-[#E87838] transition-colors hover:bg-[#E87838]/20"
+            >
+              สมัครสิทธิ์โพสต์อสังหาฯ ($50/เดือน)
             </Link>
           </div>
 

@@ -117,3 +117,49 @@ export async function triggerTransfer(params: TriggerTransferParams) {
     },
   })
 }
+
+const PROPERTY_MONTHLY_CENTS = 5000
+
+/** Stripe Checkout — สิทธิ์โพสต์อสังหาฯ $50/เดือน */
+export async function createPropertySubscriptionCheckout(params: {
+  email: string
+  facebookName: string
+  agencyName?: string
+  successUrl: string
+  cancelUrl: string
+}) {
+  return getStripe().checkout.sessions.create({
+    mode: 'subscription',
+    customer_email: params.email,
+    line_items: [
+      {
+        price_data: {
+          currency: 'aud',
+          product_data: {
+            name: 'Chapter99 Real Estate Posting Rights',
+            description: 'สิทธิ์โพสต์อสังหาริมทรัพย์ในกลุ่ม Facebook — $50/เดือน',
+          },
+          unit_amount: PROPERTY_MONTHLY_CENTS,
+          recurring: { interval: 'month' },
+        },
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      type: 'property_subscription',
+      facebook_name: params.facebookName,
+      agency_name: params.agencyName ?? '',
+      email: params.email,
+    },
+    subscription_data: {
+      metadata: {
+        type: 'property_subscription',
+        facebook_name: params.facebookName,
+        agency_name: params.agencyName ?? '',
+        email: params.email,
+      },
+    },
+    success_url: params.successUrl,
+    cancel_url: params.cancelUrl,
+  })
+}

@@ -8,6 +8,7 @@ function isPublicRoute(pathname: string): boolean {
   if (pathname === '/') return true
   if (pathname === '/photographers') return true
   if (pathname === '/join') return true
+  if (pathname === '/subscribe/realestate') return true
   if (pathname === '/terms') return true
   if (/^\/photographers\/[^/]+$/.test(pathname)) return true
   return false
