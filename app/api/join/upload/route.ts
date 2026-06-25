@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceClient } from '@/lib/supabase/server'
-import { serviceUnavailableResponse } from '@/lib/supabase/guards'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 
 const MAX_AVATAR_BYTES = 5 * 1024 * 1024
 const MAX_INSURANCE_BYTES = 10 * 1024 * 1024
@@ -23,12 +22,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Insurance ต้องเป็น PDF' }, { status: 400 })
   }
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim()
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  if (!supabaseUrl || !serviceRoleKey) {
+    return NextResponse.json({ error: 'Supabase is not configured' }, { status: 503 })
+  }
+
   const ext = file.name.split('.').pop() ?? 'bin'
   const path = `${folder}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`
 
-  const serviceClient = createServiceClient()
-  console.log('SERVICE_KEY_EXISTS:', !!process.env.SUPABASE_SERVICE_ROLE_KEY, 'LENGTH:', process.env.SUPABASE_SERVICE_ROLE_KEY?.length)
-  if (!serviceClient) return serviceUnavailableResponse()
+  const serviceClient = createSupabaseClient(supabaseUrl, serviceRoleKey)
   const buffer = Buffer.from(await file.arrayBuffer())
 
   const { error: uploadError } = await serviceClient.storage
