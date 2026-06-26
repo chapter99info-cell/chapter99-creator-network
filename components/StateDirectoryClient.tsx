@@ -2,20 +2,12 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ExternalLink, Flag } from 'lucide-react'
 import { ReportModal } from '@/components/ReportModal'
 import { SiteFooter } from '@/components/SiteFooter'
-import { PROFESSIONAL_JOB_CATEGORIES, maskAbn, type AuState } from '@/lib/community-constants'
+import { VerifiedProfileCard, type VerifiedProfile } from '@/components/VerifiedProfileCard'
+import { PROFESSIONAL_JOB_CATEGORIES, type AuState } from '@/lib/community-constants'
 
-export interface DirectoryProfile {
-  id: string
-  facebook_name: string
-  business_name: string | null
-  abn_number: string
-  state: string
-  job_category: string
-  portfolio_url: string | null
-}
+export type DirectoryProfile = VerifiedProfile
 
 interface StateDirectoryClientProps {
   state: AuState
@@ -75,44 +67,13 @@ export function StateDirectoryClient({ state, profiles }: StateDirectoryClientPr
               </Link>
             </p>
           ) : (
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
               {filtered.map((profile) => (
-                <article
+                <VerifiedProfileCard
                   key={profile.id}
-                  className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-5"
-                >
-                  <h2 className="font-medium text-white">
-                    {profile.business_name || profile.facebook_name}
-                  </h2>
-                  <span className="mt-2 inline-block rounded-full border border-trust/30 bg-trust/10 px-3 py-0.5 text-xs text-trust">
-                    {profile.job_category}
-                  </span>
-                  <p className="mt-2 text-xs text-[#555555]">{profile.state}</p>
-                  <p className="mt-2 font-mono text-xs text-gray-400">
-                    ABN: {maskAbn(profile.abn_number)}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {profile.portfolio_url && (
-                      <a
-                        href={profile.portfolio_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-lg border border-trust/30 px-3 py-1.5 text-xs text-trust hover:bg-trust/10"
-                      >
-                        ดูผลงาน
-                        <ExternalLink size={12} />
-                      </a>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => setReportTarget(profile)}
-                      className="inline-flex items-center gap-1 rounded-lg border border-red-500/30 px-3 py-1.5 text-xs text-red-400 hover:bg-red-500/10"
-                    >
-                      <Flag size={12} />
-                      Report
-                    </button>
-                  </div>
-                </article>
+                  profile={profile}
+                  onReport={setReportTarget}
+                />
               ))}
             </div>
           )}
