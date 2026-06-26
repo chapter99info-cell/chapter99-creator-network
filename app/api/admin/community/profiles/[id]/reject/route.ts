@@ -1,3 +1,4 @@
+export const runtime = 'nodejs'
 import { NextRequest, NextResponse } from 'next/server'
 import { adminUnauthorizedResponse, isAdminAuthenticated } from '@/lib/admin-auth'
 import { createServiceClient } from '@/lib/supabase/server'
