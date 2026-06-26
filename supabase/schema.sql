@@ -1,4 +1,4 @@
--- Chapter99 Creator Network — Supabase Schema
+-- Thai-Aus Verified Community — Supabase Schema
 -- Run in Supabase SQL Editor
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -23,7 +23,7 @@ CREATE TABLE photographers (
   is_active BOOLEAN DEFAULT TRUE,
   is_blacklisted BOOLEAN DEFAULT FALSE,
   blacklist_reason TEXT,
-  platform_fee_rate NUMERIC(4,2) DEFAULT 7.00,
+  platform_fee_rate NUMERIC(4,2) DEFAULT 3.00,
   total_jobs_completed INTEGER DEFAULT 0,
   average_rating NUMERIC(3,2) DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -191,4 +191,62 @@ CREATE TABLE property_subscriptions (
 ALTER TABLE property_subscriptions ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Service role only" ON property_subscriptions
+  USING (auth.role() = 'service_role');
+
+-- ─── Thai-Aus Verified Community tables ─────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS profiles (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  facebook_name text NOT NULL,
+  business_name text,
+  abn_number text NOT NULL,
+  state text NOT NULL DEFAULT 'NSW',
+  job_category text NOT NULL,
+  portfolio_url text,
+  is_verified boolean DEFAULT false,
+  subscription_status text DEFAULT 'free'
+    CHECK (subscription_status IN ('free','premium','expired')),
+  strike_count int DEFAULT 0,
+  is_blacklisted boolean DEFAULT false,
+  created_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE property_subscriptions ADD COLUMN IF NOT EXISTS state text DEFAULT 'NSW';
+
+CREATE TABLE IF NOT EXISTS reports (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  reporter_email text NOT NULL,
+  reported_profile_id uuid REFERENCES profiles(id),
+  description text NOT NULL,
+  evidence_url text,
+  strike_count int DEFAULT 0,
+  status text DEFAULT 'open'
+    CHECK (status IN ('open','resolved','dismissed')),
+  created_at timestamptz DEFAULT now()
+);
+
+-- Migrations for existing deployments
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS state text NOT NULL DEFAULT 'NSW';
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS job_category text;
+UPDATE profiles SET job_category = 'Other' WHERE job_category IS NULL;
+ALTER TABLE profiles ALTER COLUMN job_category SET NOT NULL;
+
+ALTER TABLE property_subscriptions ADD COLUMN IF NOT EXISTS subscription_status text DEFAULT 'pending'
+  CHECK (subscription_status IN ('active','expired','pending','cancelled'));
+
+ALTER TABLE reports ADD COLUMN IF NOT EXISTS strike_count int DEFAULT 0;
+
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reports ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_view_verified_profiles"
+  ON profiles FOR SELECT
+  USING (is_verified = TRUE AND is_blacklisted = FALSE);
+
+CREATE POLICY "service_role_profiles"
+  ON profiles FOR ALL
+  USING (auth.role() = 'service_role');
+
+CREATE POLICY "service_role_reports"
+  ON reports FOR ALL
   USING (auth.role() = 'service_role');

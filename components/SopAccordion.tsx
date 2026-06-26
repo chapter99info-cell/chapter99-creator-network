@@ -37,7 +37,7 @@ export function SopAccordion() {
               </span>
               <ChevronDown
                 className={cn(
-                  'shrink-0 text-[#E8A838] transition-transform print:hidden',
+                  'shrink-0 text-[#1B6CA8] transition-transform print:hidden',
                   isOpen && 'rotate-180'
                 )}
                 size={20}
@@ -72,7 +72,7 @@ export function SopPrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="inline-flex items-center gap-2 rounded-lg border border-[#E8A838] px-4 py-2 text-sm font-medium text-[#E8A838] transition-colors hover:bg-[#E8A838]/10 print:hidden"
+      className="inline-flex items-center gap-2 rounded-lg border border-[#1B6CA8] px-4 py-2 text-sm font-medium text-[#1B6CA8] transition-colors hover:bg-[#1B6CA8]/10 print:hidden"
     >
       <Printer size={18} />
       ดาวน์โหลด PDF (Print)

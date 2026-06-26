@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { PLATFORM_FEE_RATES } from '@/lib/fees'
 
 const facebookGroupUrl =
   process.env.NEXT_PUBLIC_FACEBOOK_GROUP_URL ??
@@ -88,20 +89,20 @@ export function PartnerSection() {
           <h2 className="font-serif mt-4 text-6xl leading-tight md:text-8xl">
             <span className="block text-white">ร่วมเป็น</span>
             <span className="block text-[#555555]">ส่วนหนึ่งของ</span>
-            <span className="block text-[#E8A838]">Creator</span>
+            <span className="block text-[#1B6CA8]">Creator</span>
           </h2>
 
           <p className="mx-auto mt-6 max-w-sm text-sm text-[#555555]">
             ช่างภาพไทยมืออาชีพในออสเตรเลีย
             <br />
-            Platform fee แค่ 7% · Escrow ทุกงาน
+            Platform fee แค่ {PLATFORM_FEE_RATES.photographer_creator}% · Escrow ทุกงาน
             <br />
             ABN + Insurance required
           </p>
 
           <Link
             href="/join"
-            className="saffron-shadow-primary mt-10 inline-block rounded-full bg-[#E8A838] px-10 py-4 text-base font-medium text-[#111111] transition-colors hover:bg-[#E8A838]/90"
+            className="saffron-shadow-primary mt-10 inline-block rounded-full bg-[#1B6CA8] px-10 py-4 text-base font-medium text-[#111111] transition-colors hover:bg-[#1B6CA8]/90"
           >
             สมัครช่างภาพเลย
           </Link>
@@ -112,9 +113,9 @@ export function PartnerSection() {
               href={facebookGroupUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#E8A838] underline"
+              className="text-[#1B6CA8] underline"
             >
-              Chapter99 Creator Network
+              Thai-Aus Verified Community
             </a>
           </p>
         </div>

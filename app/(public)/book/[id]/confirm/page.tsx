@@ -3,7 +3,7 @@ import ConfirmContent from './ConfirmContent'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
 
 export const metadata = {
-  title: 'ยืนยันการจอง | Chapter99 Creator Network',
+  title: 'ยืนยันการจอง | Thai-Aus Verified Community',
 }
 
 export default function ConfirmPage() {

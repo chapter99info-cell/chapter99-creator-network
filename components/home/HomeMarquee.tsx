@@ -22,7 +22,7 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
             key={`${label}-${i}`}
             className="flex h-48 w-72 shrink-0 items-center justify-center rounded-xl border border-[#222222] bg-[#1a1a1a]"
           >
-            <span className="font-heading text-sm text-[#E8A838]/50">{label}</span>
+            <span className="font-heading text-sm text-[#1B6CA8]/50">{label}</span>
           </div>
         ))}
       </div>

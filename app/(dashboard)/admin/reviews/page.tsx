@@ -35,7 +35,7 @@ export default async function AdminReviewsPage() {
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
-                  <span className="font-mono text-sm text-[#E8A838]">
+                  <span className="font-mono text-sm text-[#1B6CA8]">
                     {r.bookings?.booking_ref ?? '—'}
                   </span>
                   <span className="ml-3 text-sm text-white">

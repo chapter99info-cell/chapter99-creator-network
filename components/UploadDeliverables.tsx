@@ -107,7 +107,7 @@ export function UploadDeliverables({ bookingId }: UploadDeliverablesProps) {
       />
 
       <div
-        className="rounded-xl border-2 border-dashed border-white/20 bg-[#1a1a1a] p-8 text-center transition-colors hover:border-[#E8A838]/40"
+        className="rounded-xl border-2 border-dashed border-white/20 bg-[#1a1a1a] p-8 text-center transition-colors hover:border-[#1B6CA8]/40"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault()
@@ -122,7 +122,7 @@ export function UploadDeliverables({ bookingId }: UploadDeliverablesProps) {
         </p>
         <Button
           type="button"
-          className="mt-4 bg-[#E8A838] text-[#111111]"
+          className="mt-4 bg-[#1B6CA8] text-[#111111]"
           disabled={uploading}
           onClick={() => inputRef.current?.click()}
         >
@@ -138,7 +138,7 @@ export function UploadDeliverables({ bookingId }: UploadDeliverablesProps) {
           </div>
           <div className="mt-1 h-2 overflow-hidden rounded-full bg-white/10">
             <div
-              className="h-full rounded-full bg-[#E8A838] transition-all duration-300"
+              className="h-full rounded-full bg-[#1B6CA8] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>

@@ -34,7 +34,7 @@ export function BookingPricingBreakdown({
       </div>
       <div className="flex justify-between border-t border-white/10 pt-3 text-base font-semibold text-white">
         <dt>ยอดชำระทั้งหมด</dt>
-        <dd className="text-[#E8A838]">{formatCurrency(pricing.totalCharged)}</dd>
+        <dd className="text-[#1B6CA8]">{formatCurrency(pricing.totalCharged)}</dd>
       </div>
     </dl>
   )

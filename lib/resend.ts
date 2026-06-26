@@ -39,7 +39,7 @@ export async function sendShootingStartedEmail({
           เริ่มถ่ายงานของคุณแล้วครับ/ค่ะ
         </p>
         <p style="color: #888; font-size: 13px; margin-top: 24px;">
-          รหัสจอง: ${bookingRef}<br>Chapter99 Creator Network
+          รหัสจอง: ${bookingRef}<br>Thai-Aus Verified Community
         </p>
       </div>
     `,
@@ -72,7 +72,7 @@ export async function sendFilesUploadedAdminEmail(params: FilesUploadedAdminPara
         <p><strong>ประเภทงาน:</strong> ${jobType}</p>
         <p><strong>วันถ่าย:</strong> ${shootDate}</p>
         <p style="margin-top: 20px;">
-          <a href="${adminDashboardUrl}" style="background: #E8A838; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
+          <a href="${adminDashboardUrl}" style="background: #1B6CA8; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
             เปิด Admin Dashboard
           </a>
         </p>
@@ -117,14 +117,14 @@ export async function sendPayoutClientEmail(params: PayoutClientEmailParams) {
     from: getFrom(),
     to,
     subject: `✅ งานเสร็จสมบูรณ์ — ${bookingRef}`,
-    text: `ขอบคุณที่ใช้บริการ Chapter99 Creator Network รหัสจอง ${bookingRef} เขียนรีวิวได้ที่ ${reviewUrl}`,
+    text: `ขอบคุณที่ใช้บริการ Thai-Aus Verified Community รหัสจอง ${bookingRef} เขียนรีวิวได้ที่ ${reviewUrl}`,
     html: `
       <div style="font-family: sans-serif; max-width: 480px; padding: 24px;">
         <h2 style="color: #111;">✅ งานเสร็จสมบูรณ์</h2>
-        <p>ขอบคุณที่ใช้บริการ Chapter99 Creator Network</p>
+        <p>ขอบคุณที่ใช้บริการ Thai-Aus Verified Community</p>
         <p>รหัสจอง: ${bookingRef}</p>
         <p style="margin-top: 20px;">
-          <a href="${reviewUrl}" style="background: #E8A838; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
+          <a href="${reviewUrl}" style="background: #1B6CA8; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
             เขียนรีวิว
           </a>
         </p>
@@ -160,7 +160,7 @@ export async function sendNewPhotographerAdminEmail(params: NewPhotographerAdmin
         <p><strong>พื้นที่:</strong> ${suburbs.join(', ')}</p>
         <p><a href="${insuranceUrl}">ดู Insurance CoC</a></p>
         <p style="margin-top: 20px;">
-          <a href="${adminUrl}" style="background: #E8A838; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
+          <a href="${adminUrl}" style="background: #1B6CA8; color: #111; padding: 10px 20px; text-decoration: none; border-radius: 6px;">
             ไปยืนยันที่ Admin Dashboard
           </a>
         </p>
@@ -173,7 +173,7 @@ export async function sendJoinConfirmationEmail(to: string, fullName: string) {
   return getResend().emails.send({
     from: getFrom(),
     to,
-    subject: '✅ รับใบสมัครแล้ว — Chapter99 Creator Network',
+    subject: '✅ รับใบสมัครแล้ว — Thai-Aus Verified Community',
     text: `สวัสดี ${fullName}, ทีมงานจะตรวจสอบเอกสารและยืนยันภายใน 2–3 วันทำการ หลังจากยืนยันแล้ว คุณจะได้รับ Magic Link เพื่อ login เข้าระบบ`,
     html: `
       <div style="font-family: sans-serif; max-width: 480px; padding: 24px;">
@@ -181,7 +181,7 @@ export async function sendJoinConfirmationEmail(to: string, fullName: string) {
         <p>สวัสดี ${fullName},</p>
         <p>ทีมงานจะตรวจสอบเอกสารและยืนยันภายใน <strong>2–3 วันทำการ</strong></p>
         <p>หลังจากยืนยันแล้ว คุณจะได้รับ Magic Link เพื่อ login เข้าระบบ</p>
-        <p style="color: #888; margin-top: 24px;">Chapter99 Creator Network</p>
+        <p style="color: #888; margin-top: 24px;">Thai-Aus Verified Community</p>
       </div>
     `,
   })

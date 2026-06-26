@@ -14,7 +14,9 @@ const config: Config = {
           light: '#1a1a1a',
           dark: '#0a0a0a',
         },
-        saffron: '#E8A838',
+        trust: '#1B6CA8',
+        verified: '#16A34A',
+        saffron: '#1B6CA8',
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],

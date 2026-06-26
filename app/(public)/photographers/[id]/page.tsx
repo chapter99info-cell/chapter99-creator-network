@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props) {
     .single()
   return {
     title: data
-      ? `${data.full_name} | Chapter99 Creator Network`
+      ? `${data.full_name} | Thai-Aus Verified Community`
       : 'Photographer Profile',
   }
 }
@@ -76,14 +76,14 @@ export default async function PhotographerProfilePage({ params }: Props) {
       <div className="mx-auto max-w-4xl">
         <Link
           href="/photographers"
-          className="text-sm text-gray-500 transition-colors hover:text-[#E8A838]"
+          className="text-sm text-gray-500 transition-colors hover:text-[#1B6CA8]"
         >
           ← กลับรายชื่อช่างภาพ
         </Link>
 
         {/* Header */}
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-start">
-          <div className="relative mx-auto h-36 w-36 shrink-0 overflow-hidden rounded-full border-2 border-[#E8A838]/30 bg-[#1a1a1a] md:mx-0">
+          <div className="relative mx-auto h-36 w-36 shrink-0 overflow-hidden rounded-full border-2 border-[#1B6CA8]/30 bg-[#1a1a1a] md:mx-0">
             {photographer.avatar_url ? (
               <Image
                 src={photographer.avatar_url}
@@ -93,7 +93,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
                 priority
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-5xl font-semibold text-[#E8A838]">
+              <div className="flex h-full w-full items-center justify-center text-5xl font-semibold text-[#1B6CA8]">
                 {photographer.full_name.charAt(0)}
               </div>
             )}
@@ -126,7 +126,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
                   href={photographer.portfolio_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-gray-300 transition-colors hover:border-[#E8A838]/40 hover:text-[#E8A838]"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-gray-300 transition-colors hover:border-[#1B6CA8]/40 hover:text-[#1B6CA8]"
                 >
                   <ExternalLink size={14} />
                   Portfolio
@@ -137,7 +137,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
                   href={photographer.instagram_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-gray-300 transition-colors hover:border-[#E8A838]/40 hover:text-[#E8A838]"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-gray-300 transition-colors hover:border-[#1B6CA8]/40 hover:text-[#1B6CA8]"
                 >
                   <Link2 size={14} />
                   Instagram
@@ -150,21 +150,21 @@ export default async function PhotographerProfilePage({ params }: Props) {
         {/* Stats */}
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
           <Card className="text-center">
-            <Briefcase className="mx-auto text-[#E8A838]" size={22} />
+            <Briefcase className="mx-auto text-[#1B6CA8]" size={22} />
             <p className="mt-2 text-2xl font-bold text-white">
               {photographer.total_jobs_completed}
             </p>
             <p className="text-xs text-gray-500">งานสำเร็จ</p>
           </Card>
           <Card className="text-center">
-            <Star className="mx-auto text-[#E8A838]" size={22} />
+            <Star className="mx-auto text-[#1B6CA8]" size={22} />
             <p className="mt-2 text-2xl font-bold text-white">
               {photographer.average_rating.toFixed(1)}
             </p>
             <p className="text-xs text-gray-500">คะแนนเฉลี่ย</p>
           </Card>
           <Card className="col-span-2 text-center sm:col-span-1">
-            <Shield className="mx-auto text-[#E8A838]" size={22} />
+            <Shield className="mx-auto text-[#1B6CA8]" size={22} />
             <p className="mt-2 text-sm font-semibold text-white">
               {insuranceOk ? 'Insurance ยืนยันแล้ว' : 'รอตรวจ Insurance'}
             </p>
@@ -177,13 +177,13 @@ export default async function PhotographerProfilePage({ params }: Props) {
           <CardTitle>พื้นที่ให้บริการ</CardTitle>
           <div className="mt-3 flex flex-wrap items-center gap-3">
             <span className="flex items-center gap-1.5 text-sm text-gray-400">
-              <MapPin size={14} className="text-[#E8A838]" />
+              <MapPin size={14} className="text-[#1B6CA8]" />
               {photographer.suburb_coverage.length > 0
                 ? photographer.suburb_coverage.join(', ')
                 : 'Melbourne Metro'}
             </span>
             {photographer.has_car && (
-              <span className="flex items-center gap-1.5 rounded-full border border-[#E8A838]/30 bg-[#E8A838]/10 px-3 py-1 text-xs text-[#E8A838]">
+              <span className="flex items-center gap-1.5 rounded-full border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-3 py-1 text-xs text-[#1B6CA8]">
                 <Car size={12} />
                 มีรถ — รับงานนอก metro ได้
               </span>
@@ -207,7 +207,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
         <div className="mt-10 text-center md:text-left">
           <Link
             href={`/book/${params.id}`}
-            className="inline-block rounded-lg bg-[#E8A838] px-10 py-3.5 text-base font-semibold text-[#111111] transition-colors hover:bg-[#E8A838]/90"
+            className="inline-block rounded-lg bg-[#1B6CA8] px-10 py-3.5 text-base font-semibold text-[#111111] transition-colors hover:bg-[#1B6CA8]/90"
           >
             จองช่างภาพนี้
           </Link>

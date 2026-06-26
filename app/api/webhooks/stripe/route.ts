@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
+import {
+  handlePropertySubscriptionStripeEvent,
+  isPropertySubscription,
+} from '@/lib/stripe-property-subscriptions'
 import { createServiceClient } from '@/lib/supabase/server'
 import { serviceUnavailableResponse } from '@/lib/supabase/guards'
 import Stripe from 'stripe'
@@ -7,49 +11,6 @@ import Stripe from 'stripe'
 function getBookingIdFromMetadata(metadata: Stripe.Metadata | null): string | undefined {
   if (!metadata) return undefined
   return metadata.bookingId ?? metadata.booking_id
-}
-
-async function upsertPropertySubscriptionFromStripe(
-  supabase: NonNullable<Awaited<ReturnType<typeof createServiceClient>>>,
-  params: {
-    facebook_name: string
-    email: string
-    agency_name?: string | null
-    stripe_customer_id: string | null
-    stripe_subscription_id: string | null
-    status: 'active' | 'expired' | 'pending'
-    expires_at?: string | null
-  }
-) {
-  if (params.stripe_subscription_id) {
-    const { data: existing } = await supabase
-      .from('property_subscriptions')
-      .select('id')
-      .eq('stripe_subscription_id', params.stripe_subscription_id)
-      .maybeSingle()
-
-    if (existing) {
-      await supabase
-        .from('property_subscriptions')
-        .update({
-          status: params.status,
-          stripe_customer_id: params.stripe_customer_id,
-          expires_at: params.expires_at ?? null,
-        })
-        .eq('id', existing.id)
-      return
-    }
-  }
-
-  await supabase.from('property_subscriptions').insert({
-    facebook_name: params.facebook_name,
-    agency_name: params.agency_name || null,
-    email: params.email,
-    stripe_customer_id: params.stripe_customer_id,
-    stripe_subscription_id: params.stripe_subscription_id,
-    status: params.status,
-    expires_at: params.expires_at ?? null,
-  })
 }
 
 export async function POST(request: NextRequest) {
@@ -129,11 +90,11 @@ export async function POST(request: NextRequest) {
     }
     case 'checkout.session.completed': {
       const session = event.data.object as Stripe.Checkout.Session
-      if (session.metadata?.type !== 'property_subscription') break
+      if (!isPropertySubscription(session.metadata)) break
 
-      const facebook_name = session.metadata.facebook_name
-      const email = session.metadata.email ?? session.customer_email
-      const agency_name = session.metadata.agency_name || null
+      const facebook_name = session.metadata?.facebook_name
+      const email = session.metadata?.email ?? session.customer_email
+      const agency_name = session.metadata?.agency_name || null
 
       if (!facebook_name || !email) break
 
@@ -154,60 +115,59 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      await upsertPropertySubscriptionFromStripe(supabase, {
-        facebook_name,
-        email: typeof email === 'string' ? email : '',
-        agency_name,
-        stripe_customer_id: stripeCustomerId,
-        stripe_subscription_id: stripeSubId,
-        status: 'active',
-        expires_at,
-      })
+      const { data: existing } = stripeSubId
+        ? await supabase
+            .from('property_subscriptions')
+            .select('id')
+            .eq('stripe_subscription_id', stripeSubId)
+            .maybeSingle()
+        : { data: null }
+
+      if (existing) {
+        await supabase
+          .from('property_subscriptions')
+          .update({
+            status: 'active',
+            subscription_status: 'active',
+            stripe_customer_id: stripeCustomerId,
+            expires_at,
+          })
+          .eq('id', existing.id)
+      } else {
+        await supabase.from('property_subscriptions').insert({
+          facebook_name,
+          agency_name,
+          email: typeof email === 'string' ? email : '',
+          stripe_customer_id: stripeCustomerId,
+          stripe_subscription_id: stripeSubId,
+          status: 'active',
+          subscription_status: 'active',
+          expires_at,
+        })
+      }
       break
     }
+    case 'customer.subscription.created':
+    case 'customer.subscription.deleted':
+    case 'invoice.payment_failed':
+      await handlePropertySubscriptionStripeEvent(supabase, event)
+      break
     case 'customer.subscription.updated': {
-      const sub = event.data.object as Stripe.Subscription & {
-        current_period_end: number
-      }
-      if (sub.metadata?.type !== 'property_subscription') break
+      const sub = event.data.object as Stripe.Subscription
+      if (!isPropertySubscription(sub.metadata)) break
 
       const status =
         sub.status === 'active' || sub.status === 'trialing' ? 'active' : 'expired'
+      const periodEnd = (sub as unknown as { current_period_end?: number }).current_period_end
 
       await supabase
         .from('property_subscriptions')
         .update({
           status,
-          expires_at: new Date(sub.current_period_end * 1000).toISOString(),
+          subscription_status: status,
+          expires_at: periodEnd ? new Date(periodEnd * 1000).toISOString() : null,
         })
         .eq('stripe_subscription_id', sub.id)
-      break
-    }
-    case 'customer.subscription.deleted': {
-      const sub = event.data.object as Stripe.Subscription
-      if (sub.metadata?.type !== 'property_subscription') break
-
-      await supabase
-        .from('property_subscriptions')
-        .update({ status: 'expired' })
-        .eq('stripe_subscription_id', sub.id)
-      break
-    }
-    case 'invoice.payment_failed': {
-      const invoice = event.data.object as Stripe.Invoice & {
-        subscription?: string | Stripe.Subscription | null
-      }
-      const stripeSubId =
-        typeof invoice.subscription === 'string'
-          ? invoice.subscription
-          : invoice.subscription?.id
-
-      if (stripeSubId) {
-        await supabase
-          .from('property_subscriptions')
-          .update({ status: 'expired' })
-          .eq('stripe_subscription_id', stripeSubId)
-      }
       break
     }
   }

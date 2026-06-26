@@ -66,14 +66,14 @@ export default async function PhotographerDashboard() {
       </h1>
       <p className="mt-1 text-sm text-gray-500">
         Photographer Portal ·{' '}
-        <Link href="/sop" className="text-[#E8A838] hover:underline">
+        <Link href="/sop" className="text-[#1B6CA8] hover:underline">
           ดู SOP
         </Link>
       </p>
 
       {!photographer.stripe_onboarding_complete && (
-        <div className="mt-6 rounded-xl border border-[#E8A838]/30 bg-[#E8A838]/10 p-4">
-          <p className="text-sm text-[#E8A838]">กรุณาเชื่อมต่อบัญชี Stripe เพื่อรับเงิน</p>
+        <div className="mt-6 rounded-xl border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 p-4">
+          <p className="text-sm text-[#1B6CA8]">กรุณาเชื่อมต่อบัญชี Stripe เพื่อรับเงิน</p>
           <Link
             href="/api/stripe/connect"
             className="mt-2 inline-block text-sm font-semibold text-white underline"
@@ -85,22 +85,22 @@ export default async function PhotographerDashboard() {
 
       <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
         <Card className="text-center">
-          <Briefcase className="mx-auto text-[#E8A838]" size={22} />
+          <Briefcase className="mx-auto text-[#1B6CA8]" size={22} />
           <p className="mt-2 text-2xl font-bold text-white">{totalJobs}</p>
           <p className="text-xs text-gray-500">งานทั้งหมด</p>
         </Card>
         <Card className="text-center">
-          <CheckCircle className="mx-auto text-[#E8A838]" size={22} />
+          <CheckCircle className="mx-auto text-[#1B6CA8]" size={22} />
           <p className="mt-2 text-2xl font-bold text-white">{completedJobs}</p>
           <p className="text-xs text-gray-500">งานสำเร็จ</p>
         </Card>
         <Card className="text-center">
-          <DollarSign className="mx-auto text-[#E8A838]" size={22} />
+          <DollarSign className="mx-auto text-[#1B6CA8]" size={22} />
           <p className="mt-2 text-2xl font-bold text-white">{formatCurrency(pendingPayout)}</p>
           <p className="text-xs text-gray-500">รอรับเงิน</p>
         </Card>
         <Card className="text-center">
-          <Star className="mx-auto text-[#E8A838]" size={22} />
+          <Star className="mx-auto text-[#1B6CA8]" size={22} />
           <p className="mt-2 text-2xl font-bold text-white">
             {photographer.average_rating.toFixed(1)}
           </p>
@@ -129,7 +129,7 @@ export default async function PhotographerDashboard() {
               <tbody>
                 {activeBookings.map((b) => (
                   <tr key={b.id} className="border-t border-white/5 hover:bg-white/5">
-                    <td className="px-4 py-3 font-mono text-sm text-[#E8A838]">{b.booking_ref}</td>
+                    <td className="px-4 py-3 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</td>
                     <td className="px-4 py-3 text-sm text-white">{b.client_name}</td>
                     <td className="px-4 py-3 text-sm text-gray-400">
                       {getJobTypeLabel(b.job_type)}
@@ -167,12 +167,12 @@ export default async function PhotographerDashboard() {
                 className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/10 bg-[#1a1a1a] px-4 py-3"
               >
                 <div>
-                  <span className="font-mono text-sm text-[#E8A838]">{b.booking_ref}</span>
+                  <span className="font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</span>
                   <span className="ml-3 text-sm text-white">{b.client_name}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                   <span>{formatDate(b.shoot_date)}</span>
-                  <span className="text-[#E8A838]">{formatCurrency(b.photographer_payout ?? 0)}</span>
+                  <span className="text-[#1B6CA8]">{formatCurrency(b.photographer_payout ?? 0)}</span>
                 </div>
               </div>
             ))}

@@ -57,7 +57,7 @@ export default function ConfirmContent() {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-[#111111] px-6 text-center">
         <p className="text-gray-400">{error ?? 'ไม่พบการจอง'}</p>
-        <Link href="/photographers" className="mt-4 text-[#E8A838] hover:underline">
+        <Link href="/photographers" className="mt-4 text-[#1B6CA8] hover:underline">
           กลับหน้าช่างภาพ
         </Link>
       </main>
@@ -74,16 +74,16 @@ export default function ConfirmContent() {
   return (
     <main className="min-h-screen bg-[#111111] px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-lg text-center">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#E8A838]/10">
-          <CheckCircle className="text-[#E8A838]" size={36} />
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#1B6CA8]/10">
+          <CheckCircle className="text-[#1B6CA8]" size={36} />
         </div>
 
         <h1 className="font-heading text-2xl font-bold text-white sm:text-3xl">
           {isPaid ? 'ชำระเงินสำเร็จ!' : 'สร้างการจองแล้ว'}
         </h1>
-        <p className="mt-2 font-mono text-lg text-[#E8A838]">{booking.booking_ref}</p>
+        <p className="mt-2 font-mono text-lg text-[#1B6CA8]">{booking.booking_ref}</p>
 
-        <span className="mt-4 inline-flex rounded-full border border-[#E8A838]/30 bg-[#E8A838]/10 px-4 py-1.5 text-sm font-medium text-[#E8A838]">
+        <span className="mt-4 inline-flex rounded-full border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-4 py-1.5 text-sm font-medium text-[#1B6CA8]">
           รอช่างภาพยืนยัน
         </span>
 
@@ -109,7 +109,7 @@ export default function ConfirmContent() {
             </div>
             <div className="flex justify-between gap-4 border-t border-white/10 pt-3">
               <dt className="font-medium text-gray-400">ยอดชำระ</dt>
-              <dd className="text-lg font-bold text-[#E8A838]">
+              <dd className="text-lg font-bold text-[#1B6CA8]">
                 {formatCurrency(booking.total_charged)}
               </dd>
             </div>
@@ -119,13 +119,13 @@ export default function ConfirmContent() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/client"
-            className="rounded-lg bg-[#E8A838] px-6 py-3 text-sm font-semibold text-[#111111] transition-colors hover:bg-[#E8A838]/90"
+            className="rounded-lg bg-[#1B6CA8] px-6 py-3 text-sm font-semibold text-[#111111] transition-colors hover:bg-[#1B6CA8]/90"
           >
             ดูการจองของฉัน
           </Link>
           <Link
             href="/"
-            className="rounded-lg border border-white/10 px-6 py-3 text-sm font-medium text-gray-300 transition-colors hover:border-[#E8A838]/40 hover:text-white"
+            className="rounded-lg border border-white/10 px-6 py-3 text-sm font-medium text-gray-300 transition-colors hover:border-[#1B6CA8]/40 hover:text-white"
           >
             กลับหน้าแรก
           </Link>

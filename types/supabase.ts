@@ -204,9 +204,11 @@ export interface Database {
           facebook_name: string
           agency_name: string | null
           email: string
+          state: string
           stripe_customer_id: string | null
           stripe_subscription_id: string | null
           status: string
+          subscription_status: string
           expires_at: string | null
           created_at: string
         }
@@ -215,13 +217,73 @@ export interface Database {
           facebook_name: string
           agency_name?: string | null
           email: string
+          state?: string
           stripe_customer_id?: string | null
           stripe_subscription_id?: string | null
           status?: string
+          subscription_status?: string
           expires_at?: string | null
           created_at?: string
         }
         Update: Partial<Database['public']['Tables']['property_subscriptions']['Insert']>
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          id: string
+          facebook_name: string
+          business_name: string | null
+          abn_number: string
+          state: string
+          job_category: string
+          portfolio_url: string | null
+          is_verified: boolean
+          subscription_status: string
+          strike_count: number
+          is_blacklisted: boolean
+          review_weight: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          facebook_name: string
+          business_name?: string | null
+          abn_number: string
+          state?: string
+          job_category: string
+          portfolio_url?: string | null
+          is_verified?: boolean
+          subscription_status?: string
+          strike_count?: number
+          is_blacklisted?: boolean
+          review_weight?: number
+          created_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['profiles']['Insert']>
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          id: string
+          reporter_email: string
+          reported_profile_id: string | null
+          description: string
+          evidence_url: string | null
+          strike_count: number
+          status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          reporter_email: string
+          reported_profile_id?: string | null
+          description: string
+          evidence_url?: string | null
+          strike_count?: number
+          status?: string
+          created_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['reports']['Insert']>
         Relationships: []
       }
     }

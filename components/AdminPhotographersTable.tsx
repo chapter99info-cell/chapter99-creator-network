@@ -85,7 +85,7 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
     <>
       <div className="mb-4 flex justify-end">
         <Button
-          className="bg-[#E8A838] text-[#111111]"
+          className="bg-[#1B6CA8] text-[#111111]"
           onClick={() => setShowAddModal(true)}
         >
           + เพิ่มช่างภาพ
@@ -138,7 +138,7 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
                       href={p.insurance_coc_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#E8A838] hover:underline"
+                      className="text-[#1B6CA8] hover:underline"
                     >
                       ดู Insurance
                     </a>
@@ -228,7 +228,7 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
             </select>
           </div>
           <Button
-            className="w-full bg-[#E8A838] text-[#111111]"
+            className="w-full bg-[#1B6CA8] text-[#111111]"
             isLoading={loading}
             onClick={submitAdd}
           >

@@ -126,7 +126,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
           {[1, 2, 3].map((s) => (
             <div
               key={s}
-              className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-[#E8A838]' : 'bg-white/10')}
+              className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-[#1B6CA8]' : 'bg-white/10')}
             />
           ))}
         </div>
@@ -154,7 +154,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
                       className={cn(
                         'flex flex-col items-center gap-1.5 rounded-lg border p-3 text-center transition-colors',
                         selected
-                          ? 'border-[#E8A838] bg-[#E8A838]/10 text-[#E8A838]'
+                          ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
                           : 'border-white/10 bg-[#111111] text-gray-400 hover:border-white/20'
                       )}
                     >
@@ -186,7 +186,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
                     className={cn(
                       'rounded-lg border px-4 py-2 text-sm font-medium transition-colors',
                       form.duration_hours === h
-                        ? 'border-[#E8A838] bg-[#E8A838]/10 text-[#E8A838]'
+                        ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
                         : 'border-white/10 text-gray-400 hover:border-white/20'
                     )}
                   >
@@ -223,7 +223,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
                   className={cn(
                     'flex flex-1 items-center justify-center gap-2 rounded-lg border py-2.5 text-sm transition-colors',
                     form.is_metro
-                      ? 'border-[#E8A838] bg-[#E8A838]/10 text-[#E8A838]'
+                      ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
                       : 'border-white/10 text-gray-400'
                   )}
                 >
@@ -236,7 +236,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
                   className={cn(
                     'flex flex-1 items-center justify-center gap-2 rounded-lg border py-2.5 text-sm transition-colors',
                     !form.is_metro
-                      ? 'border-[#E8A838] bg-[#E8A838]/10 text-[#E8A838]'
+                      ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
                       : 'border-white/10 text-gray-400'
                   )}
                 >
@@ -245,7 +245,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
                 </button>
               </div>
               {!form.is_metro && (
-                <div className="mt-2 flex items-start gap-2 rounded-lg border border-[#E8A838]/30 bg-[#E8A838]/10 px-3 py-2 text-sm text-[#E8A838]">
+                <div className="mt-2 flex items-start gap-2 rounded-lg border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-3 py-2 text-sm text-[#1B6CA8]">
                   <AlertTriangle size={16} className="mt-0.5 shrink-0" />
                   <span>
                     ค่าเดินทาง +{formatCurrency(METRO_TRAVEL_FEE)} AUD (100% ถึงช่างภาพ)
@@ -259,9 +259,9 @@ export function BookingForm({ photographer }: BookingFormProps) {
                 type="checkbox"
                 checked={form.require_video}
                 onChange={(e) => setForm({ ...form, require_video: e.target.checked })}
-                className="rounded border-white/20 accent-[#E8A838]"
+                className="rounded border-white/20 accent-[#1B6CA8]"
               />
-              <Video size={18} className="text-[#E8A838]" />
+              <Video size={18} className="text-[#1B6CA8]" />
               <span className="text-sm text-gray-300">+วิดีโอ (แจ้งช่างภาพล่วงหน้า)</span>
             </label>
 
@@ -272,13 +272,13 @@ export function BookingForm({ photographer }: BookingFormProps) {
                 onChange={(e) => setForm({ ...form, client_notes: e.target.value })}
                 rows={3}
                 placeholder="รายละเอียดงาน สไตล์ที่ต้องการ ฯลฯ"
-                className="w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-2.5 text-white placeholder:text-gray-600 focus:border-[#E8A838] focus:outline-none focus:ring-1 focus:ring-[#E8A838]"
+                className="w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-2.5 text-white placeholder:text-gray-600 focus:border-[#1B6CA8] focus:outline-none focus:ring-1 focus:ring-[#1B6CA8]"
               />
             </div>
           </div>
 
           <Button
-            className="mt-6 w-full bg-[#E8A838] text-[#111111]"
+            className="mt-6 w-full bg-[#1B6CA8] text-[#111111]"
             onClick={() => {
               const err = validateStep1()
               if (err) {
@@ -343,7 +343,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
               ย้อนกลับ
             </Button>
             <Button
-              className="flex-1 bg-[#E8A838] text-[#111111]"
+              className="flex-1 bg-[#1B6CA8] text-[#111111]"
               isLoading={isSubmitting}
               onClick={handleConfirmBooking}
             >

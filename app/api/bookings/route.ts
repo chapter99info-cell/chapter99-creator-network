@@ -4,6 +4,7 @@ import { supabaseUnavailableResponse } from '@/lib/supabase/guards'
 import { createPaymentIntent } from '@/lib/stripe'
 import { createBookingSchema } from '@/lib/validations'
 import { calculatePricing, METRO_TRAVEL_FEE } from '@/lib/calculations'
+import { DEFAULT_PHOTOGRAPHER_FEE_RATE } from '@/lib/fees'
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient()
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Photographer not ready for payments' }, { status: 400 })
   }
 
-  const feeRate = photographer.platform_fee_rate ?? 7
+  const feeRate = photographer.platform_fee_rate ?? DEFAULT_PHOTOGRAPHER_FEE_RATE
   const pricing = calculatePricing(
     input.job_type,
     input.duration_hours,

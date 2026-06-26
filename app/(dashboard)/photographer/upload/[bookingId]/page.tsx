@@ -32,7 +32,7 @@ export default async function UploadPage({ params }: Props) {
   return (
     <div>
       <h1 className="font-heading text-2xl font-bold text-white">อัปโหลดไฟล์</h1>
-      <p className="mt-1 font-mono text-sm text-[#E8A838]">{b.booking_ref}</p>
+      <p className="mt-1 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</p>
 
       <div className="mt-6 rounded-xl border border-white/10 bg-[#1a1a1a] p-5">
         <dl className="grid gap-2 text-sm sm:grid-cols-2">

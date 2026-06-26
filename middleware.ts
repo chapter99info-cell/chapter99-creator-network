@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import { ADMIN_COOKIE } from '@/lib/admin-auth'
 import { updateSession } from '@/lib/supabase/middleware'
 
 const AUTH_ROUTES = ['/auth/login', '/auth/callback']
@@ -8,9 +9,13 @@ function isPublicRoute(pathname: string): boolean {
   if (pathname === '/') return true
   if (pathname === '/photographers') return true
   if (pathname === '/join') return true
+  if (pathname === '/register') return true
+  if (pathname.startsWith('/register/')) return true
   if (pathname === '/subscribe/realestate') return true
+  if (pathname === '/subscribe/business') return true
   if (pathname === '/terms') return true
   if (/^\/photographers\/[^/]+$/.test(pathname)) return true
+  if (/^\/(nsw|vic|qld|wa|sa|tas|act|nt)$/i.test(pathname)) return true
   return false
 }
 
@@ -68,6 +73,27 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next({ request })
   }
 
+  // PIN-protected admin — /admin/login is public
+  if (pathname.startsWith('/admin')) {
+    const isLoginPage = pathname === '/admin/login'
+    const adminAuth = request.cookies.get(ADMIN_COOKIE)?.value === 'true'
+
+    if (!isLoginPage && !adminAuth) {
+      return NextResponse.redirect(new URL('/admin/login', request.url))
+    }
+
+    if (isLoginPage && adminAuth) {
+      return NextResponse.redirect(new URL('/admin', request.url))
+    }
+
+    try {
+      const { supabaseResponse } = await updateSession(request)
+      return supabaseResponse
+    } catch {
+      return NextResponse.next({ request })
+    }
+  }
+
   try {
     const { supabase, user, supabaseResponse } = await updateSession(request)
 
@@ -78,14 +104,6 @@ export async function middleware(request: NextRequest) {
     // Supabase ไม่ได้ตั้งค่า — protected routes → login (ไม่ throw)
     if (!supabase) {
       return loginRedirect(request, pathname)
-    }
-
-    // /admin/* — พี่แสนคนเดียว (ADMIN_USER_ID)
-    if (pathname.startsWith('/admin')) {
-      if (!user || user.id !== process.env.ADMIN_USER_ID) {
-        return loginRedirect(request, pathname)
-      }
-      return supabaseResponse
     }
 
     // /sop — ช่างภาพ verified

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { PLATFORM_FEE_RATES } from '@/lib/fees'
 
 const facebookGroupUrl =
   process.env.NEXT_PUBLIC_FACEBOOK_GROUP_URL ??
@@ -72,18 +73,18 @@ export function HomePartnerSection() {
           <br />
           ส่วนหนึ่งของ
           <br />
-          <span className="text-[#E8A838]">Creator Network</span>
+          <span className="text-[#1B6CA8]">Creator Network</span>
         </h2>
 
         <p className="mx-auto mt-6 max-w-md text-sm text-[#555555]">
           ช่างภาพไทยมืออาชีพในออสเตรเลีย
           <br />
-          Platform fee แค่ 7% · Escrow ทุกงาน
+          Platform fee แค่ {PLATFORM_FEE_RATES.photographer_creator}% · Escrow ทุกงาน
         </p>
 
         <Link
           href="/join"
-          className="mt-10 inline-block rounded-full bg-[#E8A838] px-10 py-4 text-sm font-medium text-[#111111] transition-colors hover:bg-[#E8A838]/90"
+          className="mt-10 inline-block rounded-full bg-[#1B6CA8] px-10 py-4 text-sm font-medium text-[#111111] transition-colors hover:bg-[#1B6CA8]/90"
           style={{ boxShadow: '0 0 60px rgba(232,168,56,0.4)' }}
         >
           สมัครช่างภาพเลย
@@ -95,9 +96,9 @@ export function HomePartnerSection() {
             href={facebookGroupUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#E8A838] hover:underline"
+            className="text-[#1B6CA8] hover:underline"
           >
-            Chapter99 Creator Network
+            Thai-Aus Verified Community
           </a>
         </p>
       </div>

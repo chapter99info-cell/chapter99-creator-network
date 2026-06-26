@@ -51,19 +51,19 @@ export default function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#111111] px-6">
       <div className="w-full max-w-md">
-        <Link href="/" className="font-heading text-2xl font-bold text-[#E8A838]">
-          Chapter99 Creator Network
+        <Link href="/" className="font-heading text-2xl font-bold text-[#1B6CA8]">
+          Thai-Aus Verified Community
         </Link>
 
         {sent ? (
-          <div className="mt-10 rounded-xl border border-[#E8A838]/30 bg-[#1a1a1a] p-8 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#E8A838]/10">
-              <CheckCircle className="text-[#E8A838]" size={28} />
+          <div className="mt-10 rounded-xl border border-[#1B6CA8]/30 bg-[#1a1a1a] p-8 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#1B6CA8]/10">
+              <CheckCircle className="text-[#1B6CA8]" size={28} />
             </div>
             <h1 className="font-heading text-xl font-semibold text-white">เช็คอีเมลของคุณ</h1>
             <p className="mt-3 text-sm text-gray-400">
               ส่ง Magic Link ไปที่{' '}
-              <span className="font-medium text-[#E8A838]">{email}</span>
+              <span className="font-medium text-[#1B6CA8]">{email}</span>
             </p>
             <p className="mt-2 text-sm text-gray-500">คลิกลิงก์ในอีเมลเพื่อเข้าสู่ระบบ</p>
             <button
@@ -76,8 +76,8 @@ export default function LoginPage() {
           </div>
         ) : (
           <>
-            <div className="mt-8 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E8A838]/30 bg-[#1a1a1a]">
-              <Mail className="text-[#E8A838]" size={22} />
+            <div className="mt-8 flex h-12 w-12 items-center justify-center rounded-xl border border-[#1B6CA8]/30 bg-[#1a1a1a]">
+              <Mail className="text-[#1B6CA8]" size={22} />
             </div>
             <h1 className="font-heading mt-6 text-2xl font-semibold text-white">เข้าสู่ระบบ</h1>
             <p className="mt-2 text-sm text-gray-500">
@@ -85,7 +85,7 @@ export default function LoginPage() {
             </p>
 
             {authError && AUTH_ERRORS[authError] && (
-              <p className="mt-4 rounded-lg border border-[#E8A838]/30 bg-[#E8A838]/10 px-4 py-3 text-sm text-[#E8A838]">
+              <p className="mt-4 rounded-lg border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-4 py-3 text-sm text-[#1B6CA8]">
                 {AUTH_ERRORS[authError]}
               </p>
             )}
@@ -102,7 +102,7 @@ export default function LoginPage() {
               />
               <Button
                 type="submit"
-                className="w-full bg-[#E8A838] text-[#111111] hover:bg-[#E8A838]/90"
+                className="w-full bg-[#1B6CA8] text-[#111111] hover:bg-[#1B6CA8]/90"
                 isLoading={loading}
               >
                 ส่ง Magic Link

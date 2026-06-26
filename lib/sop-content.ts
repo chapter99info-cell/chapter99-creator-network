@@ -1,3 +1,9 @@
+import {
+  DEFAULT_PHOTOGRAPHER_FEE_RATE,
+  PLATFORM_FEE_RATES,
+  REAL_ESTATE_SUBSCRIPTION_MONTHLY_AUD,
+} from '@/lib/fees'
+
 export interface SopSection {
   id: string
   title: string
@@ -69,8 +75,11 @@ export const SOP_SECTIONS: SopSection[] = [
     title: 'การเงินและการจ่ายเงิน (Payment)',
     variant: 'payment',
     items: [
-      'Platform fee: 7% หักจากยอดที่ลูกค้าจ่าย',
-      'Travel fee $50: โอนให้ 100% ไม่หัก 7%',
+      `Platform fee ช่างภาพ/ครีเอเตอร์: ${PLATFORM_FEE_RATES.photographer_creator}% หักจากยอดที่ลูกค้าจ่าย`,
+      `Platform fee ช่างซ่อม/Trade: ${PLATFORM_FEE_RATES.handyman_trade}%`,
+      `Platform fee มือสอง/Marketplace: ${PLATFORM_FEE_RATES.marketplace_secondhand}%`,
+      `สิทธิ์โพสต์อสังหาฯ: $${REAL_ESTATE_SUBSCRIPTION_MONTHLY_AUD}/เดือน`,
+      `Travel fee $50: โอนให้ 100% ไม่หัก ${DEFAULT_PHOTOGRAPHER_FEE_RATE}%`,
       'เงินโอนหลัง Admin อนุมัติงาน — ภายใน 2–7 วันทำการ',
       'ต้องมี Stripe Express account ที่ verify แล้วก่อนรับงาน',
       'สรุปรายได้ดูได้ใน Photographer Portal ตลอดเวลา',
@@ -81,7 +90,7 @@ export const SOP_SECTIONS: SopSection[] = [
     title: 'Community Guidelines',
     variant: 'community',
     items: [
-      'แชร์ความรู้และเทคนิคใน Facebook Group "Chapter99 Creator Network"',
+      'แชร์ความรู้และเทคนิคใน Facebook Group "Thai-Aus Verified Community"',
       'ช่วยเหลือช่างภาพใหม่ — ระบบ tier rising_star → pro วัดจาก peer review',
       'แท็ก @Chapter99Solutions เมื่อโพสต์งานที่ผ่านแพลตฟอร์ม',
       'รายงาน bug หรือปัญหาระบบผ่าน admin ทันที',

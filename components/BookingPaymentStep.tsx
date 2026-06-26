@@ -62,7 +62,7 @@ function PaymentForm({ totalCharged, photographerId, bookingId }: PaymentFormPro
       />
       <Button
         type="submit"
-        className="w-full bg-[#E8A838] text-[#111111] hover:bg-[#E8A838]/90"
+        className="w-full bg-[#1B6CA8] text-[#111111] hover:bg-[#1B6CA8]/90"
         isLoading={loading}
         disabled={!stripe || !elements}
       >
@@ -107,7 +107,7 @@ export function BookingPaymentStep({
               appearance: {
                 theme: 'night',
                 variables: {
-                  colorPrimary: '#E8A838',
+                  colorPrimary: '#1B6CA8',
                   colorBackground: '#1a1a1a',
                   colorText: '#ffffff',
                   colorDanger: '#ef4444',
@@ -152,7 +152,7 @@ export function BookingPaymentStep({
               {summary.requireVideo && (
                 <div className="flex justify-between gap-2">
                   <dt>วิดีโอ</dt>
-                  <dd className="text-[#E8A838]">รวมวิดีโอ</dd>
+                  <dd className="text-[#1B6CA8]">รวมวิดีโอ</dd>
                 </div>
               )}
             </dl>

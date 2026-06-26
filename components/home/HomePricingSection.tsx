@@ -7,6 +7,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { PHOTOGRAPHER_PAYOUT_PERCENT } from '@/lib/fees'
 
 const JOB_PRICING: {
   icon: LucideIcon
@@ -36,9 +37,9 @@ export function HomePricingSection() {
               key={job.name}
               className="rounded-2xl border border-[#222222] bg-[#1a1a1a] p-6"
             >
-              <job.icon className="text-xl text-[#E8A838]" size={22} strokeWidth={1.5} />
+              <job.icon className="text-xl text-[#1B6CA8]" size={22} strokeWidth={1.5} />
               <p className="mt-3 text-sm font-medium text-white">{job.name}</p>
-              <p className="font-heading mt-1 text-2xl font-medium text-[#E8A838]">
+              <p className="font-heading mt-1 text-2xl font-medium text-[#1B6CA8]">
                 ${job.rate}/hr
               </p>
               <p className="mt-1 text-xs text-[#555555]">per hour · min 2hr</p>
@@ -48,7 +49,7 @@ export function HomePricingSection() {
 
         <p className="mt-6 text-center text-xs text-[#555555]">
           + Travel fee $50 AUD (นอกเขตเมือง) · Stripe surcharge 1.75% + $0.30 ·
-          ช่างภาพได้รับ 93% ของราคาทุกงาน
+          ช่างภาพได้รับ {PHOTOGRAPHER_PAYOUT_PERCENT}% ของราคาทุกงาน
         </p>
       </div>
     </section>

@@ -34,7 +34,7 @@ export default async function BookPage({ params }: Props) {
       <div className="mx-auto max-w-3xl">
         <Link
           href={`/photographers/${params.id}`}
-          className="text-sm text-gray-500 transition-colors hover:text-[#E8A838]"
+          className="text-sm text-gray-500 transition-colors hover:text-[#1B6CA8]"
         >
           ← กลับโปรไฟล์
         </Link>

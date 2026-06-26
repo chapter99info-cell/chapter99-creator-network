@@ -19,7 +19,7 @@ export function PhotographerMiniCard({ photographer }: PhotographerMiniCardProps
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xl font-semibold text-[#E8A838]">
+          <div className="flex h-full w-full items-center justify-center text-xl font-semibold text-[#1B6CA8]">
             {photographer.full_name.charAt(0)}
           </div>
         )}

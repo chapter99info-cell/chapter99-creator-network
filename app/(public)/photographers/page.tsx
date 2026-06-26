@@ -7,7 +7,7 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
 import type { JobType, Photographer } from '@/types'
 
 export const metadata = {
-  title: 'Browse Photographers | Chapter99 Creator Network',
+  title: 'Browse Photographers | Thai-Aus Verified Community',
   description: 'ค้นหาช่างภาพไทยมืออาชีพในออสเตรเลีย — ABN verified, Insurance required',
 }
 
@@ -96,7 +96,7 @@ export default async function PhotographersPage({ searchParams }: PageProps) {
     <main className="min-h-screen bg-[#111111] px-6 py-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8">
-          <Link href="/" className="text-sm text-gray-500 transition-colors hover:text-[#E8A838]">
+          <Link href="/" className="text-sm text-gray-500 transition-colors hover:text-[#1B6CA8]">
             ← กลับหน้าแรก
           </Link>
           <h1 className="font-heading mt-4 text-3xl font-bold text-white">ช่างภาพทั้งหมด</h1>
@@ -125,7 +125,7 @@ export default async function PhotographersPage({ searchParams }: PageProps) {
             {hasFilters && (
               <Link
                 href="/photographers"
-                className="mt-4 inline-block text-sm text-[#E8A838] hover:underline"
+                className="mt-4 inline-block text-sm text-[#1B6CA8] hover:underline"
               >
                 ล้างตัวกรอง
               </Link>

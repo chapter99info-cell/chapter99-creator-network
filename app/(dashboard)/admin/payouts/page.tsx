@@ -62,7 +62,7 @@ export default async function AdminPayoutsPage() {
               <tbody>
                 {bookings.map((b) => (
                   <tr key={b.id} className="border-t border-white/5">
-                    <td className="px-4 py-3 font-mono text-sm text-[#E8A838]">{b.booking_ref}</td>
+                    <td className="px-4 py-3 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</td>
                     <td className="px-4 py-3 text-sm text-white">
                       {b.photographer_id ? nameMap[b.photographer_id] : '—'}
                     </td>
@@ -72,7 +72,7 @@ export default async function AdminPayoutsPage() {
                     <td className="px-4 py-3 text-sm text-gray-400">
                       {formatCurrency(b.platform_fee ?? 0)}
                     </td>
-                    <td className="px-4 py-3 text-sm font-medium text-[#E8A838]">
+                    <td className="px-4 py-3 text-sm font-medium text-[#1B6CA8]">
                       {formatCurrency(b.photographer_payout ?? 0)}
                     </td>
                     <td className="px-4 py-3 text-xs text-gray-500">{b.booking_status}</td>
@@ -116,7 +116,7 @@ export default async function AdminPayoutsPage() {
                     <td className="px-4 py-3 text-sm text-gray-400">
                       {formatCurrency(row.platform_fee ?? 0)}
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#E8A838]">
+                    <td className="px-4 py-3 text-sm text-[#1B6CA8]">
                       {formatCurrency(row.net_payout ?? 0)}
                     </td>
                     <td className="px-4 py-3 font-mono text-xs text-gray-600">

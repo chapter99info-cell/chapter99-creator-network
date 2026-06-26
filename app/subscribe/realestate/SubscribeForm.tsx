@@ -21,7 +21,7 @@ export function RealEstateSubscribeForm() {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/subscribe/realestate', {
+      const res = await fetch('/api/checkout/realestate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -43,8 +43,8 @@ export function RealEstateSubscribeForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-xl border border-[#E8A838]/30 bg-[#E8A838]/5 p-4 text-center">
-        <p className="font-serif text-3xl text-[#E8A838]">$50</p>
+      <div className="rounded-xl border border-[#1B6CA8]/30 bg-[#1B6CA8]/5 p-4 text-center">
+        <p className="font-serif text-3xl text-[#1B6CA8]">$50</p>
         <p className="text-sm text-[#555555]">AUD / เดือน — สิทธิ์โพสต์อสังหาฯ 🔴</p>
       </div>
 
@@ -84,7 +84,7 @@ export function RealEstateSubscribeForm() {
 
 export function RealEstateSubscribeBackLink() {
   return (
-    <Link href="/" className="text-sm text-[#555555] hover:text-[#E8A838]">
+    <Link href="/" className="text-sm text-[#555555] hover:text-[#1B6CA8]">
       <ArrowLeft className="mr-1 inline h-4 w-4" />
       กลับหน้าแรก
     </Link>

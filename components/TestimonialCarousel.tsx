@@ -100,11 +100,11 @@ export function TestimonialCarousel() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="font-serif text-4xl text-white">
-            สิ่งที่<span className="text-[#E8A838]">ลูกค้าพูดถึงเรา</span>
+            สิ่งที่<span className="text-[#1B6CA8]">ลูกค้าพูดถึงเรา</span>
           </h2>
           <div className="flex items-center gap-2">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={16} className="fill-[#E8A838] text-[#E8A838]" />
+              <Star key={i} size={16} className="fill-[#1B6CA8] text-[#1B6CA8]" />
             ))}
             <span className="ml-2 text-sm text-[#555555]">Verified Reviews</span>
           </div>
@@ -121,7 +121,7 @@ export function TestimonialCarousel() {
                   key={`${t.name}-${i}`}
                   className="w-80 shrink-0 rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] p-6"
                 >
-                  <span className="font-serif text-5xl leading-none text-[#E8A838]">&ldquo;</span>
+                  <span className="font-serif text-5xl leading-none text-[#1B6CA8]">&ldquo;</span>
                   <p className="text-sm leading-relaxed text-[#888888]">{t.quote}</p>
                   <div className="mt-5 flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#333333] text-xs text-[#666666]">

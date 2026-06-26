@@ -1,4 +1,5 @@
 import type { JobType } from '@/types'
+import { DEFAULT_PHOTOGRAPHER_FEE_RATE } from '@/lib/fees'
 
 /** อัตราค่าจ้างต่อชั่วโมง (AUD) ตามประเภทงาน */
 export const JOB_TYPE_RATES: Record<JobType, number> = {
@@ -28,16 +29,19 @@ export function calculateStripeSurcharge(baseAmount: number): number {
   return Math.round((baseAmount * 0.0175 + 0.3) * 100) / 100
 }
 
-/** คำนวณค่าธรรมเนียมแพลตฟอร์ม (default 7%) */
-export function calculatePlatformFee(baseAmount: number, feeRate: number = 7): number {
+/** คำนวณค่าธรรมเนียมแพลตฟอร์ม (default 3% — ช่างภาพ/ครีเอเตอร์) */
+export function calculatePlatformFee(
+  baseAmount: number,
+  feeRate: number = DEFAULT_PHOTOGRAPHER_FEE_RATE
+): number {
   return Math.round(baseAmount * (feeRate / 100) * 100) / 100
 }
 
-/** คำนวณเงินที่ช่างภาพได้รับ — travel fee ไม่ถูกหัก 7% */
+/** คำนวณเงินที่ช่างภาพได้รับ — travel fee ไม่ถูกหัก platform fee */
 export function calculatePhotographerPayout(
   baseAmount: number,
   travelFee: number,
-  feeRate: number = 7
+  feeRate: number = DEFAULT_PHOTOGRAPHER_FEE_RATE
 ): number {
   const afterPlatformFee = baseAmount - calculatePlatformFee(baseAmount, feeRate)
   return Math.round((afterPlatformFee + travelFee) * 100) / 100
@@ -72,7 +76,7 @@ export function calculatePricing(
   jobType: JobType,
   durationHours: number,
   isMetro: boolean,
-  feeRate: number = 7
+  feeRate: number = DEFAULT_PHOTOGRAPHER_FEE_RATE
 ): PricingBreakdown {
   const basePrice = calculateBasePrice(jobType, durationHours)
   const travelFee = isMetro ? 0 : METRO_TRAVEL_FEE

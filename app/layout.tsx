@@ -12,15 +12,15 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: 'Chapter99 Creator Network | ช่างภาพไทยในออสเตรเลีย',
+  title: 'Thai-Aus Verified Community | ชุมชนคนไทยในออสเตรเลีย',
   description:
-    'ช่างภาพมืออาชีพสำหรับธุรกิจไทยในออสเตรเลีย — ABN verified, Insurance required, Escrow protected',
+    'ชุมชนบริการสีขาว คนไทยในออสเตรเลีย | Safe, Verified, Trusted — ABN Verified, Stripe Secured',
   manifest: '/manifest.json',
   openGraph: {
-    title: 'Chapter99 Creator Network',
-    description: 'ช่างภาพไทยมืออาชีพในออสเตรเลีย',
+    title: 'Thai-Aus Verified Community',
+    description: 'ชุมชนบริการสีขาว คนไทยในออสเตรเลีย | Safe, Verified, Trusted',
     url: 'https://chapter99creators.com.au',
-    siteName: 'Chapter99 Creator Network',
+    siteName: 'Thai-Aus Verified Community',
     locale: 'th_AU',
     type: 'website',
   },

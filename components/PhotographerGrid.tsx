@@ -39,9 +39,9 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
     .toUpperCase()
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] transition-colors duration-300 hover:border-[#E8A838]/40">
+    <article className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] transition-colors duration-300 hover:border-[#1B6CA8]/40">
       <div className="flex items-start justify-between p-5">
-        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#E8A838]">
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#1B6CA8]">
           {photographer.avatar_url ? (
             <Image
               src={photographer.avatar_url}
@@ -57,7 +57,7 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
           )}
         </div>
         {photographer.tier === 'pro' ? (
-          <span className="rounded-full border border-[#E8A838]/30 bg-[rgba(232,168,56,0.12)] px-2 py-0.5 text-[10px] text-[#E8A838]">
+          <span className="rounded-full border border-[#1B6CA8]/30 bg-[rgba(232,168,56,0.12)] px-2 py-0.5 text-[10px] text-[#1B6CA8]">
             PRO
           </span>
         ) : (
@@ -80,7 +80,7 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
           {SPECIALTY_TAGS.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="rounded bg-[rgba(232,168,56,0.08)] px-2 py-0.5 text-xs text-[#E8A838]/70"
+              className="rounded bg-[rgba(232,168,56,0.08)] px-2 py-0.5 text-xs text-[#1B6CA8]/70"
             >
               {tag}
             </span>
@@ -94,7 +94,7 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
       </div>
 
       <div className="flex items-center justify-between border-t border-[#222222] px-5 py-4">
-        <span className="text-sm text-[#E8A838]">from ${minRate}/hr</span>
+        <span className="text-sm text-[#1B6CA8]">from ${minRate}/hr</span>
         <Link
           href={`/photographers/${photographer.id}`}
           className="text-xs text-[#555555] transition-colors hover:text-white"
@@ -144,7 +144,7 @@ export async function PhotographerGrid() {
         <div>
           <p className="font-mono text-xs tracking-[0.2em] text-[#555555]">VERIFIED PHOTOGRAPHERS</p>
           <h2 className="font-serif mt-3 text-4xl text-white">
-            เลือกช่างภาพ<span className="text-[#E8A838]">ของคุณ</span>
+            เลือกช่างภาพ<span className="text-[#1B6CA8]">ของคุณ</span>
           </h2>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -154,7 +154,7 @@ export async function PhotographerGrid() {
               href={f.href}
               className={
                 f.active
-                  ? 'rounded-full bg-[#E8A838] px-4 py-2 text-xs text-[#111111]'
+                  ? 'rounded-full bg-[#1B6CA8] px-4 py-2 text-xs text-[#111111]'
                   : 'rounded-full border border-[#2a2a2a] px-4 py-2 text-xs text-[#555555] transition-colors hover:text-white'
               }
             >
