@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { AU_STATES, PROFESSIONAL_JOB_CATEGORIES } from '@/lib/community-constants'
 import { isValidAbn, normalizeAbn } from '@/lib/abn'
 import { createServiceClient } from '@/lib/supabase/server'
-import { serviceUnavailableResponse } from '@/lib/supabase/guards'
 
 const schema = z.object({
   facebook_name: z.string().min(2),
@@ -33,49 +32,58 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'ABN ต้องเป็นตัวเลข 11 หลัก' }, { status: 400 })
     }
 
-    const supabase = createServiceClient()
-    if (!supabase) return serviceUnavailableResponse()
+    const insertData = {
+      facebook_name: parsed.data.facebook_name,
+      business_name: parsed.data.business_name?.trim() || null,
+      abn_number: abn,
+      state: parsed.data.state,
+      job_category: parsed.data.job_category,
+      portfolio_url: parsed.data.portfolio_url?.trim() || null,
+      facebook_url: parsed.data.facebook_url?.trim() || null,
+      instagram_url: parsed.data.instagram_url?.trim() || null,
+      external_portfolio_url: parsed.data.external_portfolio_url?.trim() || null,
+      is_verified: false,
+    }
 
     try {
-      const { error } = await supabase.from('profiles').insert({
-        facebook_name: parsed.data.facebook_name,
-        business_name: parsed.data.business_name?.trim() || null,
-        abn_number: abn,
-        state: parsed.data.state,
-        job_category: parsed.data.job_category,
-        portfolio_url: parsed.data.portfolio_url?.trim() || null,
-        facebook_url: parsed.data.facebook_url?.trim() || null,
-        instagram_url: parsed.data.instagram_url?.trim() || null,
-        external_portfolio_url: parsed.data.external_portfolio_url?.trim() || null,
-        is_verified: false,
-      })
+      const supabase = createServiceClient()
+      if (!supabase) {
+        return NextResponse.json({ error: 'DB not configured' }, { status: 503 })
+      }
+
+      const { data, error } = await supabase
+        .from('profiles')
+        .insert([insertData])
+        .select()
 
       if (error) {
-        console.error('Supabase insert error:', JSON.stringify(error))
+        console.error('INSERT ERROR:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code,
+        })
         return NextResponse.json(
           {
-            error: 'ลงทะเบียนไม่สำเร็จ',
-            details: error instanceof Error ? error.message : String(error),
-            hint: (error as { hint?: string })?.hint || null,
-            code: (error as { code?: string })?.code || null,
+            error: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code,
           },
           { status: 500 }
         )
       }
-    } catch (error) {
-      console.error('Supabase insert error:', JSON.stringify(error))
+
+      return NextResponse.json({ success: true, data })
+    } catch (err) {
+      console.error('CATCH ERROR:', err)
       return NextResponse.json(
         {
-          error: 'ลงทะเบียนไม่สำเร็จ',
-          details: error instanceof Error ? error.message : String(error),
-          hint: (error as { hint?: string })?.hint || null,
-          code: (error as { code?: string })?.code || null,
+          error: String(err),
         },
         { status: 500 }
       )
     }
-
-    return NextResponse.json({ ok: true })
   } catch {
     return NextResponse.json({ error: 'เกิดข้อผิดพลาด' }, { status: 500 })
   }
