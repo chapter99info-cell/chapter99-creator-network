@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { ButtonHTMLAttributes, forwardRef } from 'react'
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost'
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'verified' | 'trust' | 'danger'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
@@ -9,9 +9,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-saffron text-charcoal hover:bg-saffron/90 font-semibold',
-  secondary: 'border border-saffron text-saffron hover:bg-saffron/10',
-  ghost: 'text-gray-400 hover:text-white hover:bg-white/5',
+  primary: 'bg-primary text-white hover:bg-primary/90 font-semibold',
+  secondary: 'border border-gray-200 bg-white text-primary hover:bg-gray-50',
+  ghost: 'text-muted hover:text-primary hover:bg-gray-100',
+  verified: 'bg-verified text-white hover:bg-verified/90 font-semibold',
+  trust: 'bg-trust text-white hover:bg-trust/90 font-semibold',
+  danger: 'bg-red-600 text-white hover:bg-red-600/90 font-semibold',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -20,7 +23,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={ref}
       disabled={disabled || isLoading}
       className={cn(
-        'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+        'inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100 disabled:active:scale-100 disabled:cursor-not-allowed disabled:opacity-50',
         variants[variant],
         className
       )}

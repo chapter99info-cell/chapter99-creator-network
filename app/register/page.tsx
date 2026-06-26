@@ -13,7 +13,12 @@ import {
   type JobCategory,
 } from '@/lib/community-constants'
 import { formatAbn, isValidAbn, normalizeAbn } from '@/lib/abn'
+import { btnNextClass, btnSubmitClass, formCardClass, formSelectClass } from '@/lib/form-styles'
 import { cn } from '@/lib/utils'
+
+function stepLabel(active: boolean) {
+  return cn('text-sm font-medium', active ? 'text-blue-600' : 'text-gray-400')
+}
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1)
@@ -63,18 +68,20 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#111111] text-white">
+    <div className="min-h-screen bg-surface text-primary">
       <div className="mx-auto max-w-lg px-6 py-12">
-        <Link href="/" className="text-sm text-[#555555] hover:text-trust">
+        <Link href="/" className="text-sm text-gray-500 hover:text-trust">
           <ArrowLeft className="mr-1 inline h-4 w-4" />
           กลับหน้าแรก
         </Link>
 
         {done ? (
-          <div className="mt-10 rounded-xl border border-verified/30 bg-verified/5 p-8 text-center">
+          <div className={cn('mt-10 text-center', formCardClass)}>
             <CheckCircle className="mx-auto text-verified" size={48} />
-            <h1 className="mt-4 font-serif text-2xl">ลงทะเบียนสำเร็จ!</h1>
-            <p className="mt-2 text-sm text-[#555555]">
+            <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
+              ลงทะเบียนสำเร็จ!
+            </h1>
+            <p className="mt-2 text-sm text-gray-500">
               ใบสมัครของคุณถูกส่งแล้ว — ทีมงานจะตรวจสอบ ABN ภายใน 48 ชั่วโมง
             </p>
             <Link href="/" className="mt-6 inline-block text-trust hover:underline">
@@ -82,26 +89,26 @@ export default function RegisterPage() {
             </Link>
           </div>
         ) : (
-          <>
-            <h1 className="mt-8 font-serif text-3xl">ลงทะเบียน</h1>
-            <p className="mt-2 text-sm text-[#555555]">{SITE_NAME}</p>
+          <div className={cn('mt-8', formCardClass)}>
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900">ลงทะเบียน</h1>
+            <p className="mt-2 text-sm text-gray-500">{SITE_NAME}</p>
 
             <div className="mt-6 flex gap-2">
               {[1, 2, 3].map((s) => (
                 <div
                   key={s}
-                  className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-trust' : 'bg-white/10')}
+                  className={cn('h-1.5 flex-1 rounded-full', step >= s ? 'bg-trust' : 'bg-gray-200')}
                 />
               ))}
             </div>
 
             {step === 1 && (
               <div className="mt-8 space-y-4">
-                <p className="text-sm text-gray-400">Step 1 — เลือกรัฐ</p>
+                <p className={stepLabel(true)}>Step 1 — เลือกรัฐ</p>
                 <select
                   value={form.state}
                   onChange={(e) => setForm({ ...form, state: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-charcoal px-4 py-3 text-white focus:border-trust focus:outline-none"
+                  className={formSelectClass}
                 >
                   {AU_STATES.map((s) => (
                     <option key={s} value={s}>
@@ -109,7 +116,7 @@ export default function RegisterPage() {
                     </option>
                   ))}
                 </select>
-                <Button type="button" className="w-full bg-verified hover:bg-verified/90" onClick={() => setStep(2)}>
+                <Button type="button" className={btnNextClass} onClick={() => setStep(2)}>
                   ถัดไป
                 </Button>
               </div>
@@ -117,13 +124,13 @@ export default function RegisterPage() {
 
             {step === 2 && (
               <div className="mt-8 space-y-4">
-                <p className="text-sm text-gray-400">Step 2 — ประเภทงาน</p>
+                <p className={stepLabel(true)}>Step 2 — ประเภทงาน</p>
                 <select
                   value={form.job_category}
                   onChange={(e) =>
                     setForm({ ...form, job_category: e.target.value as JobCategory })
                   }
-                  className="w-full rounded-lg border border-white/10 bg-charcoal px-4 py-3 text-white focus:border-trust focus:outline-none"
+                  className={formSelectClass}
                 >
                   {JOB_CATEGORIES.map((cat) => (
                     <option key={cat} value={cat}>
@@ -135,7 +142,7 @@ export default function RegisterPage() {
                   <Button type="button" variant="secondary" onClick={() => setStep(1)}>
                     ย้อนกลับ
                   </Button>
-                  <Button type="button" className="flex-1" onClick={() => setStep(3)}>
+                  <Button type="button" className={cn('flex-1', btnNextClass)} onClick={() => setStep(3)}>
                     ถัดไป
                   </Button>
                 </div>
@@ -144,7 +151,7 @@ export default function RegisterPage() {
 
             {step === 3 && (
               <div className="mt-8 space-y-4">
-                <p className="text-sm text-gray-400">Step 3 — ABN และข้อมูลธุรกิจ</p>
+                <p className={stepLabel(true)}>Step 3 — ABN และข้อมูลธุรกิจ</p>
                 <Input
                   label="ชื่อ Facebook *"
                   value={form.facebook_name}
@@ -171,10 +178,10 @@ export default function RegisterPage() {
                   placeholder="https://"
                 />
 
-                <div className="rounded-lg border border-red-500/50 bg-red-500/5 px-4 py-3">
+                <div className="rounded-xl border border-red-200 bg-red-50 p-4">
                   <div className="flex gap-2">
-                    <AlertTriangle className="mt-0.5 shrink-0 text-red-400" size={18} />
-                    <p className="text-sm text-red-300">
+                    <AlertTriangle className="mt-0.5 shrink-0 text-red-600" size={18} />
+                    <p className="text-sm text-red-700">
                       กรุณากรอก ABN เท่านั้น — ห้ามกรอก Tax File Number (TFN)
                     </p>
                   </div>
@@ -185,7 +192,7 @@ export default function RegisterPage() {
                 )}
 
                 {error && (
-                  <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+                  <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">
                     {error}
                   </p>
                 )}
@@ -196,7 +203,7 @@ export default function RegisterPage() {
                   </Button>
                   <Button
                     type="button"
-                    className="flex-1 bg-verified hover:bg-verified/90"
+                    className={btnSubmitClass}
                     isLoading={loading}
                     onClick={handleSubmit}
                   >
@@ -205,7 +212,7 @@ export default function RegisterPage() {
                 </div>
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
       <SiteFooter />

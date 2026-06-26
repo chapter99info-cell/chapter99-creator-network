@@ -50,7 +50,7 @@ export function TestimonialSection() {
   }, [])
 
   return (
-    <section ref={ref} className="px-6 py-12">
+    <section ref={ref} className="bg-gray-50 px-6 py-16">
       <div className="mx-auto max-w-2xl text-center">
         <Quote
           className={`mx-auto mb-6 h-6 w-6 text-slate-900 ${inViewClass(inView, 0.1)}`}
@@ -58,7 +58,7 @@ export function TestimonialSection() {
         />
 
         <blockquote
-          className={`text-[32px] font-medium leading-[1.1] tracking-tight text-ink-deep md:text-[40px] lg:text-[44px] ${inViewClass(inView, 0.2)}`}
+          className={`text-[32px] font-medium leading-[1.1] tracking-tight text-gray-900 md:text-[40px] lg:text-[44px] ${inViewClass(inView, 0.2)}`}
           style={inViewStyle(0.2)}
         >
           We built the directory Thai-Australians always needed — with{' '}

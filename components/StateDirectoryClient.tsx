@@ -2,10 +2,12 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { MapPin } from 'lucide-react'
 import { ReportModal } from '@/components/ReportModal'
 import { SiteFooter } from '@/components/SiteFooter'
 import { VerifiedProfileCard, type VerifiedProfile } from '@/components/VerifiedProfileCard'
 import { PROFESSIONAL_JOB_CATEGORIES, type AuState } from '@/lib/community-constants'
+import { formSelectClass } from '@/lib/form-styles'
 
 export type DirectoryProfile = VerifiedProfile
 
@@ -25,30 +27,37 @@ export function StateDirectoryClient({ state, profiles }: StateDirectoryClientPr
 
   return (
     <>
-      <div className="min-h-screen bg-[#111111] text-white">
-        <header className="border-b border-white/10 px-6 py-4">
+      <div className="min-h-screen bg-surface text-primary">
+        <header className="border-b border-gray-100 bg-white px-6 py-4">
           <div className="mx-auto flex max-w-5xl items-center justify-between">
-            <Link href="/" className="font-serif text-lg text-trust">
+            <Link href="/" className="text-lg font-semibold tracking-tight text-trust">
               Thai-Aus Verified Community
             </Link>
-            <Link href="/register/professional" className="text-sm text-trust hover:underline">
+            <Link
+              href="/register/professional"
+              className="rounded-xl bg-trust px-4 py-2 text-sm font-medium text-white transition-all hover:bg-trust/90 hover:scale-[1.02] active:scale-[0.98]"
+            >
               ลงทะเบียน
             </Link>
           </div>
         </header>
 
         <main className="mx-auto max-w-5xl px-6 py-12">
-          <h1 className="font-serif text-3xl">รายชื่อผู้ให้บริการ — {state}</h1>
-          <p className="mt-2 text-sm text-[#555555]">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            รายชื่อผู้ให้บริการ — {state}
+          </h1>
+          <p className="mt-2 text-gray-500">
             แสดงเฉพาะผู้ที่ verified แล้ว · {filtered.length} รายการ
           </p>
 
-          <div className="mt-6">
-            <label className="mb-2 block text-sm text-gray-400">กรองตามประเภทงาน</label>
+          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
+              กรองตามประเภทงาน
+            </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="rounded-lg border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white focus:border-trust focus:outline-none"
+              className={formSelectClass}
             >
               <option value="all">ทั้งหมด</option>
               {PROFESSIONAL_JOB_CATEGORIES.map((cat) => (
@@ -60,12 +69,18 @@ export function StateDirectoryClient({ state, profiles }: StateDirectoryClientPr
           </div>
 
           {filtered.length === 0 ? (
-            <p className="mt-12 text-center text-sm text-[#555555]">
-              ยังไม่มีรายชื่อในรัฐนี้ —{' '}
-              <Link href="/register/professional" className="text-trust hover:underline">
+            <div className="mt-12 rounded-2xl border border-gray-100 bg-white p-12 text-center shadow-sm">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                <MapPin className="h-8 w-8 text-gray-400" />
+              </div>
+              <p className="mt-4 text-gray-600">ยังไม่มีรายชื่อในรัฐนี้</p>
+              <Link
+                href="/register/professional"
+                className="mt-4 inline-block text-trust hover:underline"
+              >
                 ลงทะเบียนเป็นคนแรก
               </Link>
-            </p>
+            </div>
           ) : (
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {filtered.map((profile) => (

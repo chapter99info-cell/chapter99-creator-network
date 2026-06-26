@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'green' | 'blue' | 'red'
 
 interface LandingButtonProps {
   href: string
@@ -11,12 +11,12 @@ interface LandingButtonProps {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    'bg-ink text-white shadow-btn-primary hover:bg-ink/90',
-  secondary:
-    'bg-white text-ink shadow-btn-secondary hover:bg-slate-50',
-  tertiary:
-    'bg-white text-ink shadow-btn-secondary hover:bg-slate-50',
+  primary: 'bg-primary text-white shadow-btn-primary hover:bg-primary/90',
+  secondary: 'border border-gray-200 bg-white text-primary shadow-btn-secondary hover:bg-gray-50',
+  tertiary: 'border border-gray-200 bg-white text-primary shadow-btn-secondary hover:bg-gray-50',
+  green: 'bg-verified text-white hover:bg-verified/90',
+  blue: 'bg-trust text-white hover:bg-trust/90',
+  red: 'bg-red-600 text-white hover:bg-red-600/90',
 }
 
 export function LandingButton({
@@ -26,7 +26,7 @@ export function LandingButton({
   className = '',
   external = false,
 }: LandingButtonProps) {
-  const classes = `inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium transition-colors ${variantClasses[variant]} ${className}`
+  const classes = `inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${variantClasses[variant]} ${className}`
 
   if (external) {
     return (

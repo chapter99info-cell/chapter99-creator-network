@@ -4,12 +4,14 @@ import { LandingButton } from '@/components/landing/Button'
 
 export function LandingFooter() {
   return (
-    <footer className="mx-auto w-full max-w-[1200px] px-6 py-12">
-      <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-        <LandingButton href="/register">เข้าร่วมฟรี</LandingButton>
+    <footer className="border-t border-gray-100 bg-white px-6 py-12">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-10 md:flex-row md:items-start md:justify-between">
+        <LandingButton href="/register" variant="green">
+          เข้าร่วมฟรี
+        </LandingButton>
 
         <div className="flex items-start gap-6">
-          <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-ink" />
+          <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-gray-400" />
           <div className="flex gap-16">
             <nav className="flex flex-col gap-3">
               {[
@@ -20,7 +22,7 @@ export function LandingFooter() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base text-ink transition-opacity hover:opacity-70"
+                  className="text-base text-gray-600 transition-colors hover:text-gray-900"
                 >
                   {link.label}
                 </Link>
@@ -31,7 +33,7 @@ export function LandingFooter() {
                 href="https://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base text-ink transition-opacity hover:opacity-70"
+                className="text-base text-gray-600 transition-colors hover:text-gray-900"
               >
                 x.com
               </a>
@@ -39,7 +41,7 @@ export function LandingFooter() {
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base text-ink transition-opacity hover:opacity-70"
+                className="text-base text-gray-600 transition-colors hover:text-gray-900"
               >
                 LinkedIn
               </a>
@@ -47,6 +49,9 @@ export function LandingFooter() {
           </div>
         </div>
       </div>
+      <p className="mx-auto mt-10 max-w-[1200px] text-center text-sm text-gray-500">
+        © 2025 Thai-Aus Verified Community · Powered by Chapter99 Solutions
+      </p>
     </footer>
   )
 }

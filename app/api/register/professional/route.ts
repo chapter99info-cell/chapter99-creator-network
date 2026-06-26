@@ -12,6 +12,9 @@ const schema = z.object({
   state: z.enum(AU_STATES as unknown as [string, ...string[]]),
   job_category: z.enum(PROFESSIONAL_JOB_CATEGORIES as unknown as [string, ...string[]]),
   portfolio_url: z.string().url().optional().or(z.literal('')),
+  facebook_url: z.string().optional(),
+  instagram_url: z.string().optional(),
+  external_portfolio_url: z.string().optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -39,6 +42,9 @@ export async function POST(request: NextRequest) {
       state: parsed.data.state,
       job_category: parsed.data.job_category,
       portfolio_url: parsed.data.portfolio_url || null,
+      facebook_url: parsed.data.facebook_url?.trim() || null,
+      instagram_url: parsed.data.instagram_url?.trim() || null,
+      external_portfolio_url: parsed.data.external_portfolio_url?.trim() || null,
       is_verified: false,
       subscription_status: 'free',
     })

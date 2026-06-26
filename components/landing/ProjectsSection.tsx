@@ -16,9 +16,9 @@ function ProjectItem({
     <article ref={ref} className="flex flex-col gap-6">
       <div className={`ml-12 md:ml-28 ${inViewClass(inView, 0.1)}`} style={inViewStyle(0.1)}>
         <Link href={href}>
-          <h3 className="font-mondwest text-2xl font-semibold text-ink md:text-3xl">{name}</h3>
+          <h3 className="font-mondwest text-2xl font-semibold text-primary md:text-3xl">{name}</h3>
         </Link>
-        <p className="mt-2 max-w-md text-sm text-ink/70 md:text-base">{description}</p>
+        <p className="mt-2 max-w-md text-sm text-muted md:text-base">{description}</p>
       </div>
       <Link
         href={href}

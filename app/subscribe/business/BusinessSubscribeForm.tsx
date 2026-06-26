@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { AU_STATES } from '@/lib/community-constants'
+import { btnNextClass, formSelectClass } from '@/lib/form-styles'
 
 export function BusinessSubscribeForm() {
   const [loading, setLoading] = useState(false)
@@ -43,9 +44,9 @@ export function BusinessSubscribeForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-4 text-center">
-        <p className="font-serif text-3xl text-red-400">$50</p>
-        <p className="text-sm text-[#555555]">$50 AUD / เดือน</p>
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-center">
+        <p className="text-4xl font-bold text-gray-900">$50</p>
+        <p className="text-sm text-gray-500">$50 AUD / เดือน</p>
       </div>
 
       <Input
@@ -67,11 +68,11 @@ export function BusinessSubscribeForm() {
         required
       />
       <div>
-        <label className="mb-1.5 block text-sm text-gray-400">รัฐ *</label>
+        <label className="mb-1.5 block text-sm text-gray-600">รัฐ *</label>
         <select
           value={form.state}
           onChange={(e) => setForm({ ...form, state: e.target.value })}
-          className="w-full rounded-lg border border-white/10 bg-charcoal px-4 py-2.5 text-white focus:border-trust focus:outline-none"
+          className={formSelectClass}
         >
           {AU_STATES.map((s) => (
             <option key={s} value={s}>
@@ -82,12 +83,12 @@ export function BusinessSubscribeForm() {
       </div>
 
       {error && (
-        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </p>
       )}
 
-      <Button type="submit" isLoading={loading} className="w-full bg-red-600 hover:bg-red-600/90">
+      <Button type="submit" isLoading={loading} className={btnNextClass}>
         ชำระเงินผ่าน Stripe
       </Button>
     </form>

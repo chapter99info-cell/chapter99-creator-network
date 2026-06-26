@@ -56,14 +56,14 @@ export function TestimonialCarousel() {
   return (
     <section className="w-full py-20">
       <div className="mb-10 flex flex-col gap-4 px-6 md:mx-auto md:max-w-4xl md:flex-row md:items-end md:justify-between md:pl-0">
-        <h2 className="text-[32px] font-medium leading-[1.1] tracking-tight text-ink-deep md:text-[40px] lg:text-[44px]">
+        <h2 className="text-[32px] font-medium leading-[1.1] tracking-tight text-gray-900 md:text-[40px] lg:text-[44px]">
           What <span className="font-mondwest font-semibold">members</span> say
         </h2>
         <div className="flex items-center gap-2">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star key={i} className="h-5 w-5 fill-black text-black" />
           ))}
-          <span className="ml-1 text-sm font-medium text-ink">Community 5/5</span>
+          <span className="ml-1 text-sm font-medium text-primary">Community 5/5</span>
         </div>
       </div>
 
@@ -82,10 +82,10 @@ export function TestimonialCarousel() {
           {TRIPLED.map((t, i) => (
             <article
               key={`${t.name}-${i}`}
-              className="w-[calc(100vw-48px)] shrink-0 rounded-[32px] bg-white px-6 py-8 shadow-[0_4px_16px_rgba(0,0,0,0.08)] md:w-[427.5px] md:rounded-[40px] md:pl-10 md:pr-24"
+              className="w-[calc(100vw-48px)] shrink-0 rounded-[32px] border border-gray-100 bg-gray-50 px-6 py-8 shadow-sm md:w-[427.5px] md:rounded-[40px] md:pl-10 md:pr-24"
             >
               <QuoteMark />
-              <p className="mt-4 text-base leading-relaxed text-ink-deep">{t.quote}</p>
+              <p className="mt-4 text-base leading-relaxed text-gray-900">{t.quote}</p>
               <div className="mt-6 flex items-center gap-3">
                 <img
                   src={t.avatar}
@@ -93,8 +93,8 @@ export function TestimonialCarousel() {
                   className="h-12 w-12 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-sm font-semibold text-ink-deep">{t.name}</p>
-                  <p className="text-sm text-ink/60">
+                  <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+                  <p className="text-sm text-muted">
                     → {t.role}, {t.company}
                   </p>
                 </div>
@@ -107,18 +107,18 @@ export function TestimonialCarousel() {
           <button
             type="button"
             onClick={() => go(-1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-ink-deep/20 transition-colors hover:bg-slate-50"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 transition-colors hover:bg-slate-50"
             aria-label="Previous"
           >
-            <ChevronLeft className="h-5 w-5 text-ink-deep" />
+            <ChevronLeft className="h-5 w-5 text-gray-900" />
           </button>
           <button
             type="button"
             onClick={() => go(1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-ink-deep/20 transition-colors hover:bg-slate-50"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 transition-colors hover:bg-slate-50"
             aria-label="Next"
           >
-            <ChevronRight className="h-5 w-5 text-ink-deep" />
+            <ChevronRight className="h-5 w-5 text-gray-900" />
           </button>
         </div>
       </div>

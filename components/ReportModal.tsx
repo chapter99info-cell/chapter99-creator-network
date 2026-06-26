@@ -48,19 +48,19 @@ export function ReportModal({ profileId, businessName, onClose }: ReportModalPro
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 shadow-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-xl">
         <div className="mb-4 flex items-start justify-between gap-4">
           <div>
-            <h3 className="font-heading text-lg text-white">Report Issue</h3>
+            <h3 className="font-heading text-lg text-primary">Report Issue</h3>
             {businessName && (
-              <p className="mt-1 text-sm text-[#555555]">รายงาน: {businessName}</p>
+              <p className="mt-1 text-sm text-muted">รายงาน: {businessName}</p>
             )}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1 text-[#555555] hover:bg-white/5 hover:text-white"
+            className="rounded-lg p-1 text-muted hover:bg-gray-100 hover:text-primary"
             aria-label="ปิด"
           >
             <X size={20} />
@@ -86,13 +86,13 @@ export function ReportModal({ profileId, businessName, onClose }: ReportModalPro
               required
             />
             <div>
-              <label className="mb-1.5 block text-sm text-gray-400">รายละเอียด *</label>
+              <label className="mb-1.5 block text-sm text-muted">รายละเอียด *</label>
               <textarea
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 required
                 rows={4}
-                className="w-full rounded-lg border border-white/10 bg-charcoal px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-trust focus:outline-none focus:ring-1 focus:ring-trust"
+                className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm text-primary placeholder:text-gray-400 focus:border-trust focus:outline-none focus:ring-1 focus:ring-trust"
                 placeholder="อธิบายปัญหาที่พบ..."
               />
             </div>
@@ -104,7 +104,7 @@ export function ReportModal({ profileId, businessName, onClose }: ReportModalPro
               placeholder="https://"
             />
             {error && (
-              <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-400">
+              <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
                 {error}
               </p>
             )}

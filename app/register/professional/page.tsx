@@ -13,6 +13,7 @@ import {
   type ProfessionalJobCategory,
 } from '@/lib/community-constants'
 import { formatAbn, isValidAbn, normalizeAbn } from '@/lib/abn'
+import { btnNextClass, btnSubmitClass, formCardClass, formSelectClass } from '@/lib/form-styles'
 import { cn } from '@/lib/utils'
 
 export default function ProfessionalRegisterPage() {
@@ -29,6 +30,9 @@ export default function ProfessionalRegisterPage() {
     business_name: '',
     abn_number: '',
     portfolio_url: '',
+    facebook_url: '',
+    instagram_url: '',
+    external_portfolio_url: '',
   })
 
   useEffect(() => {
@@ -74,28 +78,28 @@ export default function ProfessionalRegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#111111] text-white">
+    <div className="min-h-screen bg-surface text-primary">
       <div className="mx-auto max-w-lg px-6 py-12">
-        <Link href="/" className="text-sm text-[#555555] hover:text-trust">
+        <Link href="/" className="text-sm text-gray-500 hover:text-trust">
           <ArrowLeft className="mr-1 inline h-4 w-4" />
           กลับหน้าแรก
         </Link>
 
         {done ? (
-          <div className="mt-10 rounded-xl border border-trust/30 bg-trust/5 p-8 text-center">
+          <div className={cn('mt-10 text-center', formCardClass)}>
             <CheckCircle className="mx-auto text-trust" size={48} />
-            <h1 className="mt-4 font-serif text-2xl">ส่งข้อมูลแล้ว</h1>
-            <p className="mt-2 text-sm text-[#555555]">
+            <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">ส่งข้อมูลแล้ว</h1>
+            <p className="mt-2 text-sm text-gray-500">
               ทีมงานจะตรวจสอบ ABN ภายใน 48 ชั่วโมง
             </p>
           </div>
         ) : (
           <>
-            <h1 className="mt-8 font-serif text-3xl">ลงทะเบียนช่าง/ครีเอเตอร์</h1>
-            <p className="mt-2 text-sm text-[#555555]">{SITE_NAME} — Verified ABN</p>
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900">ลงทะเบียนช่าง/ครีเอเตอร์</h1>
+            <p className="mt-2 text-sm text-gray-500">{SITE_NAME} — Verified ABN</p>
 
-            <div className="mb-8 mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-800 dark:bg-blue-950/30">
-              <h2 className="text-xl font-semibold text-blue-900 dark:text-blue-100">
+            <div className="mb-8 mt-8 rounded-2xl border border-blue-100 bg-blue-50 p-6">
+              <h2 className="text-xl font-semibold text-blue-900">
                 ⚙️ วิธีการลงทะเบียนและรับป้าย Verified สำหรับช่างและสายอาชีพ
               </h2>
 
@@ -104,7 +108,7 @@ export default function ProfessionalRegisterPage() {
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
                     1
                   </span>
-                  <p className="pt-1 text-sm text-blue-900 dark:text-blue-100">
+                  <p className="pt-1 text-sm text-blue-900">
                     เลือกประเภทงานและรัฐที่คุณให้บริการ
                   </p>
                 </li>
@@ -114,11 +118,11 @@ export default function ProfessionalRegisterPage() {
                     2
                   </span>
                   <div className="flex-1">
-                    <p className="pt-1 text-sm text-blue-900 dark:text-blue-100">
+                    <p className="pt-1 text-sm text-blue-900">
                       กรอกชื่อและเลข ABN ของคุณ
                     </p>
-                    <div className="mt-2 rounded-lg border border-red-300 bg-red-50 p-3 dark:border-red-800 dark:bg-red-950/30">
-                      <p className="text-sm text-red-700 dark:text-red-300">
+                    <div className="mt-2 rounded-lg border border-red-200 bg-red-50 p-3">
+                      <p className="text-sm text-red-700">
                         ⚠️ สำคัญมาก: กรอกเฉพาะ ABN เท่านั้น — ห้ามกรอกเลข TFN เด็ดขาด!
                       </p>
                     </div>
@@ -129,7 +133,7 @@ export default function ProfessionalRegisterPage() {
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
                     3
                   </span>
-                  <p className="pt-1 text-sm text-blue-900 dark:text-blue-100">
+                  <p className="pt-1 text-sm text-blue-900">
                     ระบบจะตรวจสอบข้อมูลกับรัฐบาลออสเตรเลียทันที เมื่อผ่านแล้ว
                     โปรไฟล์ของคุณจะได้รับเครื่องหมาย ✓ Verified สีเขียวอัตโนมัติ
                   </p>
@@ -139,7 +143,7 @@ export default function ProfessionalRegisterPage() {
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-600 text-sm font-semibold text-white">
                     4
                   </span>
-                  <p className="pt-1 text-sm text-blue-900 dark:text-blue-100">
+                  <p className="pt-1 text-sm text-blue-900">
                     คัดลอกลิงก์โปรไฟล์ Verified ไปแปะท้ายโพสต์ใน Facebook Group
                     เพื่อให้บอทปล่อยผ่านและเพิ่มความน่าเชื่อถือให้ลูกค้า
                   </p>
@@ -149,7 +153,7 @@ export default function ProfessionalRegisterPage() {
               <button
                 type="button"
                 onClick={() => setShowVideo(true)}
-                className="mt-4 flex items-center gap-2 rounded-xl border border-blue-300 bg-white px-5 py-2.5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-50 dark:border-blue-700 dark:bg-white/10 dark:text-blue-300 dark:hover:bg-blue-900/30"
+                className="mt-4 flex items-center gap-2 rounded-xl border border-blue-200 bg-white px-5 py-2.5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-50"
               >
                 🎥 ดูวิดีโอสาธิตวิธีลงทะเบียนใน 1 นาที
               </button>
@@ -157,31 +161,34 @@ export default function ProfessionalRegisterPage() {
 
             <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200 dark:border-gray-700" />
+                <div className="w-full border-t border-gray-200" />
               </div>
               <div className="relative flex justify-center">
-                <span className="bg-white px-4 text-sm text-gray-400 dark:bg-gray-950">
+                <span className="bg-surface px-4 text-sm text-muted">
                   กรอกข้อมูลด้านล่าง
                 </span>
               </div>
             </div>
 
-            <div className="mt-6 flex gap-2">
+            <div className={cn('mt-8', formCardClass)}>
+            <div className="flex gap-2">
               {[1, 2, 3].map((s) => (
                 <div
                   key={s}
-                  className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-trust' : 'bg-white/10')}
+                  className={cn('h-1.5 flex-1 rounded-full', step >= s ? 'bg-trust' : 'bg-gray-200')}
                 />
               ))}
             </div>
 
             {step === 1 && (
               <div className="mt-8 space-y-4">
-                <p className="text-sm text-gray-400">Step 1 — เลือกรัฐ</p>
+                <p className={cn('text-sm font-medium', step === 1 ? 'text-blue-600' : 'text-gray-400')}>
+                  Step 1 — เลือกรัฐ
+                </p>
                 <select
                   value={form.state}
                   onChange={(e) => setForm({ ...form, state: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-charcoal px-4 py-3 text-white focus:border-trust focus:outline-none"
+                  className={formSelectClass}
                 >
                   {AU_STATES.map((s) => (
                     <option key={s} value={s}>
@@ -189,7 +196,7 @@ export default function ProfessionalRegisterPage() {
                     </option>
                   ))}
                 </select>
-                <Button type="button" className="w-full" onClick={() => setStep(2)}>
+                <Button type="button" className={btnNextClass} onClick={() => setStep(2)}>
                   ถัดไป
                 </Button>
               </div>
@@ -197,7 +204,7 @@ export default function ProfessionalRegisterPage() {
 
             {step === 2 && (
               <div className="mt-8 space-y-4">
-                <p className="text-sm text-gray-400">Step 2 — เลือกประเภทงาน</p>
+                <p className="text-sm font-medium text-blue-600">Step 2 — เลือกประเภทงาน</p>
                 <select
                   value={form.job_category}
                   onChange={(e) =>
@@ -206,7 +213,7 @@ export default function ProfessionalRegisterPage() {
                       job_category: e.target.value as ProfessionalJobCategory,
                     })
                   }
-                  className="w-full rounded-lg border border-white/10 bg-charcoal px-4 py-3 text-white focus:border-trust focus:outline-none"
+                  className={formSelectClass}
                 >
                   {PROFESSIONAL_JOB_CATEGORIES.map((cat) => (
                     <option key={cat} value={cat}>
@@ -218,7 +225,7 @@ export default function ProfessionalRegisterPage() {
                   <Button type="button" variant="secondary" onClick={() => setStep(1)}>
                     ย้อนกลับ
                   </Button>
-                  <Button type="button" className="flex-1" onClick={() => setStep(3)}>
+                  <Button type="button" className={cn('flex-1', btnNextClass)} onClick={() => setStep(3)}>
                     ถัดไป
                   </Button>
                 </div>
@@ -227,7 +234,7 @@ export default function ProfessionalRegisterPage() {
 
             {step === 3 && (
               <div className="mt-8 space-y-4">
-                <p className="text-sm text-gray-400">Step 3 — ข้อมูลธุรกิจ</p>
+                <p className="text-sm font-medium text-blue-600">Step 3 — ข้อมูลธุรกิจ</p>
                 <Input
                   label="ชื่อ Facebook *"
                   value={form.facebook_name}
@@ -246,11 +253,32 @@ export default function ProfessionalRegisterPage() {
                   onChange={(e) => setForm({ ...form, portfolio_url: e.target.value })}
                   placeholder="https://"
                 />
+                <Input
+                  label="Facebook Profile URL (ถ้ามี)"
+                  type="url"
+                  value={form.facebook_url}
+                  onChange={(e) => setForm({ ...form, facebook_url: e.target.value })}
+                  placeholder="https://facebook.com/yourname"
+                />
+                <Input
+                  label="Instagram URL (ถ้ามี)"
+                  type="url"
+                  value={form.instagram_url}
+                  onChange={(e) => setForm({ ...form, instagram_url: e.target.value })}
+                  placeholder="https://instagram.com/yourname"
+                />
+                <Input
+                  label="ลิงก์พอร์ตโฟลิโอภายนอก (Pic-Time / Pass Gallery / Website)"
+                  type="url"
+                  value={form.external_portfolio_url}
+                  onChange={(e) => setForm({ ...form, external_portfolio_url: e.target.value })}
+                  placeholder="https://..."
+                />
 
-                <div className="rounded-lg border border-red-500/50 bg-red-500/5 px-4 py-3">
+                <div className="rounded-xl border border-red-200 bg-red-50 p-4">
                   <div className="flex gap-2">
-                    <AlertTriangle className="mt-0.5 shrink-0 text-red-400" size={18} />
-                    <p className="text-sm text-red-300">
+                    <AlertTriangle className="mt-0.5 shrink-0 text-red-600" size={18} />
+                    <p className="text-sm text-red-700">
                       ⚠️ กรุณากรอก ABN (Australian Business Number) เท่านั้น
                       <br />
                       ห้ามกรอก Tax File Number (TFN) เด็ดขาด
@@ -266,14 +294,14 @@ export default function ProfessionalRegisterPage() {
                   required
                 />
 
-                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-white/10 p-3">
+                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-gray-200 bg-white p-3">
                   <input
                     type="checkbox"
                     checked={abnConfirmed}
                     onChange={(e) => setAbnConfirmed(e.target.checked)}
                     className="mt-1 accent-trust"
                   />
-                  <span className="text-sm text-gray-300">
+                  <span className="text-sm text-primary">
                     ฉันเข้าใจว่าช่องนี้คือ ABN ไม่ใช่ TFN
                   </span>
                 </label>
@@ -283,7 +311,7 @@ export default function ProfessionalRegisterPage() {
                 )}
 
                 {error && (
-                  <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+                  <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600">
                     {error}
                   </p>
                 )}
@@ -294,7 +322,7 @@ export default function ProfessionalRegisterPage() {
                   </Button>
                   <Button
                     type="button"
-                    className="flex-1"
+                    className={btnSubmitClass}
                     isLoading={loading}
                     disabled={!abnConfirmed}
                     onClick={handleSubmit}
@@ -304,6 +332,7 @@ export default function ProfessionalRegisterPage() {
                 </div>
               </div>
             )}
+            </div>
           </>
         )}
       </div>
@@ -315,7 +344,7 @@ export default function ProfessionalRegisterPage() {
           role="presentation"
         >
           <div
-            className="relative mx-4 w-full max-w-2xl rounded-2xl bg-white p-6 dark:bg-gray-900"
+            className="relative mx-4 w-full max-w-2xl rounded-2xl bg-white p-6 shadow-xl"
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
@@ -324,14 +353,14 @@ export default function ProfessionalRegisterPage() {
             <button
               type="button"
               onClick={() => setShowVideo(false)}
-              className="absolute right-4 top-4 text-lg text-gray-500 hover:text-gray-800 dark:hover:text-gray-200"
+              className="absolute right-4 top-4 text-lg text-muted hover:text-primary"
               aria-label="ปิด"
             >
               ✕
             </button>
             <h3
               id="video-modal-title"
-              className="mb-4 pr-8 text-lg font-semibold text-gray-900 dark:text-white"
+              className="mb-4 pr-8 text-lg font-semibold text-gray-900"
             >
               วิดีโอสาธิตการลงทะเบียน
             </h3>

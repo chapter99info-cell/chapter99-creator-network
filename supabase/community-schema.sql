@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS profiles (
     CHECK (state IN ('NSW','VIC','QLD','WA','SA','TAS','ACT','NT')),
   job_category text NOT NULL,
   portfolio_url text,
+  facebook_url text,
+  instagram_url text,
+  external_portfolio_url text,
   is_verified boolean DEFAULT false,
   subscription_status text DEFAULT 'free'
     CHECK (subscription_status IN ('free','premium','expired')),
@@ -53,6 +56,9 @@ ALTER TABLE profiles ADD COLUMN IF NOT EXISTS review_weight numeric DEFAULT 1.0;
 ALTER TABLE profiles ADD COLUMN IF NOT EXISTS state text NOT NULL DEFAULT 'NSW';
 ALTER TABLE profiles ADD COLUMN IF NOT EXISTS job_category text;
 UPDATE profiles SET job_category = 'Other' WHERE job_category IS NULL;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS facebook_url text;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS instagram_url text;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS external_portfolio_url text;
 
 DROP POLICY IF EXISTS "public_view_verified_profiles" ON profiles;
 DROP POLICY IF EXISTS "Public can read verified profiles" ON profiles;

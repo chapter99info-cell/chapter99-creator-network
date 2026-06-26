@@ -9,19 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: {
-          DEFAULT: '#111111',
-          light: '#1a1a1a',
-          dark: '#0a0a0a',
-        },
-        ink: {
-          DEFAULT: '#051A24',
-          deep: '#0D212C',
-        },
-        muted: '#273C46',
-        trust: '#1B6CA8',
+        primary: '#0D1117',
+        surface: '#F8F9FA',
+        trust: '#1B4FD8',
         verified: '#16A34A',
-        saffron: '#1B6CA8',
+        saffron: '#1B4FD8',
+        muted: '#6B7280',
+        ink: {
+          DEFAULT: '#0D1117',
+          deep: '#0D1117',
+        },
+        charcoal: {
+          DEFAULT: '#F8F9FA',
+          light: '#FFFFFF',
+          dark: '#E5E7EB',
+        },
       },
       fontFamily: {
         montreal: ['"PP Neue Montreal"', 'var(--font-geist-sans)', 'system-ui', 'sans-serif'],
@@ -30,6 +32,9 @@ const config: Config = {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
         heading: ['var(--font-serif)', 'Georgia', 'serif'],
+      },
+      boxShadow: {
+        card: '0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06)',
       },
     },
   },

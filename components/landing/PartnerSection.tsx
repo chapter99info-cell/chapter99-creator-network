@@ -61,10 +61,10 @@ export function PartnerSection() {
         ))}
 
         <div className="relative z-10 text-center">
-          <h2 className="mb-12 font-mondwest text-[48px] font-semibold leading-none text-ink-deep md:text-[64px] lg:text-[80px]">
+          <h2 className="mb-12 font-mondwest text-[48px] font-semibold leading-none text-gray-900 md:text-[64px] lg:text-[80px]">
             เข้าร่วมชุมชน
           </h2>
-          <LandingButton href="/register" className="gap-3">
+          <LandingButton href="/register" variant="green" className="gap-3">
             <img
               src={PARTNER_AVATAR}
               alt=""

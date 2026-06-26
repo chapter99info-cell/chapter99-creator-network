@@ -237,6 +237,9 @@ export interface Database {
           state: string
           job_category: string
           portfolio_url: string | null
+          facebook_url: string | null
+          instagram_url: string | null
+          external_portfolio_url: string | null
           is_verified: boolean
           subscription_status: string
           strike_count: number
@@ -252,6 +255,9 @@ export interface Database {
           state?: string
           job_category: string
           portfolio_url?: string | null
+          facebook_url?: string | null
+          instagram_url?: string | null
+          external_portfolio_url?: string | null
           is_verified?: boolean
           subscription_status?: string
           strike_count?: number
