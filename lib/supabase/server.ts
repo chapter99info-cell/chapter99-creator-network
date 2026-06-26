@@ -1,8 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
-import { createClient as createSupabaseClient, type SupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Database } from '@/types/supabase'
-import { isSupabaseConfigured, isSupabaseServiceConfigured } from '@/lib/supabase/config'
+import { isSupabaseConfigured } from '@/lib/supabase/config'
 
 /** Supabase client สำหรับ Server Components และ Route Handlers */
 export async function createClient(): Promise<SupabaseClient<Database> | null> {
@@ -34,16 +34,4 @@ export async function createClient(): Promise<SupabaseClient<Database> | null> {
   )
 }
 
-/** Service role client สำหรับ admin operations */
-export function createServiceClient(): SupabaseClient<Database> | null {
-  if (!isSupabaseServiceConfigured()) {
-    return null
-  }
-
-  return createSupabaseClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
-}
-
-export { isSupabaseConfigured, isSupabaseServiceConfigured } from '@/lib/supabase/config'
+export { createServiceClient, isSupabaseConfigured, isSupabaseServiceConfigured } from '@/lib/supabase/config'
