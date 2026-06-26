@@ -35,23 +35,23 @@ export default async function ClientDashboard() {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-bold text-white">การจองของฉัน</h1>
+      <h1 className="font-heading text-2xl font-bold text-gray-900">การจองของฉัน</h1>
       <p className="mt-1 text-sm text-gray-500">ประวัติการจองช่างภาพ</p>
 
       <div className="mt-8 space-y-4">
         {bookings.map((b) => (
           <div
             key={b.id}
-            className="rounded-xl border border-white/10 bg-charcoal-light p-4"
+            className="rounded-xl border border-gray-200 bg-charcoal-light p-4"
           >
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-mono text-sm text-saffron">{b.booking_ref}</p>
-                <p className="text-white">{b.shoot_location}</p>
+                <p className="text-gray-900">{b.shoot_location}</p>
                 <p className="text-sm text-gray-500">{formatDate(b.shoot_date)}</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-white">{formatCurrency(b.total_charged)}</p>
+                <p className="font-semibold text-gray-900">{formatCurrency(b.total_charged)}</p>
                 <p className="text-sm text-gray-500">{statusLabels[b.booking_status]}</p>
                 {b.booking_status === 'payout_completed' && (
                   <Link

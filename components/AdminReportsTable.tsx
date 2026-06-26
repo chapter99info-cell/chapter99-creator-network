@@ -75,7 +75,7 @@ export function AdminReportsTable({ reports: initialReports }: AdminReportsTable
   return (
     <div className="mt-8 space-y-4">
       {error && (
-        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600">
           {error}
         </p>
       )}
@@ -89,11 +89,11 @@ export function AdminReportsTable({ reports: initialReports }: AdminReportsTable
         return (
           <article
             key={report.id}
-            className="rounded-xl border border-white/10 bg-[#1a1a1a] p-5"
+            className="rounded-xl border border-gray-200 bg-white p-5"
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-sm font-medium text-white">{profileName}</p>
+                <p className="text-sm font-medium text-gray-900">{profileName}</p>
                 <p className="mt-1 text-xs text-gray-500">
                   จาก {report.reporter_email} · {new Date(report.created_at).toLocaleDateString('en-AU')}
                 </p>
@@ -111,7 +111,7 @@ export function AdminReportsTable({ reports: initialReports }: AdminReportsTable
               </span>
             </div>
 
-            <p className="mt-3 text-sm text-gray-300">{report.description}</p>
+            <p className="mt-3 text-sm text-gray-600">{report.description}</p>
             {report.evidence_url && (
               <a
                 href={report.evidence_url}
@@ -123,7 +123,7 @@ export function AdminReportsTable({ reports: initialReports }: AdminReportsTable
               </a>
             )}
 
-            <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-white/10 pt-4">
+            <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-gray-200 pt-4">
               <p className="text-xs text-gray-500">
                 Profile strikes: {profileStrikes}
                 {report.profile?.is_blacklisted && ' · Blacklisted'}
@@ -161,7 +161,7 @@ export function AdminReportsTable({ reports: initialReports }: AdminReportsTable
               </div>
             </div>
             {profileStrikes >= 3 && (
-              <p className="mt-2 text-xs text-red-400">
+              <p className="mt-2 text-xs text-red-600">
                 3 strikes — profile blacklisted and unverified automatically
               </p>
             )}

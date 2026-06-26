@@ -23,12 +23,12 @@ export function AdminBookingRow({ booking, photographerName }: AdminBookingRowPr
   return (
     <tr className="border-b border-white/5 hover:bg-white/5">
       <td className="px-4 py-3 text-sm font-mono text-saffron">{booking.booking_ref}</td>
-      <td className="px-4 py-3 text-sm text-white">{booking.client_name}</td>
+      <td className="px-4 py-3 text-sm text-gray-900">{booking.client_name}</td>
       <td className="px-4 py-3 text-sm text-gray-400">{photographerName ?? '—'}</td>
       <td className="px-4 py-3 text-sm text-gray-400">{formatDate(booking.shoot_date)}</td>
-      <td className="px-4 py-3 text-sm text-white">{formatCurrency(booking.total_charged)}</td>
+      <td className="px-4 py-3 text-sm text-gray-900">{formatCurrency(booking.total_charged)}</td>
       <td className="px-4 py-3">
-        <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-gray-300">
+        <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-gray-600">
           {statusLabels[booking.booking_status] ?? booking.booking_status}
         </span>
       </td>

@@ -42,7 +42,7 @@ export function PhotographerFilters({ suburbs }: PhotographerFiltersProps) {
   const suburb = searchParams.get('suburb') ?? ''
 
   const selectClass =
-    'w-full rounded-lg border border-white/10 bg-charcoal-light px-4 py-2.5 text-sm text-white focus:border-saffron focus:outline-none focus:ring-1 focus:ring-saffron'
+    'w-full rounded-lg border border-gray-200 bg-charcoal-light px-4 py-2.5 text-sm text-gray-900 focus:border-saffron focus:outline-none focus:ring-1 focus:ring-saffron'
 
   return (
     <div className="grid gap-4 sm:grid-cols-3">

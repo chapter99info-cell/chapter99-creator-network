@@ -31,26 +31,26 @@ export default async function UploadPage({ params }: Props) {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-bold text-white">อัปโหลดไฟล์</h1>
-      <p className="mt-1 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</p>
+      <h1 className="font-heading text-2xl font-bold text-gray-900">อัปโหลดไฟล์</h1>
+      <p className="mt-1 font-mono text-sm text-trust">{b.booking_ref}</p>
 
-      <div className="mt-6 rounded-xl border border-white/10 bg-[#1a1a1a] p-5">
+      <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5">
         <dl className="grid gap-2 text-sm sm:grid-cols-2">
           <div>
             <dt className="text-gray-500">ลูกค้า</dt>
-            <dd className="text-white">{b.client_name}</dd>
+            <dd className="text-gray-900">{b.client_name}</dd>
           </div>
           <div>
             <dt className="text-gray-500">ประเภทงาน</dt>
-            <dd className="text-white">{getJobTypeLabel(b.job_type)}</dd>
+            <dd className="text-gray-900">{getJobTypeLabel(b.job_type)}</dd>
           </div>
           <div>
             <dt className="text-gray-500">วันถ่าย</dt>
-            <dd className="text-white">{formatDate(b.shoot_date)}</dd>
+            <dd className="text-gray-900">{formatDate(b.shoot_date)}</dd>
           </div>
           <div>
             <dt className="text-gray-500">สถานที่</dt>
-            <dd className="text-white">{b.shoot_location}</dd>
+            <dd className="text-gray-900">{b.shoot_location}</dd>
           </div>
         </dl>
       </div>

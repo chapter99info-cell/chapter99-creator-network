@@ -49,12 +49,12 @@ export default async function PhotographyAdminPage() {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-bold text-white">Photography Admin</h1>
+          <h1 className="font-heading text-2xl font-bold text-gray-900">Photography Admin</h1>
           <p className="mt-1 text-sm text-gray-500">Booking & payout management</p>
         </div>
         <Link
           href="/admin"
-          className="text-sm text-[#1B6CA8] hover:underline"
+          className="text-sm text-trust hover:underline"
         >
           ← Community Dashboard
         </Link>
@@ -63,19 +63,19 @@ export default async function PhotographyAdminPage() {
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <Card>
           <CardTitle>การจองทั้งหมด</CardTitle>
-          <p className="mt-2 text-3xl font-bold text-[#1B6CA8]">{totalBookings ?? 0}</p>
+          <p className="mt-2 text-3xl font-bold text-trust">{totalBookings ?? 0}</p>
         </Card>
         <Card>
           <CardTitle>Escrow ค้าง</CardTitle>
-          <p className="mt-2 text-3xl font-bold text-[#1B6CA8]">{escrowCount ?? 0}</p>
+          <p className="mt-2 text-3xl font-bold text-trust">{escrowCount ?? 0}</p>
         </Card>
         <Card>
           <CardTitle>รอตรวจไฟล์</CardTitle>
-          <p className="mt-2 text-3xl font-bold text-[#1B6CA8]">{pendingReview ?? 0}</p>
+          <p className="mt-2 text-3xl font-bold text-trust">{pendingReview ?? 0}</p>
         </Card>
         <Card>
           <CardTitle>Payout เดือนนี้</CardTitle>
-          <p className="mt-2 text-2xl font-bold text-[#1B6CA8]">
+          <p className="mt-2 text-2xl font-bold text-trust">
             {formatCurrency(monthPayoutTotal)}
           </p>
         </Card>
@@ -86,10 +86,10 @@ export default async function PhotographyAdminPage() {
           <Link
             key={action.href}
             href={action.href}
-            className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#1a1a1a] p-4 transition-colors hover:border-[#1B6CA8]/40"
+            className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-blue-300"
           >
-            <action.icon className="text-[#1B6CA8]" size={22} />
-            <span className="text-sm font-medium text-white">{action.label}</span>
+            <action.icon className="text-trust" size={22} />
+            <span className="text-sm font-medium text-gray-900">{action.label}</span>
           </Link>
         ))}
       </div>

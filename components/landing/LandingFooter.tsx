@@ -22,7 +22,7 @@ export function LandingFooter() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base text-gray-600 transition-colors hover:text-gray-900"
+                  className="text-base text-gray-600 transition-colors hover:text-trust"
                 >
                   {link.label}
                 </Link>
@@ -33,7 +33,7 @@ export function LandingFooter() {
                 href="https://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base text-gray-600 transition-colors hover:text-gray-900"
+                className="text-base text-gray-600 transition-colors hover:text-trust"
               >
                 x.com
               </a>
@@ -41,7 +41,7 @@ export function LandingFooter() {
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base text-gray-600 transition-colors hover:text-gray-900"
+                className="text-base text-gray-600 transition-colors hover:text-trust"
               >
                 LinkedIn
               </a>

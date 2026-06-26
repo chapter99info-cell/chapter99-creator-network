@@ -31,7 +31,7 @@ export function PhotographerCard({ photographer }: PhotographerCardProps) {
         </div>
 
         <div className="min-w-0 flex-1">
-          <h3 className="font-heading truncate text-lg font-semibold text-white">
+          <h3 className="font-heading truncate text-lg font-semibold text-gray-900">
             {photographer.full_name}
           </h3>
           <div className="mt-1 flex flex-wrap items-center gap-1.5">
@@ -57,7 +57,7 @@ export function PhotographerCard({ photographer }: PhotographerCardProps) {
           {photographer.suburb_coverage.slice(0, 4).map((suburb) => (
             <span
               key={suburb}
-              className="rounded-full border border-white/10 bg-charcoal px-2 py-0.5 text-xs text-gray-400"
+              className="rounded-full border border-gray-200 bg-charcoal px-2 py-0.5 text-xs text-gray-400"
             >
               {suburb}
             </span>

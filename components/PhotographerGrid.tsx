@@ -26,7 +26,7 @@ interface GridPhotographer {
 }
 
 function SkeletonCard() {
-  return <div className="h-56 animate-pulse rounded-2xl bg-[#1a1a1a]" />
+  return <div className="h-56 animate-pulse rounded-2xl bg-white" />
 }
 
 function PhotographerCard({ photographer }: { photographer: GridPhotographer }) {
@@ -39,9 +39,9 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
     .toUpperCase()
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] transition-colors duration-300 hover:border-[#1B6CA8]/40">
+    <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-300 hover:border-blue-300">
       <div className="flex items-start justify-between p-5">
-        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#1B6CA8]">
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-trust">
           {photographer.avatar_url ? (
             <Image
               src={photographer.avatar_url}
@@ -51,13 +51,13 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
               sizes="48px"
             />
           ) : (
-            <span className="flex h-full w-full items-center justify-center text-sm font-semibold text-[#111111]">
+            <span className="flex h-full w-full items-center justify-center text-sm font-semibold text-gray-900">
               {initials}
             </span>
           )}
         </div>
         {photographer.tier === 'pro' ? (
-          <span className="rounded-full border border-[#1B6CA8]/30 bg-[rgba(232,168,56,0.12)] px-2 py-0.5 text-[10px] text-[#1B6CA8]">
+          <span className="rounded-full border border-blue-100 bg-[rgba(232,168,56,0.12)] px-2 py-0.5 text-[10px] text-trust">
             PRO
           </span>
         ) : (
@@ -68,10 +68,10 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
       </div>
 
       <div className="px-5 pb-4">
-        <h3 className="text-base font-medium text-white">{photographer.full_name}</h3>
+        <h3 className="text-base font-medium text-gray-900">{photographer.full_name}</h3>
         <div className="mt-1 flex flex-wrap gap-1">
           {photographer.suburb_coverage.slice(0, 3).map((suburb) => (
-            <span key={suburb} className="rounded bg-[#222222] px-2 py-0.5 text-xs text-[#555555]">
+            <span key={suburb} className="rounded bg-[#222222] px-2 py-0.5 text-xs text-gray-500">
               {suburb}
             </span>
           ))}
@@ -80,24 +80,24 @@ function PhotographerCard({ photographer }: { photographer: GridPhotographer }) 
           {SPECIALTY_TAGS.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="rounded bg-[rgba(232,168,56,0.08)] px-2 py-0.5 text-xs text-[#1B6CA8]/70"
+              className="rounded bg-[rgba(232,168,56,0.08)] px-2 py-0.5 text-xs text-trust/70"
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-[#555555]">
+        <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-gray-500">
           <span>★ {photographer.average_rating.toFixed(1)}</span>
           <span>{photographer.total_jobs_completed} งาน</span>
-          {photographer.has_car && <Car size={14} className="text-[#555555]" aria-label="มีรถ" />}
+          {photographer.has_car && <Car size={14} className="text-gray-500" aria-label="มีรถ" />}
         </div>
       </div>
 
-      <div className="flex items-center justify-between border-t border-[#222222] px-5 py-4">
-        <span className="text-sm text-[#1B6CA8]">from ${minRate}/hr</span>
+      <div className="flex items-center justify-between border-t border-gray-200 px-5 py-4">
+        <span className="text-sm text-trust">from ${minRate}/hr</span>
         <Link
           href={`/photographers/${photographer.id}`}
-          className="text-xs text-[#555555] transition-colors hover:text-white"
+          className="text-xs text-gray-500 transition-colors hover:text-trust"
         >
           ดูพอร์ต →
         </Link>
@@ -139,12 +139,12 @@ export async function PhotographerGrid() {
   const isEmpty = !showSkeletons && photographers.length === 0
 
   return (
-    <section id="photographers" className="bg-[#111111] px-6 py-20">
+    <section id="photographers" className="bg-surface px-6 py-20">
       <div className="mx-auto mb-12 flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-mono text-xs tracking-[0.2em] text-[#555555]">VERIFIED PHOTOGRAPHERS</p>
-          <h2 className="font-serif mt-3 text-4xl text-white">
-            เลือกช่างภาพ<span className="text-[#1B6CA8]">ของคุณ</span>
+          <p className="font-mono text-xs tracking-[0.2em] text-gray-500">VERIFIED PHOTOGRAPHERS</p>
+          <h2 className="font-serif mt-3 text-4xl text-gray-900">
+            เลือกช่างภาพ<span className="text-trust">ของคุณ</span>
           </h2>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -154,8 +154,8 @@ export async function PhotographerGrid() {
               href={f.href}
               className={
                 f.active
-                  ? 'rounded-full bg-[#1B6CA8] px-4 py-2 text-xs text-[#111111]'
-                  : 'rounded-full border border-[#2a2a2a] px-4 py-2 text-xs text-[#555555] transition-colors hover:text-white'
+                  ? 'rounded-full bg-trust px-4 py-2 text-xs text-gray-900'
+                  : 'rounded-full border border-gray-200 px-4 py-2 text-xs text-gray-500 transition-colors hover:text-trust'
               }
             >
               {f.label}
@@ -173,7 +173,7 @@ export async function PhotographerGrid() {
       <div className="mt-10 text-center">
         <Link
           href="/photographers"
-          className="inline-block rounded-full border border-[#2a2a2a] px-8 py-3 text-sm text-[#555555] transition-colors hover:border-[#555555] hover:text-white"
+          className="inline-block rounded-full border border-gray-200 px-8 py-3 text-sm text-gray-500 transition-colors hover:border-gray-400 hover:text-trust"
         >
           ดูช่างภาพทั้งหมด
         </Link>

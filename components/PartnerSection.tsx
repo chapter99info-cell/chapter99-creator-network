@@ -64,15 +64,15 @@ export function PartnerSection() {
   }, [handleMouseMove])
 
   return (
-    <section className="bg-[#0a0a0a] px-6 py-12">
+    <section className="bg-white px-6 py-12">
       <div
         ref={containerRef}
-        className="relative mx-auto max-w-7xl cursor-crosshair overflow-hidden rounded-[40px] bg-[#111111] px-8 py-32 text-center"
+        className="relative mx-auto max-w-7xl cursor-crosshair overflow-hidden rounded-[40px] bg-surface px-8 py-32 text-center"
       >
         {thumbs.map((thumb) => (
           <div
             key={thumb.id}
-            className="animate-thumb-fade pointer-events-none absolute flex h-20 w-32 items-center justify-center rounded-xl border border-[#2a2a2a] bg-[#1a1a1a] text-xs text-[#333333]"
+            className="animate-thumb-fade pointer-events-none absolute flex h-20 w-32 items-center justify-center rounded-xl border border-gray-200 bg-white text-xs text-[#333333]"
             style={{
               left: thumb.x - 64,
               top: thumb.y - 40,
@@ -84,15 +84,15 @@ export function PartnerSection() {
         ))}
 
         <div className="relative z-10">
-          <p className="font-mono text-xs tracking-widest text-[#555555]">JOIN AS PHOTOGRAPHER</p>
+          <p className="font-mono text-xs tracking-widest text-gray-500">JOIN AS PHOTOGRAPHER</p>
 
           <h2 className="font-serif mt-4 text-6xl leading-tight md:text-8xl">
-            <span className="block text-white">ร่วมเป็น</span>
-            <span className="block text-[#555555]">ส่วนหนึ่งของ</span>
-            <span className="block text-[#1B6CA8]">Creator</span>
+            <span className="block text-gray-900">ร่วมเป็น</span>
+            <span className="block text-gray-500">ส่วนหนึ่งของ</span>
+            <span className="block text-trust">Creator</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-sm text-sm text-[#555555]">
+          <p className="mx-auto mt-6 max-w-sm text-sm text-gray-500">
             ช่างภาพไทยมืออาชีพในออสเตรเลีย
             <br />
             Platform fee แค่ {PLATFORM_FEE_RATES.photographer_creator}% · Escrow ทุกงาน
@@ -102,18 +102,18 @@ export function PartnerSection() {
 
           <Link
             href="/join"
-            className="saffron-shadow-primary mt-10 inline-block rounded-full bg-[#1B6CA8] px-10 py-4 text-base font-medium text-[#111111] transition-colors hover:bg-[#1B6CA8]/90"
+            className="saffron-shadow-primary mt-10 inline-block rounded-full bg-trust px-10 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-trust/90"
           >
             สมัครช่างภาพเลย
           </Link>
 
-          <p className="mt-5 text-xs text-[#555555]">
+          <p className="mt-5 text-xs text-gray-500">
             หรือเข้าร่วม community →{' '}
             <a
               href={facebookGroupUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1B6CA8] underline"
+              className="text-trust underline"
             >
               Thai-Aus Verified Community
             </a>

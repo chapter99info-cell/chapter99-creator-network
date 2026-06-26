@@ -41,11 +41,11 @@ export function PhotographerBookingActions({ bookingId, status }: PhotographerBo
         <Button
           onClick={() => updateStatus('confirm')}
           isLoading={loading}
-          className="text-xs px-3 py-1.5 bg-[#1B6CA8] text-[#111111]"
+          className="text-xs px-3 py-1.5 bg-trust text-white"
         >
           ยืนยันรับงาน
         </Button>
-        {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+        {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
       </div>
     )
   }
@@ -56,11 +56,11 @@ export function PhotographerBookingActions({ bookingId, status }: PhotographerBo
         <Button
           onClick={() => updateStatus('start')}
           isLoading={loading}
-          className="text-xs px-3 py-1.5 bg-[#1B6CA8] text-[#111111]"
+          className="text-xs px-3 py-1.5 bg-trust text-white"
         >
           เริ่มงาน
         </Button>
-        {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+        {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
       </div>
     )
   }
@@ -68,7 +68,7 @@ export function PhotographerBookingActions({ bookingId, status }: PhotographerBo
   if (status === 'shooting') {
     return (
       <Link href={`/photographer/upload/${bookingId}`}>
-        <Button className="text-xs px-3 py-1.5 bg-[#1B6CA8] text-[#111111]">
+        <Button className="text-xs px-3 py-1.5 bg-trust text-white">
           อัปโหลดไฟล์
         </Button>
       </Link>

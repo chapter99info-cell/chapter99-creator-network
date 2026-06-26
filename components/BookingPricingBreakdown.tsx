@@ -32,9 +32,9 @@ export function BookingPricingBreakdown({
         <dt>ค่าธรรมเนียม Stripe (1.75% + $0.30)</dt>
         <dd>{formatCurrency(pricing.stripeSurcharge)}</dd>
       </div>
-      <div className="flex justify-between border-t border-white/10 pt-3 text-base font-semibold text-white">
+      <div className="flex justify-between border-t border-gray-200 pt-3 text-base font-semibold text-gray-900">
         <dt>ยอดชำระทั้งหมด</dt>
-        <dd className="text-[#1B6CA8]">{formatCurrency(pricing.totalCharged)}</dd>
+        <dd className="text-trust">{formatCurrency(pricing.totalCharged)}</dd>
       </div>
     </dl>
   )

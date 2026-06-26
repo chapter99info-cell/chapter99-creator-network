@@ -62,14 +62,14 @@ function PaymentForm({ totalCharged, photographerId, bookingId }: PaymentFormPro
       />
       <Button
         type="submit"
-        className="w-full bg-[#1B6CA8] text-[#111111] hover:bg-[#1B6CA8]/90"
+        className="w-full bg-trust text-white hover:bg-trust/90"
         isLoading={loading}
         disabled={!stripe || !elements}
       >
         ชำระเงิน {formatCurrency(totalCharged)} AUD
       </Button>
       {error && (
-        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600">
           {error}
         </p>
       )}
@@ -97,9 +97,9 @@ export function BookingPaymentStep({
   return (
     <div className="grid gap-8 lg:grid-cols-5">
       <div className="lg:col-span-3">
-        <h2 className="font-heading text-xl font-semibold text-white">ชำระเงิน</h2>
+        <h2 className="font-heading text-xl font-semibold text-gray-900">ชำระเงิน</h2>
         <p className="mt-1 text-sm text-gray-500">เงินจะถูกเก็บใน Escrow อย่างปลอดภัย</p>
-        <div className="mt-6 rounded-xl border border-white/10 bg-[#1a1a1a] p-5 sm:p-6">
+        <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
           <Elements
             stripe={stripePromise}
             options={{
@@ -108,7 +108,7 @@ export function BookingPaymentStep({
                 theme: 'night',
                 variables: {
                   colorPrimary: '#1B6CA8',
-                  colorBackground: '#1a1a1a',
+                  colorBackground: '#ffffff',
                   colorText: '#ffffff',
                   colorDanger: '#ef4444',
                   borderRadius: '8px',
@@ -126,38 +126,38 @@ export function BookingPaymentStep({
       </div>
 
       <div className="lg:col-span-2">
-        <h2 className="font-heading text-lg font-semibold text-white">สรุปการจอง</h2>
+        <h2 className="font-heading text-lg font-semibold text-gray-900">สรุปการจอง</h2>
         <div className="mt-4 space-y-4">
           <PhotographerMiniCard photographer={photographer} />
-          <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-4 text-sm">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 text-sm">
             <dl className="space-y-2 text-gray-400">
               <div className="flex justify-between gap-2">
                 <dt>ประเภทงาน</dt>
-                <dd className="text-right text-white">{getJobTypeLabel(summary.jobType)}</dd>
+                <dd className="text-right text-gray-900">{getJobTypeLabel(summary.jobType)}</dd>
               </div>
               <div className="flex justify-between gap-2">
                 <dt>วันที่ถ่าย</dt>
-                <dd className="text-right text-white">{formatDate(summary.shootDate)}</dd>
+                <dd className="text-right text-gray-900">{formatDate(summary.shootDate)}</dd>
               </div>
               <div className="flex justify-between gap-2">
                 <dt>สถานที่</dt>
-                <dd className="max-w-[160px] truncate text-right text-white">
+                <dd className="max-w-[160px] truncate text-right text-gray-900">
                   {summary.shootLocation}
                 </dd>
               </div>
               <div className="flex justify-between gap-2">
                 <dt>ระยะเวลา</dt>
-                <dd className="text-white">{summary.durationHours} ชม.</dd>
+                <dd className="text-gray-900">{summary.durationHours} ชม.</dd>
               </div>
               {summary.requireVideo && (
                 <div className="flex justify-between gap-2">
                   <dt>วิดีโอ</dt>
-                  <dd className="text-[#1B6CA8]">รวมวิดีโอ</dd>
+                  <dd className="text-trust">รวมวิดีโอ</dd>
                 </div>
               )}
             </dl>
           </div>
-          <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-4">
+          <div className="rounded-xl border border-gray-200 bg-white p-4">
             <BookingPricingBreakdown
               pricing={pricing}
               durationHours={summary.durationHours}

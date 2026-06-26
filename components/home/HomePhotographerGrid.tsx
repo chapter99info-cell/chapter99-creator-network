@@ -15,7 +15,7 @@ interface HomePhotographerGridProps {
 }
 
 function PhotographerSkeleton() {
-  return <div className="h-64 animate-pulse rounded-2xl bg-[#1a1a1a]" />
+  return <div className="h-64 animate-pulse rounded-2xl bg-white" />
 }
 
 function PhotographerCard({ photographer }: { photographer: Photographer }) {
@@ -30,9 +30,9 @@ function PhotographerCard({ photographer }: { photographer: Photographer }) {
   const jobTags = ['F&B', 'Events', 'Portrait'].slice(0, 2)
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] transition-colors hover:border-[#1B6CA8]/50">
+    <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors hover:border-[#1B6CA8]/50">
       <div className="flex items-start justify-between p-5 pb-0">
-        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#1B6CA8]">
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-trust">
           {photographer.avatar_url ? (
             <Image
               src={photographer.avatar_url}
@@ -42,13 +42,13 @@ function PhotographerCard({ photographer }: { photographer: Photographer }) {
               sizes="48px"
             />
           ) : (
-            <span className="flex h-full w-full items-center justify-center text-sm font-semibold text-[#111111]">
+            <span className="flex h-full w-full items-center justify-center text-sm font-semibold text-gray-900">
               {initials}
             </span>
           )}
         </div>
         {photographer.tier === 'pro' ? (
-          <span className="rounded-full border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-2 py-1 text-xs text-[#1B6CA8]">
+          <span className="rounded-full border border-blue-100 bg-trust/10 px-2 py-1 text-xs text-trust">
             PRO
           </span>
         ) : (
@@ -59,12 +59,12 @@ function PhotographerCard({ photographer }: { photographer: Photographer }) {
       </div>
 
       <div className="p-5">
-        <h3 className="text-base font-medium text-white">{photographer.full_name}</h3>
+        <h3 className="text-base font-medium text-gray-900">{photographer.full_name}</h3>
         <div className="mt-1 flex flex-wrap gap-1">
           {photographer.suburb_coverage.slice(0, 3).map((suburb) => (
             <span
               key={suburb}
-              className="rounded bg-[#222222] px-2 py-0.5 text-xs text-[#555555]"
+              className="rounded bg-[#222222] px-2 py-0.5 text-xs text-gray-500"
             >
               {suburb}
             </span>
@@ -74,24 +74,24 @@ function PhotographerCard({ photographer }: { photographer: Photographer }) {
           {jobTags.map((tag) => (
             <span
               key={tag}
-              className="rounded bg-[#222222] px-2 py-0.5 text-xs text-[#1B6CA8]/70"
+              className="rounded bg-[#222222] px-2 py-0.5 text-xs text-trust/70"
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="mt-3 flex flex-wrap gap-4 text-xs text-[#555555]">
+        <div className="mt-3 flex flex-wrap gap-4 text-xs text-gray-500">
           <span>⭐ {photographer.average_rating.toFixed(1)}</span>
           <span>{photographer.total_jobs_completed} งาน</span>
           {photographer.has_car && <span>🚗 มีรถ</span>}
         </div>
       </div>
 
-      <div className="flex items-center justify-between border-t border-[#222222] p-4">
-        <span className="text-sm text-[#1B6CA8]">from ${minRate}/hr</span>
+      <div className="flex items-center justify-between border-t border-gray-200 p-4">
+        <span className="text-sm text-trust">from ${minRate}/hr</span>
         <Link
           href={`/photographers/${photographer.id}`}
-          className="text-xs text-[#666666] transition-colors hover:text-white"
+          className="text-xs text-gray-500 transition-colors hover:text-trust"
         >
           ดูพอร์ต →
         </Link>
@@ -104,13 +104,13 @@ export function HomePhotographerGrid({ photographers }: HomePhotographerGridProp
   const isEmpty = photographers.length === 0
 
   return (
-    <section id="photographers" className="bg-[#111111] px-6 py-20">
+    <section id="photographers" className="bg-surface px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs tracking-widest text-[#555555]">VERIFIED PHOTOGRAPHERS</p>
-            <h2 className="font-heading mt-2 text-3xl text-white">
-              เลือกช่างภาพ <span className="text-[#1B6CA8]">ของคุณ</span>
+            <p className="text-xs tracking-widest text-gray-500">VERIFIED PHOTOGRAPHERS</p>
+            <h2 className="font-heading mt-2 text-3xl text-gray-900">
+              เลือกช่างภาพ <span className="text-trust">ของคุณ</span>
             </h2>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -120,8 +120,8 @@ export function HomePhotographerGrid({ photographers }: HomePhotographerGridProp
                 href={f.href}
                 className={`rounded-full border px-4 py-1.5 text-xs transition-colors ${
                   f.active
-                    ? 'border-[#1B6CA8] bg-[#1B6CA8] text-[#111111]'
-                    : 'border-[#222222] bg-[#1a1a1a] text-[#666666] hover:text-white'
+                    ? 'border-[#1B6CA8] bg-trust text-white'
+                    : 'border-gray-200 bg-white text-gray-500 hover:text-trust'
                 }`}
               >
                 {f.label}
@@ -139,7 +139,7 @@ export function HomePhotographerGrid({ photographers }: HomePhotographerGridProp
         <div className="mt-10 text-center">
           <Link
             href="/photographers"
-            className="inline-block rounded-full border border-[#333333] px-8 py-3 text-sm text-[#666666] transition-colors hover:border-[#555555] hover:text-white"
+            className="inline-block rounded-full border border-gray-200 px-8 py-3 text-sm text-gray-500 transition-colors hover:border-gray-400 hover:text-trust"
           >
             ดูช่างภาพทั้งหมด
           </Link>

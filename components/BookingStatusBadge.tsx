@@ -12,9 +12,9 @@ const STATUS_CONFIG: Record<
   files_uploaded: { label: 'ส่งไฟล์แล้ว', className: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
   reviewing: { label: 'รอตรวจ', className: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
   payout_completed: { label: 'จ่ายแล้ว', className: 'bg-green-500/20 text-green-400 border-green-500/30' },
-  disputed: { label: 'ข้อพิพาท', className: 'bg-red-500/20 text-red-400 border-red-500/30' },
-  cancelled: { label: 'ยกเลิก', className: 'bg-red-500/20 text-red-400 border-red-500/30' },
-  refunded: { label: 'คืนเงิน', className: 'bg-red-500/20 text-red-400 border-red-500/30' },
+  disputed: { label: 'ข้อพิพาท', className: 'bg-red-500/20 text-red-600 border-red-200' },
+  cancelled: { label: 'ยกเลิก', className: 'bg-red-500/20 text-red-600 border-red-200' },
+  refunded: { label: 'คืนเงิน', className: 'bg-red-500/20 text-red-600 border-red-200' },
 }
 
 interface BookingStatusBadgeProps {

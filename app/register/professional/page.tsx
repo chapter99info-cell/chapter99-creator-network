@@ -105,7 +105,7 @@ export default function ProfessionalRegisterPage() {
 
               <ol className="mt-6 space-y-5">
                 <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-gray-900">
                     1
                   </span>
                   <p className="pt-1 text-sm text-blue-900">
@@ -114,7 +114,7 @@ export default function ProfessionalRegisterPage() {
                 </li>
 
                 <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-gray-900">
                     2
                   </span>
                   <div className="flex-1">
@@ -130,7 +130,7 @@ export default function ProfessionalRegisterPage() {
                 </li>
 
                 <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-gray-900">
                     3
                   </span>
                   <p className="pt-1 text-sm text-blue-900">
@@ -140,7 +140,7 @@ export default function ProfessionalRegisterPage() {
                 </li>
 
                 <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-600 text-sm font-semibold text-white">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-600 text-sm font-semibold text-gray-900">
                     4
                   </span>
                   <p className="pt-1 text-sm text-blue-900">

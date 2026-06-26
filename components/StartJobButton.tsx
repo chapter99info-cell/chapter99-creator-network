@@ -45,12 +45,12 @@ export function StartJobButton({ bookingId, shootLocation, initialStatus }: Star
   }
 
   return (
-    <div className="rounded-xl border border-white/10 bg-charcoal-light p-6">
+    <div className="rounded-xl border border-gray-200 bg-charcoal-light p-6">
       <p className="text-sm text-gray-400">{shootLocation}</p>
       <Button className="mt-4 w-full" onClick={handleStart} isLoading={status === 'loading'}>
         เริ่มงาน
       </Button>
-      {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
     </div>
   )
 }

@@ -93,13 +93,13 @@ export default async function PhotographersPage({ searchParams }: PageProps) {
   const hasFilters = !!(searchParams.job_type || searchParams.has_car || searchParams.suburb)
 
   return (
-    <main className="min-h-screen bg-[#111111] px-6 py-12">
+    <main className="min-h-screen bg-surface px-6 py-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8">
-          <Link href="/" className="text-sm text-gray-500 transition-colors hover:text-[#1B6CA8]">
+          <Link href="/" className="text-sm text-gray-500 transition-colors hover:text-trust">
             ← กลับหน้าแรก
           </Link>
-          <h1 className="font-heading mt-4 text-3xl font-bold text-white">ช่างภาพทั้งหมด</h1>
+          <h1 className="font-heading mt-4 text-3xl font-bold text-gray-900">ช่างภาพทั้งหมด</h1>
           <p className="mt-2 text-gray-500">
             {hasFilters
               ? `พบ ${photographers.length} จาก ${total} ช่างภาพ`
@@ -107,7 +107,7 @@ export default async function PhotographersPage({ searchParams }: PageProps) {
           </p>
         </div>
 
-        <div className="mb-8 rounded-xl border border-white/10 bg-[#1a1a1a] p-5">
+        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-5">
           <Suspense
             fallback={
               <div className="flex justify-center py-4">
@@ -120,12 +120,12 @@ export default async function PhotographersPage({ searchParams }: PageProps) {
         </div>
 
         {photographers.length === 0 ? (
-          <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-12 text-center">
+          <div className="rounded-xl border border-gray-200 bg-white p-12 text-center">
             <p className="text-gray-400">ไม่พบช่างภาพตามเงื่อนไขที่เลือก</p>
             {hasFilters && (
               <Link
                 href="/photographers"
-                className="mt-4 inline-block text-sm text-[#1B6CA8] hover:underline"
+                className="mt-4 inline-block text-sm text-trust hover:underline"
               >
                 ล้างตัวกรอง
               </Link>

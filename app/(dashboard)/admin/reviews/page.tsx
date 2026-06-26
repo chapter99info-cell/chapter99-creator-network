@@ -21,7 +21,7 @@ export default async function AdminReviewsPage() {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-bold text-white">รีวิวทั้งหมด</h1>
+      <h1 className="font-heading text-2xl font-bold text-gray-900">รีวิวทั้งหมด</h1>
       <p className="mt-1 text-sm text-gray-500">{reviews.length} รีวิว</p>
 
       <div className="mt-6 space-y-4">
@@ -31,14 +31,14 @@ export default async function AdminReviewsPage() {
           reviews.map((r) => (
             <div
               key={r.id}
-              className="rounded-xl border border-white/10 bg-[#1a1a1a] p-5"
+              className="rounded-xl border border-gray-200 bg-white p-5"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
-                  <span className="font-mono text-sm text-[#1B6CA8]">
+                  <span className="font-mono text-sm text-trust">
                     {r.bookings?.booking_ref ?? '—'}
                   </span>
-                  <span className="ml-3 text-sm text-white">
+                  <span className="ml-3 text-sm text-gray-900">
                     {r.photographers?.full_name ?? 'ช่างภาพ'}
                   </span>
                 </div>

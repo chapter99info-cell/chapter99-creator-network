@@ -43,11 +43,11 @@ export function PayoutButton({ bookingId, label = 'ปล่อยเงิน',
         onClick={handlePayout}
         isLoading={status === 'loading'}
         disabled={disabled || status === 'loading'}
-        className="text-xs px-3 py-1.5 bg-[#1B6CA8] text-[#111111]"
+        className="text-xs px-3 py-1.5 bg-trust text-white"
       >
         {label}
       </Button>
-      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   )
 }

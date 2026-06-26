@@ -85,16 +85,16 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
     <>
       <div className="mb-4 flex justify-end">
         <Button
-          className="bg-[#1B6CA8] text-[#111111]"
+          className="bg-trust text-white"
           onClick={() => setShowAddModal(true)}
         >
           + เพิ่มช่างภาพ
         </Button>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-gray-200">
         <table className="w-full min-w-[900px]">
-          <thead className="bg-[#1a1a1a] text-left text-xs uppercase text-gray-500">
+          <thead className="bg-white text-left text-xs uppercase text-gray-500">
             <tr>
               <th className="px-4 py-3">ชื่อ</th>
               <th className="px-4 py-3">ABN</th>
@@ -110,7 +110,7 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
           <tbody>
             {photographers.map((p) => (
               <tr key={p.id} className="border-t border-white/5 hover:bg-white/5">
-                <td className="px-4 py-3 text-sm font-medium text-white">{p.full_name}</td>
+                <td className="px-4 py-3 text-sm font-medium text-gray-900">{p.full_name}</td>
                 <td className="px-4 py-3 font-mono text-xs text-gray-400">{p.abn_number}</td>
                 <td className="px-4 py-3">
                   <Badge variant={p.tier === 'pro' ? 'pro' : 'rising_star'} />
@@ -138,7 +138,7 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
                       href={p.insurance_coc_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#1B6CA8] hover:underline"
+                      className="text-trust hover:underline"
                     >
                       ดู Insurance
                     </a>
@@ -157,7 +157,7 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
                   {!p.is_blacklisted && (
                     <Button
                       variant="ghost"
-                      className="text-xs text-red-400"
+                      className="text-xs text-red-600"
                       onClick={() => setBlacklistTarget(p)}
                     >
                       Blacklist
@@ -221,14 +221,14 @@ export function AdminPhotographersTable({ photographers }: AdminPhotographersTab
               onChange={(e) =>
                 setAddForm({ ...addForm, tier: e.target.value as PhotographerTier })
               }
-              className="w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-2.5 text-white"
+              className="w-full rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-gray-900"
             >
               <option value="rising_star">Rising Star</option>
               <option value="pro">Pro</option>
             </select>
           </div>
           <Button
-            className="w-full bg-[#1B6CA8] text-[#111111]"
+            className="w-full bg-trust text-white"
             isLoading={loading}
             onClick={submitAdd}
           >

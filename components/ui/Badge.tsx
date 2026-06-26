@@ -17,7 +17,7 @@ const config: Record<BadgeVariant, { label: string; className: string }> = {
   verified: { label: 'ยืนยันแล้ว', className: 'bg-green-500/20 text-green-400 border-green-500/30' },
   pro: { label: 'Pro', className: 'bg-saffron/20 text-saffron border-saffron/30' },
   rising_star: { label: 'Rising Star', className: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
-  blacklisted: { label: 'ถูกแบน', className: 'bg-red-500/20 text-red-400 border-red-500/30' },
+  blacklisted: { label: 'ถูกแบน', className: 'bg-red-500/20 text-red-600 border-red-200' },
   insurance_verified: {
     label: 'Insurance ✓',
     className: 'bg-green-500/20 text-green-400 border-green-500/30',

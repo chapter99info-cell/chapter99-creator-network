@@ -158,14 +158,14 @@ export function JoinRegistrationForm() {
 
   if (success) {
     return (
-      <div className="rounded-xl border border-[#1B6CA8]/30 bg-[#1a1a1a] p-10 text-center">
-        <CheckCircle className="mx-auto text-[#1B6CA8]" size={48} />
-        <h2 className="font-heading mt-4 text-2xl font-bold text-white">รับใบสมัครแล้ว</h2>
+      <div className="rounded-xl border border-blue-100 bg-white p-10 text-center">
+        <CheckCircle className="mx-auto text-trust" size={48} />
+        <h2 className="font-heading mt-4 text-2xl font-bold text-gray-900">รับใบสมัครแล้ว</h2>
         <p className="mt-3 text-gray-400">รอการยืนยัน 2–3 วันทำการ</p>
         <p className="mt-2 text-sm text-gray-500">
           ตรวจสอบอีเมล {form.email} สำหรับ Magic Link และการยืนยันจากทีมงาน
         </p>
-        <Link href="/" className="mt-6 inline-block text-[#1B6CA8] hover:underline">
+        <Link href="/" className="mt-6 inline-block text-trust hover:underline">
           กลับหน้าแรก
         </Link>
       </div>
@@ -180,7 +180,7 @@ export function JoinRegistrationForm() {
         {[1, 2, 3, 4].map((s) => (
           <div
             key={s}
-            className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-[#1B6CA8]' : 'bg-white/10')}
+            className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-trust' : 'bg-white/10')}
           />
         ))}
       </div>
@@ -220,8 +220,8 @@ export function JoinRegistrationForm() {
                     className={cn(
                       'rounded-full border px-3 py-1 text-xs transition-colors',
                       form.suburb_coverage.includes(s)
-                        ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
-                        : 'border-white/10 text-gray-400 hover:border-white/20'
+                        ? 'border-[#1B6CA8] bg-trust/10 text-trust'
+                        : 'border-gray-200 text-gray-400 hover:border-gray-200'
                     )}
                   >
                     {s}
@@ -234,13 +234,13 @@ export function JoinRegistrationForm() {
                 type="checkbox"
                 checked={form.has_car}
                 onChange={(e) => setForm({ ...form, has_car: e.target.checked })}
-                className="accent-[#1B6CA8]"
+                className="accent-trust"
               />
-              <span className="text-sm text-gray-300">มีรถยนต์ส่วนตัว</span>
+              <span className="text-sm text-gray-600">มีรถยนต์ส่วนตัว</span>
             </label>
           </div>
           <Button
-            className="mt-6 w-full bg-[#1B6CA8] text-[#111111]"
+            className="mt-6 w-full bg-trust text-white"
             onClick={() => {
               const err = validateStep1()
               if (err) {
@@ -270,7 +270,7 @@ export function JoinRegistrationForm() {
                 placeholder="12345678901"
               />
               {isValidAbn(form.abn_number) && (
-                <p className="mt-1 text-sm text-[#1B6CA8]">ABN: {formatAbn(form.abn_number)}</p>
+                <p className="mt-1 text-sm text-trust">ABN: {formatAbn(form.abn_number)}</p>
               )}
               <p className="mt-1 text-xs text-gray-600">ABN ต้องเป็น Active status กับ ABR</p>
             </div>
@@ -287,9 +287,9 @@ export function JoinRegistrationForm() {
                       name="tier"
                       checked={form.tier === t.value}
                       onChange={() => setForm({ ...form, tier: t.value })}
-                      className="accent-[#1B6CA8]"
+                      className="accent-trust"
                     />
-                    <span className="text-sm text-gray-300">{t.label}</span>
+                    <span className="text-sm text-gray-600">{t.label}</span>
                   </label>
                 ))}
               </div>
@@ -313,7 +313,7 @@ export function JoinRegistrationForm() {
                 value={form.bio}
                 onChange={(e) => setForm({ ...form, bio: e.target.value.slice(0, 300) })}
                 rows={4}
-                className="w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-2.5 text-white"
+                className="w-full rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-gray-900"
               />
             </div>
           </div>
@@ -322,7 +322,7 @@ export function JoinRegistrationForm() {
               ย้อนกลับ
             </Button>
             <Button
-              className="flex-1 bg-[#1B6CA8] text-[#111111]"
+              className="flex-1 bg-trust text-white"
               onClick={() => {
                 const err = validateStep2()
                 if (err) {
@@ -393,7 +393,7 @@ export function JoinRegistrationForm() {
                 type="checkbox"
                 checked={form.abn_confirmed}
                 onChange={(e) => setForm({ ...form, abn_confirmed: e.target.checked })}
-                className="mt-1 accent-[#1B6CA8]"
+                className="mt-1 accent-trust"
               />
               <span className="text-sm text-gray-400">
                 ฉันยืนยันว่า ABN ของฉัน Active และข้อมูลทั้งหมดถูกต้อง
@@ -404,11 +404,11 @@ export function JoinRegistrationForm() {
                 type="checkbox"
                 checked={form.terms_accepted}
                 onChange={(e) => setForm({ ...form, terms_accepted: e.target.checked })}
-                className="mt-1 accent-[#1B6CA8]"
+                className="mt-1 accent-trust"
               />
               <span className="text-sm text-gray-400">
                 ฉันยอมรับ{' '}
-                <Link href="/terms" className="text-[#1B6CA8] hover:underline" target="_blank">
+                <Link href="/terms" className="text-trust hover:underline" target="_blank">
                   Terms & Conditions
                 </Link>{' '}
                 และ Platform Fee {PLATFORM_FEE_RATES.photographer_creator}% ต่องาน
@@ -420,7 +420,7 @@ export function JoinRegistrationForm() {
               ย้อนกลับ
             </Button>
             <Button
-              className="flex-1 bg-[#1B6CA8] text-[#111111]"
+              className="flex-1 bg-trust text-white"
               onClick={() => {
                 const err = validateStep3()
                 if (err) {
@@ -443,27 +443,27 @@ export function JoinRegistrationForm() {
           <dl className="mt-4 space-y-2 text-sm">
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">ชื่อ</dt>
-              <dd className="text-white">{form.full_name}</dd>
+              <dd className="text-gray-900">{form.full_name}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">อีเมล</dt>
-              <dd className="text-white">{form.email}</dd>
+              <dd className="text-gray-900">{form.email}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">โทร</dt>
-              <dd className="text-white">{formatAuMobile(form.phone.replace(/\D/g, ''))}</dd>
+              <dd className="text-gray-900">{formatAuMobile(form.phone.replace(/\D/g, ''))}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">ABN</dt>
-              <dd className="text-white">{formatAbn(form.abn_number)}</dd>
+              <dd className="text-gray-900">{formatAbn(form.abn_number)}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">Tier</dt>
-              <dd className="text-white">{form.tier}</dd>
+              <dd className="text-gray-900">{form.tier}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-gray-500">พื้นที่</dt>
-              <dd className="max-w-[200px] text-right text-white">
+              <dd className="max-w-[200px] text-right text-gray-900">
                 {form.suburb_coverage.join(', ')}
               </dd>
             </div>
@@ -473,7 +473,7 @@ export function JoinRegistrationForm() {
               ย้อนกลับ
             </Button>
             <Button
-              className="flex-1 bg-[#1B6CA8] text-[#111111]"
+              className="flex-1 bg-trust text-white"
               isLoading={loading}
               onClick={handleSubmit}
             >
@@ -484,7 +484,7 @@ export function JoinRegistrationForm() {
       )}
 
       {error && (
-        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600">
           {error}
         </p>
       )}
@@ -500,11 +500,11 @@ export function JoinHero() {
   ]
 
   return (
-    <section className="border-b border-white/10 bg-[#111111] px-6 py-16 text-center">
-      <p className="text-sm font-medium uppercase tracking-widest text-[#1B6CA8]">
+    <section className="border-b border-gray-200 bg-surface px-6 py-16 text-center">
+      <p className="text-sm font-medium uppercase tracking-widest text-trust">
         Thai-Aus Verified Community
       </p>
-      <h1 className="font-heading mt-4 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+      <h1 className="font-heading mt-4 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
         เข้าร่วม Thai-Aus Verified Community
       </h1>
       <p className="mt-4 text-gray-500">รับงานถ่ายภาพระดับมืออาชีพ — ABN required</p>
@@ -512,9 +512,9 @@ export function JoinHero() {
         {benefits.map((b) => (
           <span
             key={b.text}
-            className="inline-flex items-center gap-2 rounded-full border border-[#1B6CA8]/30 bg-[#1a1a1a] px-4 py-2 text-sm text-gray-300"
+            className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-sm text-gray-600"
           >
-            <b.icon size={16} className="text-[#1B6CA8]" />
+            <b.icon size={16} className="text-trust" />
             {b.text}
           </span>
         ))}

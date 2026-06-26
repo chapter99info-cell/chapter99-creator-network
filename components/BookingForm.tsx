@@ -126,7 +126,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
           {[1, 2, 3].map((s) => (
             <div
               key={s}
-              className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-[#1B6CA8]' : 'bg-white/10')}
+              className={cn('h-1 flex-1 rounded-full', step >= s ? 'bg-trust' : 'bg-white/10')}
             />
           ))}
         </div>
@@ -154,8 +154,8 @@ export function BookingForm({ photographer }: BookingFormProps) {
                       className={cn(
                         'flex flex-col items-center gap-1.5 rounded-lg border p-3 text-center transition-colors',
                         selected
-                          ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
-                          : 'border-white/10 bg-[#111111] text-gray-400 hover:border-white/20'
+                          ? 'border-[#1B6CA8] bg-trust/10 text-trust'
+                          : 'border-gray-200 bg-surface text-gray-400 hover:border-gray-200'
                       )}
                     >
                       <Icon size={20} />
@@ -186,8 +186,8 @@ export function BookingForm({ photographer }: BookingFormProps) {
                     className={cn(
                       'rounded-lg border px-4 py-2 text-sm font-medium transition-colors',
                       form.duration_hours === h
-                        ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
-                        : 'border-white/10 text-gray-400 hover:border-white/20'
+                        ? 'border-[#1B6CA8] bg-trust/10 text-trust'
+                        : 'border-gray-200 text-gray-400 hover:border-gray-200'
                     )}
                   >
                     {h} ชม.
@@ -223,8 +223,8 @@ export function BookingForm({ photographer }: BookingFormProps) {
                   className={cn(
                     'flex flex-1 items-center justify-center gap-2 rounded-lg border py-2.5 text-sm transition-colors',
                     form.is_metro
-                      ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
-                      : 'border-white/10 text-gray-400'
+                      ? 'border-[#1B6CA8] bg-trust/10 text-trust'
+                      : 'border-gray-200 text-gray-400'
                   )}
                 >
                   <MapPin size={16} />
@@ -236,8 +236,8 @@ export function BookingForm({ photographer }: BookingFormProps) {
                   className={cn(
                     'flex flex-1 items-center justify-center gap-2 rounded-lg border py-2.5 text-sm transition-colors',
                     !form.is_metro
-                      ? 'border-[#1B6CA8] bg-[#1B6CA8]/10 text-[#1B6CA8]'
-                      : 'border-white/10 text-gray-400'
+                      ? 'border-[#1B6CA8] bg-trust/10 text-trust'
+                      : 'border-gray-200 text-gray-400'
                   )}
                 >
                   <MapPin size={16} />
@@ -245,7 +245,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
                 </button>
               </div>
               {!form.is_metro && (
-                <div className="mt-2 flex items-start gap-2 rounded-lg border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-3 py-2 text-sm text-[#1B6CA8]">
+                <div className="mt-2 flex items-start gap-2 rounded-lg border border-blue-100 bg-trust/10 px-3 py-2 text-sm text-trust">
                   <AlertTriangle size={16} className="mt-0.5 shrink-0" />
                   <span>
                     ค่าเดินทาง +{formatCurrency(METRO_TRAVEL_FEE)} AUD (100% ถึงช่างภาพ)
@@ -254,15 +254,15 @@ export function BookingForm({ photographer }: BookingFormProps) {
               )}
             </div>
 
-            <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-white/10 bg-[#111111] px-4 py-3">
+            <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-gray-200 bg-surface px-4 py-3">
               <input
                 type="checkbox"
                 checked={form.require_video}
                 onChange={(e) => setForm({ ...form, require_video: e.target.checked })}
-                className="rounded border-white/20 accent-[#1B6CA8]"
+                className="rounded border-gray-200 accent-trust"
               />
-              <Video size={18} className="text-[#1B6CA8]" />
-              <span className="text-sm text-gray-300">+วิดีโอ (แจ้งช่างภาพล่วงหน้า)</span>
+              <Video size={18} className="text-trust" />
+              <span className="text-sm text-gray-600">+วิดีโอ (แจ้งช่างภาพล่วงหน้า)</span>
             </label>
 
             <div>
@@ -272,13 +272,13 @@ export function BookingForm({ photographer }: BookingFormProps) {
                 onChange={(e) => setForm({ ...form, client_notes: e.target.value })}
                 rows={3}
                 placeholder="รายละเอียดงาน สไตล์ที่ต้องการ ฯลฯ"
-                className="w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-2.5 text-white placeholder:text-gray-600 focus:border-[#1B6CA8] focus:outline-none focus:ring-1 focus:ring-[#1B6CA8]"
+                className="w-full rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-gray-900 placeholder:text-gray-600 focus:border-trust focus:outline-none focus:ring-1 focus:ring-trust"
               />
             </div>
           </div>
 
           <Button
-            className="mt-6 w-full bg-[#1B6CA8] text-[#111111]"
+            className="mt-6 w-full bg-trust text-white"
             onClick={() => {
               const err = validateStep1()
               if (err) {
@@ -291,7 +291,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
           >
             ถัดไป — ตรวจสอบราคา
           </Button>
-          {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+          {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         </Card>
       )}
 
@@ -316,7 +316,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
             <dl className="mt-3 space-y-1.5 text-sm text-gray-400">
               <div className="flex justify-between">
                 <dt>วันที่ถ่าย</dt>
-                <dd className="text-white">
+                <dd className="text-gray-900">
                   {form.shoot_date
                     ? new Date(form.shoot_date).toLocaleString('en-AU', {
                         dateStyle: 'medium',
@@ -327,13 +327,13 @@ export function BookingForm({ photographer }: BookingFormProps) {
               </div>
               <div className="flex justify-between gap-4">
                 <dt>สถานที่</dt>
-                <dd className="truncate text-right text-white">{form.shoot_location}</dd>
+                <dd className="truncate text-right text-gray-900">{form.shoot_location}</dd>
               </div>
             </dl>
           </Card>
 
           {error && (
-            <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+            <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600">
               {error}
             </p>
           )}
@@ -343,7 +343,7 @@ export function BookingForm({ photographer }: BookingFormProps) {
               ย้อนกลับ
             </Button>
             <Button
-              className="flex-1 bg-[#1B6CA8] text-[#111111]"
+              className="flex-1 bg-trust text-white"
               isLoading={isSubmitting}
               onClick={handleConfirmBooking}
             >

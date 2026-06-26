@@ -248,7 +248,7 @@ export default function AdminDashboardPage() {
             <button
               type="button"
               onClick={handleLogout}
-              className="rounded-lg border border-gray-700 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:bg-gray-800"
+              className="rounded-lg border border-gray-700 px-4 py-2 text-sm text-gray-600 transition-colors hover:border-gray-600 hover:bg-gray-800"
             >
               Logout
             </button>
@@ -268,7 +268,7 @@ export default function AdminDashboardPage() {
                 {statsLoading ? (
                   <div className="mt-3 h-9 w-16 animate-pulse rounded bg-gray-800" />
                 ) : (
-                  <p className="mt-2 text-3xl font-bold text-[#1B6CA8]">{card.value ?? 0}</p>
+                  <p className="mt-2 text-3xl font-bold text-trust">{card.value ?? 0}</p>
                 )}
               </div>
             ))}
@@ -365,7 +365,7 @@ export default function AdminDashboardPage() {
                           </span>
                         )}
                       </td>
-                      <td className="max-w-xs px-4 py-3 text-gray-300">{r.description}</td>
+                      <td className="max-w-xs px-4 py-3 text-gray-600">{r.description}</td>
                       <td className="px-4 py-3 text-gray-400">{formatDate(r.created_at)}</td>
                       <td className="px-4 py-3">
                         <div className="flex gap-2">

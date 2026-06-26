@@ -10,7 +10,7 @@ export default function ConfirmPage() {
   return (
     <Suspense
       fallback={
-        <main className="flex min-h-screen items-center justify-center bg-[#111111]">
+        <main className="flex min-h-screen items-center justify-center bg-surface">
           <LoadingSpinner size="lg" />
         </main>
       }

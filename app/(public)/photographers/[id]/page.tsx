@@ -72,18 +72,18 @@ export default async function PhotographerProfilePage({ params }: Props) {
   const insuranceOk = isInsuranceVerified(photographer)
 
   return (
-    <main className="min-h-screen bg-[#111111] px-6 py-12">
+    <main className="min-h-screen bg-surface px-6 py-12">
       <div className="mx-auto max-w-4xl">
         <Link
           href="/photographers"
-          className="text-sm text-gray-500 transition-colors hover:text-[#1B6CA8]"
+          className="text-sm text-gray-500 transition-colors hover:text-trust"
         >
           ← กลับรายชื่อช่างภาพ
         </Link>
 
         {/* Header */}
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-start">
-          <div className="relative mx-auto h-36 w-36 shrink-0 overflow-hidden rounded-full border-2 border-[#1B6CA8]/30 bg-[#1a1a1a] md:mx-0">
+          <div className="relative mx-auto h-36 w-36 shrink-0 overflow-hidden rounded-full border-2 border-blue-100 bg-white md:mx-0">
             {photographer.avatar_url ? (
               <Image
                 src={photographer.avatar_url}
@@ -93,7 +93,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
                 priority
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-5xl font-semibold text-[#1B6CA8]">
+              <div className="flex h-full w-full items-center justify-center text-5xl font-semibold text-trust">
                 {photographer.full_name.charAt(0)}
               </div>
             )}
@@ -101,7 +101,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
 
           <div className="flex-1 text-center md:text-left">
             <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
-              <h1 className="font-heading text-3xl font-bold text-white">
+              <h1 className="font-heading text-3xl font-bold text-gray-900">
                 {photographer.full_name}
               </h1>
               {photographer.is_verified && <Badge variant="verified" />}
@@ -126,7 +126,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
                   href={photographer.portfolio_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-gray-300 transition-colors hover:border-[#1B6CA8]/40 hover:text-[#1B6CA8]"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 transition-colors hover:border-blue-300 hover:text-trust"
                 >
                   <ExternalLink size={14} />
                   Portfolio
@@ -137,7 +137,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
                   href={photographer.instagram_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-sm text-gray-300 transition-colors hover:border-[#1B6CA8]/40 hover:text-[#1B6CA8]"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 transition-colors hover:border-blue-300 hover:text-trust"
                 >
                   <Link2 size={14} />
                   Instagram
@@ -150,22 +150,22 @@ export default async function PhotographerProfilePage({ params }: Props) {
         {/* Stats */}
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
           <Card className="text-center">
-            <Briefcase className="mx-auto text-[#1B6CA8]" size={22} />
-            <p className="mt-2 text-2xl font-bold text-white">
+            <Briefcase className="mx-auto text-trust" size={22} />
+            <p className="mt-2 text-2xl font-bold text-gray-900">
               {photographer.total_jobs_completed}
             </p>
             <p className="text-xs text-gray-500">งานสำเร็จ</p>
           </Card>
           <Card className="text-center">
-            <Star className="mx-auto text-[#1B6CA8]" size={22} />
-            <p className="mt-2 text-2xl font-bold text-white">
+            <Star className="mx-auto text-trust" size={22} />
+            <p className="mt-2 text-2xl font-bold text-gray-900">
               {photographer.average_rating.toFixed(1)}
             </p>
             <p className="text-xs text-gray-500">คะแนนเฉลี่ย</p>
           </Card>
           <Card className="col-span-2 text-center sm:col-span-1">
-            <Shield className="mx-auto text-[#1B6CA8]" size={22} />
-            <p className="mt-2 text-sm font-semibold text-white">
+            <Shield className="mx-auto text-trust" size={22} />
+            <p className="mt-2 text-sm font-semibold text-gray-900">
               {insuranceOk ? 'Insurance ยืนยันแล้ว' : 'รอตรวจ Insurance'}
             </p>
             <p className="text-xs text-gray-500">Public Liability $5M–$10M</p>
@@ -177,13 +177,13 @@ export default async function PhotographerProfilePage({ params }: Props) {
           <CardTitle>พื้นที่ให้บริการ</CardTitle>
           <div className="mt-3 flex flex-wrap items-center gap-3">
             <span className="flex items-center gap-1.5 text-sm text-gray-400">
-              <MapPin size={14} className="text-[#1B6CA8]" />
+              <MapPin size={14} className="text-trust" />
               {photographer.suburb_coverage.length > 0
                 ? photographer.suburb_coverage.join(', ')
                 : 'Melbourne Metro'}
             </span>
             {photographer.has_car && (
-              <span className="flex items-center gap-1.5 rounded-full border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 px-3 py-1 text-xs text-[#1B6CA8]">
+              <span className="flex items-center gap-1.5 rounded-full border border-blue-100 bg-trust/10 px-3 py-1 text-xs text-trust">
                 <Car size={12} />
                 มีรถ — รับงานนอก metro ได้
               </span>
@@ -194,7 +194,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
               {photographer.suburb_coverage.map((suburb) => (
                 <span
                   key={suburb}
-                  className="rounded-full border border-white/10 bg-[#111111] px-3 py-1 text-xs text-gray-400"
+                  className="rounded-full border border-gray-200 bg-surface px-3 py-1 text-xs text-gray-400"
                 >
                   {suburb}
                 </span>
@@ -207,7 +207,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
         <div className="mt-10 text-center md:text-left">
           <Link
             href={`/book/${params.id}`}
-            className="inline-block rounded-lg bg-[#1B6CA8] px-10 py-3.5 text-base font-semibold text-[#111111] transition-colors hover:bg-[#1B6CA8]/90"
+            className="inline-block rounded-lg bg-trust px-10 py-3.5 text-base font-semibold text-gray-900 transition-colors hover:bg-trust/90"
           >
             จองช่างภาพนี้
           </Link>
@@ -217,8 +217,8 @@ export default async function PhotographerProfilePage({ params }: Props) {
         </div>
 
         {/* Reviews */}
-        <section className="mt-14 border-t border-white/10 pt-10">
-          <h2 className="font-heading text-xl font-semibold text-white">
+        <section className="mt-14 border-t border-gray-200 pt-10">
+          <h2 className="font-heading text-xl font-semibold text-gray-900">
             รีวิวจากลูกค้า
             {reviews.length > 0 && (
               <span className="ml-2 text-base font-normal text-gray-500">
@@ -234,7 +234,7 @@ export default async function PhotographerProfilePage({ params }: Props) {
               {reviews.map((review) => (
                 <div
                   key={review.id}
-                  className="rounded-xl border border-white/10 bg-[#1a1a1a] p-5"
+                  className="rounded-xl border border-gray-200 bg-white p-5"
                 >
                   <div className="flex items-center justify-between gap-4">
                     <StarRating value={review.rating} readonly size={16} />

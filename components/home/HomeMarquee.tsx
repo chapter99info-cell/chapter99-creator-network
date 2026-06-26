@@ -20,9 +20,9 @@ function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
         {items.map((label, i) => (
           <div
             key={`${label}-${i}`}
-            className="flex h-48 w-72 shrink-0 items-center justify-center rounded-xl border border-[#222222] bg-[#1a1a1a]"
+            className="flex h-48 w-72 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white"
           >
-            <span className="font-heading text-sm text-[#1B6CA8]/50">{label}</span>
+            <span className="font-heading text-sm text-trust/50">{label}</span>
           </div>
         ))}
       </div>

@@ -30,15 +30,15 @@ export default async function BookPage({ params }: Props) {
   const photographer = data as Photographer
 
   return (
-    <main className="min-h-screen bg-[#111111] px-4 py-10 sm:px-6 sm:py-12">
+    <main className="min-h-screen bg-surface px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-3xl">
         <Link
           href={`/photographers/${params.id}`}
-          className="text-sm text-gray-500 transition-colors hover:text-[#1B6CA8]"
+          className="text-sm text-gray-500 transition-colors hover:text-trust"
         >
           ← กลับโปรไฟล์
         </Link>
-        <h1 className="font-heading mt-4 text-2xl font-bold text-white sm:text-3xl">
+        <h1 className="font-heading mt-4 text-2xl font-bold text-gray-900 sm:text-3xl">
           จอง {photographer.full_name}
         </h1>
         <p className="mt-1 text-sm text-gray-500">ชำระผ่าน Escrow · ปลอดภัย 100%</p>

@@ -9,20 +9,20 @@ export const metadata: Metadata = {
 
 export default function SopPage() {
   return (
-    <main className="min-h-screen bg-[#111111] px-4 py-10 print:bg-white print:px-8 print:py-6 sm:px-6">
+    <main className="min-h-screen bg-surface px-4 py-10 print:bg-white print:px-8 print:py-6 sm:px-6">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between print:mb-6">
           <div>
             <Link
               href="/photographer"
-              className="text-sm text-gray-500 hover:text-[#1B6CA8] print:hidden"
+              className="text-sm text-gray-500 hover:text-trust print:hidden"
             >
               ← กลับ Photographer Portal
             </Link>
-            <p className="mt-4 text-sm font-bold text-[#1B6CA8] print:text-black">
+            <p className="mt-4 text-sm font-bold text-trust print:text-black">
               Thai-Aus Verified Community
             </p>
-            <h1 className="font-heading mt-2 text-2xl font-bold text-white print:text-black sm:text-3xl">
+            <h1 className="font-heading mt-2 text-2xl font-bold text-gray-900 print:text-black sm:text-3xl">
               Thai-Aus Verified Community — SOP
             </h1>
             <p className="mt-2 text-gray-500 print:text-gray-700">

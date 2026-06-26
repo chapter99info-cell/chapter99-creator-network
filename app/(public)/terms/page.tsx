@@ -87,12 +87,12 @@ const sections = [
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-[#111111] px-4 py-12 sm:px-6">
+    <main className="min-h-screen bg-surface px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-3xl">
-        <Link href="/" className="text-sm text-gray-500 hover:text-[#1B6CA8]">
+        <Link href="/" className="text-sm text-gray-500 hover:text-trust">
           ← กลับหน้าแรก
         </Link>
-        <h1 className="font-heading mt-6 text-3xl font-bold text-white sm:text-4xl">
+        <h1 className="font-heading mt-6 text-3xl font-bold text-gray-900 sm:text-4xl">
           Terms & Conditions
         </h1>
         <p className="mt-2 text-gray-500">อัปเดตล่าสุด: June 2026</p>
@@ -101,15 +101,15 @@ export default function TermsPage() {
           {sections.map((section) => (
             <section
               key={section.title}
-              className="rounded-xl border border-white/10 bg-[#1a1a1a] p-6"
+              className="rounded-xl border border-gray-200 bg-white p-6"
             >
-              <h2 className="font-heading text-xl font-semibold text-[#1B6CA8]">
+              <h2 className="font-heading text-xl font-semibold text-trust">
                 {section.title}
               </h2>
               <ul className="mt-4 space-y-2">
                 {section.content.map((item, i) => (
                   <li key={i} className="flex gap-2 text-sm text-gray-400">
-                    <span className="text-[#1B6CA8]">•</span>
+                    <span className="text-trust">•</span>
                     {item}
                   </li>
                 ))}
@@ -120,7 +120,7 @@ export default function TermsPage() {
 
         <p className="mt-10 text-center text-sm text-gray-600">
           สมัครช่างภาพที่{' '}
-          <Link href="/join" className="text-[#1B6CA8] hover:underline">
+          <Link href="/join" className="text-trust hover:underline">
             /join
           </Link>
         </p>

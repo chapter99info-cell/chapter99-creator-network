@@ -71,7 +71,7 @@ export function AdminBookingsTable({ bookings, photographerNames }: AdminBooking
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-lg border border-white/10 bg-[#1a1a1a] px-4 py-2 text-sm text-white"
+          className="rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-gray-900"
         >
           {STATUS_OPTIONS.map((o) => (
             <option key={o.value} value={o.value}>
@@ -81,9 +81,9 @@ export function AdminBookingsTable({ bookings, photographerNames }: AdminBooking
         </select>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-white/10">
+      <div className="overflow-x-auto rounded-xl border border-gray-200">
         <table className="w-full min-w-[900px]">
-          <thead className="bg-[#1a1a1a] text-left text-xs uppercase text-gray-500">
+          <thead className="bg-white text-left text-xs uppercase text-gray-500">
             <tr>
               <th className="px-4 py-3">รหัส</th>
               <th className="px-4 py-3">ลูกค้า</th>
@@ -98,14 +98,14 @@ export function AdminBookingsTable({ bookings, photographerNames }: AdminBooking
           <tbody>
             {filtered.map((b) => (
               <tr key={b.id} className="border-t border-white/5 hover:bg-white/5">
-                <td className="px-4 py-3 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</td>
-                <td className="px-4 py-3 text-sm text-white">{b.client_name}</td>
+                <td className="px-4 py-3 font-mono text-sm text-trust">{b.booking_ref}</td>
+                <td className="px-4 py-3 text-sm text-gray-900">{b.client_name}</td>
                 <td className="px-4 py-3 text-sm text-gray-400">
                   {b.photographer_id ? photographerNames[b.photographer_id] ?? '—' : '—'}
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-400">{getJobTypeLabel(b.job_type)}</td>
                 <td className="px-4 py-3 text-sm text-gray-400">{formatDate(b.shoot_date)}</td>
-                <td className="px-4 py-3 text-sm text-white">{formatCurrency(b.total_charged)}</td>
+                <td className="px-4 py-3 text-sm text-gray-900">{formatCurrency(b.total_charged)}</td>
                 <td className="px-4 py-3">
                   <BookingStatusBadge status={b.booking_status as BookingStatus} />
                 </td>
@@ -150,7 +150,7 @@ export function AdminBookingsTable({ bookings, photographerNames }: AdminBooking
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-[#1B6CA8] hover:underline break-all"
+                      className="text-sm text-trust hover:underline break-all"
                     >
                       ไฟล์ {i + 1}
                     </a>
@@ -159,7 +159,7 @@ export function AdminBookingsTable({ bookings, photographerNames }: AdminBooking
               </ul>
             )}
             <Button
-              className="w-full bg-[#1B6CA8] text-[#111111]"
+              className="w-full bg-trust text-white"
               isLoading={approving}
               onClick={() => approveForReview(modalBooking.id)}
             >

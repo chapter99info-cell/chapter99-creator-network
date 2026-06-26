@@ -38,17 +38,17 @@ export default async function AdminPayoutsPage() {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-bold text-white">จัดการ Payout</h1>
+      <h1 className="font-heading text-2xl font-bold text-gray-900">จัดการ Payout</h1>
       <p className="mt-1 text-sm text-gray-500">อนุมัติและปล่อยเงินให้ช่างภาพ</p>
 
       <section className="mt-8">
-        <h2 className="font-heading text-lg font-semibold text-white">รอปล่อยเงิน</h2>
+        <h2 className="font-heading text-lg font-semibold text-gray-900">รอปล่อยเงิน</h2>
         {bookings.length === 0 ? (
           <p className="mt-4 text-sm text-gray-500">ไม่มีงานที่รอ payout</p>
         ) : (
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-gray-200">
             <table className="w-full min-w-[700px]">
-              <thead className="bg-[#1a1a1a] text-left text-xs uppercase text-gray-500">
+              <thead className="bg-white text-left text-xs uppercase text-gray-500">
                 <tr>
                   <th className="px-4 py-3">รหัส</th>
                   <th className="px-4 py-3">ช่างภาพ</th>
@@ -62,8 +62,8 @@ export default async function AdminPayoutsPage() {
               <tbody>
                 {bookings.map((b) => (
                   <tr key={b.id} className="border-t border-white/5">
-                    <td className="px-4 py-3 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</td>
-                    <td className="px-4 py-3 text-sm text-white">
+                    <td className="px-4 py-3 font-mono text-sm text-trust">{b.booking_ref}</td>
+                    <td className="px-4 py-3 text-sm text-gray-900">
                       {b.photographer_id ? nameMap[b.photographer_id] : '—'}
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-400">
@@ -72,7 +72,7 @@ export default async function AdminPayoutsPage() {
                     <td className="px-4 py-3 text-sm text-gray-400">
                       {formatCurrency(b.platform_fee ?? 0)}
                     </td>
-                    <td className="px-4 py-3 text-sm font-medium text-[#1B6CA8]">
+                    <td className="px-4 py-3 text-sm font-medium text-trust">
                       {formatCurrency(b.photographer_payout ?? 0)}
                     </td>
                     <td className="px-4 py-3 text-xs text-gray-500">{b.booking_status}</td>
@@ -88,13 +88,13 @@ export default async function AdminPayoutsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="font-heading text-lg font-semibold text-white">ประวัติ Payout</h2>
+        <h2 className="font-heading text-lg font-semibold text-gray-900">ประวัติ Payout</h2>
         {ledger.length === 0 ? (
           <p className="mt-4 text-sm text-gray-500">ยังไม่มีประวัติ</p>
         ) : (
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-gray-200">
             <table className="w-full min-w-[600px]">
-              <thead className="bg-[#1a1a1a] text-left text-xs uppercase text-gray-500">
+              <thead className="bg-white text-left text-xs uppercase text-gray-500">
                 <tr>
                   <th className="px-4 py-3">วันที่</th>
                   <th className="px-4 py-3">Gross</th>
@@ -116,7 +116,7 @@ export default async function AdminPayoutsPage() {
                     <td className="px-4 py-3 text-sm text-gray-400">
                       {formatCurrency(row.platform_fee ?? 0)}
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#1B6CA8]">
+                    <td className="px-4 py-3 text-sm text-trust">
                       {formatCurrency(row.net_payout ?? 0)}
                     </td>
                     <td className="px-4 py-3 font-mono text-xs text-gray-600">

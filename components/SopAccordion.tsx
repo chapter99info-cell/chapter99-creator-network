@@ -24,7 +24,7 @@ export function SopAccordion() {
         return (
           <div
             key={section.id}
-            className="overflow-hidden rounded-xl border border-white/10 bg-[#1a1a1a] print:border-gray-300 print:bg-white print:break-inside-avoid"
+            className="overflow-hidden rounded-xl border border-gray-200 bg-white print:border-gray-300 print:bg-white print:break-inside-avoid"
           >
             <button
               type="button"
@@ -32,12 +32,12 @@ export function SopAccordion() {
               className="flex w-full items-center justify-between px-5 py-4 text-left print:pointer-events-none"
               aria-expanded={isOpen}
             >
-              <span className="font-heading font-semibold text-white print:text-black">
+              <span className="font-heading font-semibold text-gray-900 print:text-black">
                 {section.title}
               </span>
               <ChevronDown
                 className={cn(
-                  'shrink-0 text-[#1B6CA8] transition-transform print:hidden',
+                  'shrink-0 text-trust transition-transform print:hidden',
                   isOpen && 'rotate-180'
                 )}
                 size={20}
@@ -50,7 +50,7 @@ export function SopAccordion() {
               )}
             >
               <div className="overflow-hidden">
-                <ul className="space-y-2 border-t border-white/10 px-5 py-4 print:border-gray-200">
+                <ul className="space-y-2 border-t border-gray-200 px-5 py-4 print:border-gray-200">
                   {section.items.map((item, i) => (
                     <li key={i} className="flex gap-2 text-sm text-gray-400 print:text-gray-800">
                       <span className="shrink-0">{prefix}</span>
@@ -72,7 +72,7 @@ export function SopPrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="inline-flex items-center gap-2 rounded-lg border border-[#1B6CA8] px-4 py-2 text-sm font-medium text-[#1B6CA8] transition-colors hover:bg-[#1B6CA8]/10 print:hidden"
+      className="inline-flex items-center gap-2 rounded-lg border border-[#1B6CA8] px-4 py-2 text-sm font-medium text-trust transition-colors hover:bg-trust/10 print:hidden"
     >
       <Printer size={18} />
       ดาวน์โหลด PDF (Print)

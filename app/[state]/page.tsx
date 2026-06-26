@@ -36,12 +36,17 @@ export default async function StateDirectoryPage({ params }: PageProps) {
     state: string
     job_category: string
     portfolio_url: string | null
+    facebook_url: string | null
+    instagram_url: string | null
+    external_portfolio_url: string | null
   }[] = []
 
   if (supabase) {
     const { data } = await supabase
       .from('profiles')
-      .select('id, facebook_name, business_name, abn_number, state, job_category, portfolio_url')
+      .select(
+        'id, facebook_name, business_name, abn_number, state, job_category, portfolio_url, facebook_url, instagram_url, external_portfolio_url'
+      )
       .eq('state', state)
       .eq('is_verified', true)
       .eq('is_blacklisted', false)

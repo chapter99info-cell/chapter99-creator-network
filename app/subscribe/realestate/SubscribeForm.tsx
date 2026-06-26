@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { btnNextClass } from '@/lib/form-styles'
 
 export function RealEstateSubscribeForm() {
   const [loading, setLoading] = useState(false)
@@ -43,9 +44,9 @@ export function RealEstateSubscribeForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-xl border border-[#1B6CA8]/30 bg-[#1B6CA8]/5 p-4 text-center">
-        <p className="font-serif text-3xl text-[#1B6CA8]">$50</p>
-        <p className="text-sm text-[#555555]">AUD / เดือน — สิทธิ์โพสต์อสังหาฯ 🔴</p>
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-center">
+        <p className="text-4xl font-bold text-gray-900">$50</p>
+        <p className="text-sm text-gray-500">AUD / เดือน — สิทธิ์โพสต์อสังหาฯ</p>
       </div>
 
       <Input
@@ -70,12 +71,12 @@ export function RealEstateSubscribeForm() {
       />
 
       {error && (
-        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </p>
       )}
 
-      <Button type="submit" isLoading={loading} className="w-full">
+      <Button type="submit" isLoading={loading} className={btnNextClass}>
         ชำระเงิน $50/เดือน
       </Button>
     </form>
@@ -84,7 +85,7 @@ export function RealEstateSubscribeForm() {
 
 export function RealEstateSubscribeBackLink() {
   return (
-    <Link href="/" className="text-sm text-[#555555] hover:text-[#1B6CA8]">
+    <Link href="/" className="text-sm text-gray-500 hover:text-trust">
       <ArrowLeft className="mr-1 inline h-4 w-4" />
       กลับหน้าแรก
     </Link>

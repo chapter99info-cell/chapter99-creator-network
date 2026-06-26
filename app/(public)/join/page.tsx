@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function JoinPage() {
   return (
-    <main className="min-h-screen bg-[#111111]">
+    <main className="min-h-screen bg-surface">
       <JoinHero />
       <div className="mx-auto max-w-xl px-6 py-12">
-        <Link href="/" className="text-sm text-gray-500 hover:text-[#1B6CA8]">
+        <Link href="/" className="text-sm text-gray-500 hover:text-trust">
           ← กลับหน้าแรก
         </Link>
         <div className="mt-8">

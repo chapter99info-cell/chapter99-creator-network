@@ -9,8 +9,8 @@ interface PhotographerMiniCardProps {
 
 export function PhotographerMiniCard({ photographer }: PhotographerMiniCardProps) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-white/10 bg-[#1a1a1a] p-4">
-      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-[#111111]">
+    <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-4">
+      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-surface">
         {photographer.avatar_url ? (
           <Image
             src={photographer.avatar_url}
@@ -19,13 +19,13 @@ export function PhotographerMiniCard({ photographer }: PhotographerMiniCardProps
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xl font-semibold text-[#1B6CA8]">
+          <div className="flex h-full w-full items-center justify-center text-xl font-semibold text-trust">
             {photographer.full_name.charAt(0)}
           </div>
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="font-heading truncate font-semibold text-white">{photographer.full_name}</p>
+        <p className="font-heading truncate font-semibold text-gray-900">{photographer.full_name}</p>
         <div className="mt-1 flex flex-wrap items-center gap-1.5">
           <Badge variant={photographer.tier === 'pro' ? 'pro' : 'rising_star'} />
           {photographer.is_verified && <Badge variant="verified" />}

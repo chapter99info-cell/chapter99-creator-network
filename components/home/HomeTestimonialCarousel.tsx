@@ -64,17 +64,17 @@ export function HomeTestimonialCarousel() {
   }, [index])
 
   return (
-    <section className="bg-[#111111] py-20">
+    <section className="bg-surface py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="font-heading text-3xl text-white">
-            สิ่งที่ <span className="text-[#1B6CA8]">ลูกค้าพูดถึงเรา</span>
+          <h2 className="font-heading text-3xl text-gray-900">
+            สิ่งที่ <span className="text-trust">ลูกค้าพูดถึงเรา</span>
           </h2>
           <div className="flex items-center gap-2">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={14} className="fill-[#1B6CA8] text-[#1B6CA8]" />
+              <Star key={i} size={14} className="fill-[#1B6CA8] text-trust" />
             ))}
-            <span className="ml-2 text-xs text-[#666666]">Verified reviews</span>
+            <span className="ml-2 text-xs text-gray-500">Verified reviews</span>
           </div>
         </div>
 
@@ -91,17 +91,17 @@ export function HomeTestimonialCarousel() {
               {TESTIMONIALS.map((t) => (
                 <article
                   key={t.name}
-                  className="w-80 shrink-0 rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] p-6"
+                  className="w-80 shrink-0 rounded-2xl border border-gray-200 bg-white p-6"
                 >
-                  <span className="font-heading text-3xl leading-none text-[#1B6CA8]">&ldquo;</span>
+                  <span className="font-heading text-3xl leading-none text-trust">&ldquo;</span>
                   <p className="mt-2 text-sm leading-relaxed text-[#888888]">{t.quote}</p>
                   <div className="mt-4 flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#333333] text-xs text-[#666666]">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#333333] text-xs text-gray-500">
                       {t.initials}
                     </div>
                     <div>
-                      <p className="text-sm text-white">{t.name}</p>
-                      <p className="text-xs text-[#555555]">{t.role}</p>
+                      <p className="text-sm text-gray-900">{t.name}</p>
+                      <p className="text-xs text-gray-500">{t.role}</p>
                     </div>
                   </div>
                 </article>
@@ -114,7 +114,7 @@ export function HomeTestimonialCarousel() {
               type="button"
               onClick={prev}
               aria-label="Previous testimonial"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#333333] text-[#666666] transition-colors hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-colors hover:text-trust"
             >
               <ChevronLeft size={18} />
             </button>
@@ -122,7 +122,7 @@ export function HomeTestimonialCarousel() {
               type="button"
               onClick={next}
               aria-label="Next testimonial"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#333333] text-[#666666] transition-colors hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-colors hover:text-trust"
             >
               <ChevronRight size={18} />
             </button>

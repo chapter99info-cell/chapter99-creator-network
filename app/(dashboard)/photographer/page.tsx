@@ -61,22 +61,22 @@ export default async function PhotographerDashboard() {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl font-bold text-white">
+      <h1 className="font-heading text-2xl font-bold text-gray-900">
         สวัสดี, {photographer.full_name} 👋
       </h1>
       <p className="mt-1 text-sm text-gray-500">
         Photographer Portal ·{' '}
-        <Link href="/sop" className="text-[#1B6CA8] hover:underline">
+        <Link href="/sop" className="text-trust hover:underline">
           ดู SOP
         </Link>
       </p>
 
       {!photographer.stripe_onboarding_complete && (
-        <div className="mt-6 rounded-xl border border-[#1B6CA8]/30 bg-[#1B6CA8]/10 p-4">
-          <p className="text-sm text-[#1B6CA8]">กรุณาเชื่อมต่อบัญชี Stripe เพื่อรับเงิน</p>
+        <div className="mt-6 rounded-xl border border-blue-100 bg-trust/10 p-4">
+          <p className="text-sm text-trust">กรุณาเชื่อมต่อบัญชี Stripe เพื่อรับเงิน</p>
           <Link
             href="/api/stripe/connect"
-            className="mt-2 inline-block text-sm font-semibold text-white underline"
+            className="mt-2 inline-block text-sm font-semibold text-gray-900 underline"
           >
             เริ่ม Stripe Connect →
           </Link>
@@ -85,23 +85,23 @@ export default async function PhotographerDashboard() {
 
       <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
         <Card className="text-center">
-          <Briefcase className="mx-auto text-[#1B6CA8]" size={22} />
-          <p className="mt-2 text-2xl font-bold text-white">{totalJobs}</p>
+          <Briefcase className="mx-auto text-trust" size={22} />
+          <p className="mt-2 text-2xl font-bold text-gray-900">{totalJobs}</p>
           <p className="text-xs text-gray-500">งานทั้งหมด</p>
         </Card>
         <Card className="text-center">
-          <CheckCircle className="mx-auto text-[#1B6CA8]" size={22} />
-          <p className="mt-2 text-2xl font-bold text-white">{completedJobs}</p>
+          <CheckCircle className="mx-auto text-trust" size={22} />
+          <p className="mt-2 text-2xl font-bold text-gray-900">{completedJobs}</p>
           <p className="text-xs text-gray-500">งานสำเร็จ</p>
         </Card>
         <Card className="text-center">
-          <DollarSign className="mx-auto text-[#1B6CA8]" size={22} />
-          <p className="mt-2 text-2xl font-bold text-white">{formatCurrency(pendingPayout)}</p>
+          <DollarSign className="mx-auto text-trust" size={22} />
+          <p className="mt-2 text-2xl font-bold text-gray-900">{formatCurrency(pendingPayout)}</p>
           <p className="text-xs text-gray-500">รอรับเงิน</p>
         </Card>
         <Card className="text-center">
-          <Star className="mx-auto text-[#1B6CA8]" size={22} />
-          <p className="mt-2 text-2xl font-bold text-white">
+          <Star className="mx-auto text-trust" size={22} />
+          <p className="mt-2 text-2xl font-bold text-gray-900">
             {photographer.average_rating.toFixed(1)}
           </p>
           <p className="text-xs text-gray-500">คะแนนเฉลี่ย</p>
@@ -109,13 +109,13 @@ export default async function PhotographerDashboard() {
       </div>
 
       <section className="mt-10">
-        <h2 className="font-heading text-lg font-semibold text-white">งานที่กำลังดำเนินการ</h2>
+        <h2 className="font-heading text-lg font-semibold text-gray-900">งานที่กำลังดำเนินการ</h2>
         {activeBookings.length === 0 ? (
           <p className="mt-4 text-sm text-gray-500">ไม่มีงานที่กำลังดำเนินการ</p>
         ) : (
-          <div className="mt-4 overflow-x-auto rounded-xl border border-white/10">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-gray-200">
             <table className="w-full min-w-[640px]">
-              <thead className="bg-[#1a1a1a] text-left text-xs uppercase text-gray-500">
+              <thead className="bg-white text-left text-xs uppercase text-gray-500">
                 <tr>
                   <th className="px-4 py-3">รหัส</th>
                   <th className="px-4 py-3">ลูกค้า</th>
@@ -129,8 +129,8 @@ export default async function PhotographerDashboard() {
               <tbody>
                 {activeBookings.map((b) => (
                   <tr key={b.id} className="border-t border-white/5 hover:bg-white/5">
-                    <td className="px-4 py-3 font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</td>
-                    <td className="px-4 py-3 text-sm text-white">{b.client_name}</td>
+                    <td className="px-4 py-3 font-mono text-sm text-trust">{b.booking_ref}</td>
+                    <td className="px-4 py-3 text-sm text-gray-900">{b.client_name}</td>
                     <td className="px-4 py-3 text-sm text-gray-400">
                       {getJobTypeLabel(b.job_type)}
                     </td>
@@ -156,7 +156,7 @@ export default async function PhotographerDashboard() {
       </section>
 
       <section className="mt-10">
-        <h2 className="font-heading text-lg font-semibold text-white">งานที่เสร็จแล้ว (10 ล่าสุด)</h2>
+        <h2 className="font-heading text-lg font-semibold text-gray-900">งานที่เสร็จแล้ว (10 ล่าสุด)</h2>
         {completedBookings.length === 0 ? (
           <p className="mt-4 text-sm text-gray-500">ยังไม่มีงานที่เสร็จสมบูรณ์</p>
         ) : (
@@ -164,15 +164,15 @@ export default async function PhotographerDashboard() {
             {completedBookings.map((b) => (
               <div
                 key={b.id}
-                className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/10 bg-[#1a1a1a] px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3"
               >
                 <div>
-                  <span className="font-mono text-sm text-[#1B6CA8]">{b.booking_ref}</span>
-                  <span className="ml-3 text-sm text-white">{b.client_name}</span>
+                  <span className="font-mono text-sm text-trust">{b.booking_ref}</span>
+                  <span className="ml-3 text-sm text-gray-900">{b.client_name}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                   <span>{formatDate(b.shoot_date)}</span>
-                  <span className="text-[#1B6CA8]">{formatCurrency(b.photographer_payout ?? 0)}</span>
+                  <span className="text-trust">{formatCurrency(b.photographer_payout ?? 0)}</span>
                 </div>
               </div>
             ))}

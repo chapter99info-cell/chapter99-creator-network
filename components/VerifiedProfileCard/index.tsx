@@ -12,6 +12,9 @@ export interface VerifiedProfile {
   state: string
   job_category: string
   portfolio_url: string | null
+  facebook_url?: string | null
+  instagram_url?: string | null
+  external_portfolio_url?: string | null
 }
 
 interface VerifiedProfileCardProps {
@@ -28,10 +31,22 @@ function avatarInitial(profile: VerifiedProfile): string {
   return name.charAt(0).toUpperCase() || '?'
 }
 
+function profileLinks(profile: VerifiedProfile): { href: string; label: string }[] {
+  const links: { href: string; label: string }[] = []
+  const add = (url: string | null | undefined, label: string) => {
+    const trimmed = url?.trim()
+    if (trimmed) links.push({ href: trimmed, label })
+  }
+  add(profile.external_portfolio_url, 'ดูผลงาน')
+  add(profile.portfolio_url, 'Portfolio')
+  add(profile.facebook_url, 'Facebook')
+  add(profile.instagram_url, 'Instagram')
+  return links
+}
+
 export function VerifiedProfileCard({ profile, onReport }: VerifiedProfileCardProps) {
   const name = displayName(profile)
-  const portfolioUrl = profile.portfolio_url?.trim() || null
-  const portfolioLink = portfolioUrl
+  const links = profileLinks(profile)
 
   return (
     <div
@@ -60,17 +75,18 @@ export function VerifiedProfileCard({ profile, onReport }: VerifiedProfileCardPr
         <p className="mt-3 font-mono text-sm text-gray-400">ABN {maskAbn(profile.abn_number)}</p>
 
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          {portfolioLink && (
+          {links.map((link) => (
             <a
-              href={portfolioLink}
+              key={`${link.label}-${link.href}`}
+              href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
             >
-              ดูผลงาน
+              {link.label}
               <ExternalLink size={14} />
             </a>
-          )}
+          ))}
           <button
             type="button"
             onClick={() => onReport?.(profile)}
