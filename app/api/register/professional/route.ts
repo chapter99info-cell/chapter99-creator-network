@@ -38,16 +38,15 @@ export async function POST(request: NextRequest) {
 
     const { error } = await supabase.from('profiles').insert({
       facebook_name: parsed.data.facebook_name,
-      business_name: parsed.data.business_name || null,
+      business_name: parsed.data.business_name?.trim() || null,
       abn_number: abn,
       state: parsed.data.state,
       job_category: parsed.data.job_category,
-      portfolio_url: parsed.data.portfolio_url || null,
+      portfolio_url: parsed.data.portfolio_url?.trim() || null,
       facebook_url: parsed.data.facebook_url?.trim() || null,
       instagram_url: parsed.data.instagram_url?.trim() || null,
       external_portfolio_url: parsed.data.external_portfolio_url?.trim() || null,
       is_verified: false,
-      subscription_status: 'free',
     })
 
     if (error) {
