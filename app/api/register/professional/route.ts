@@ -36,22 +36,43 @@ export async function POST(request: NextRequest) {
     const supabase = createServiceClient()
     if (!supabase) return serviceUnavailableResponse()
 
-    const { error } = await supabase.from('profiles').insert({
-      facebook_name: parsed.data.facebook_name,
-      business_name: parsed.data.business_name?.trim() || null,
-      abn_number: abn,
-      state: parsed.data.state,
-      job_category: parsed.data.job_category,
-      portfolio_url: parsed.data.portfolio_url?.trim() || null,
-      facebook_url: parsed.data.facebook_url?.trim() || null,
-      instagram_url: parsed.data.instagram_url?.trim() || null,
-      external_portfolio_url: parsed.data.external_portfolio_url?.trim() || null,
-      is_verified: false,
-    })
+    try {
+      const { error } = await supabase.from('profiles').insert({
+        facebook_name: parsed.data.facebook_name,
+        business_name: parsed.data.business_name?.trim() || null,
+        abn_number: abn,
+        state: parsed.data.state,
+        job_category: parsed.data.job_category,
+        portfolio_url: parsed.data.portfolio_url?.trim() || null,
+        facebook_url: parsed.data.facebook_url?.trim() || null,
+        instagram_url: parsed.data.instagram_url?.trim() || null,
+        external_portfolio_url: parsed.data.external_portfolio_url?.trim() || null,
+        is_verified: false,
+      })
 
-    if (error) {
-      console.error('[register/professional]', error.message)
-      return NextResponse.json({ error: 'ลงทะเบียนไม่สำเร็จ' }, { status: 500 })
+      if (error) {
+        console.error('Supabase insert error:', JSON.stringify(error))
+        return NextResponse.json(
+          {
+            error: 'ลงทะเบียนไม่สำเร็จ',
+            details: error instanceof Error ? error.message : String(error),
+            hint: (error as { hint?: string })?.hint || null,
+            code: (error as { code?: string })?.code || null,
+          },
+          { status: 500 }
+        )
+      }
+    } catch (error) {
+      console.error('Supabase insert error:', JSON.stringify(error))
+      return NextResponse.json(
+        {
+          error: 'ลงทะเบียนไม่สำเร็จ',
+          details: error instanceof Error ? error.message : String(error),
+          hint: (error as { hint?: string })?.hint || null,
+          code: (error as { code?: string })?.code || null,
+        },
+        { status: 500 }
+      )
     }
 
     return NextResponse.json({ ok: true })
