@@ -2,7 +2,7 @@ export const runtime = 'nodejs'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { AU_STATES, PROFESSIONAL_JOB_CATEGORIES } from '@/lib/community-constants'
-import { isValidAbn, normalizeAbn } from '@/lib/abn'
+import { normalizeAbn } from '@/lib/abn'
 import { createServiceClient } from '@/lib/supabase/server'
 
 const schema = z.object({
@@ -27,9 +27,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: msg }, { status: 400 })
     }
 
+    // Only check length, not checksum (allow test ABNs)
     const abn = normalizeAbn(parsed.data.abn_number)
-    if (!isValidAbn(abn)) {
-      return NextResponse.json({ error: 'ABN ต้องเป็นตัวเลข 11 หลัก' }, { status: 400 })
+    if (!abn || abn.replace(/\s/g, '').length !== 11) {
+      return NextResponse.json(
+        { error: 'ABN ต้องมี 11 หลัก' },
+        { status: 400 }
+      )
     }
 
     const insertData = {
